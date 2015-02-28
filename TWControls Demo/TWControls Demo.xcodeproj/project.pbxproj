@@ -7,50 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E9C2C4BC1AA229FD00C3A979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4BB1AA229FD00C3A979 /* AppDelegate.swift */; };
-		E9C2C4BE1AA229FD00C3A979 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4BD1AA229FD00C3A979 /* GameScene.sks */; };
-		E9C2C4C01AA229FD00C3A979 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4BF1AA229FD00C3A979 /* GameScene.swift */; };
-		E9C2C4C21AA229FD00C3A979 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4C11AA229FD00C3A979 /* GameViewController.swift */; };
-		E9C2C4C51AA229FD00C3A979 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4C31AA229FD00C3A979 /* Main.storyboard */; };
-		E9C2C4C71AA229FD00C3A979 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4C61AA229FD00C3A979 /* Images.xcassets */; };
-		E9C2C4CA1AA229FD00C3A979 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4C81AA229FD00C3A979 /* LaunchScreen.xib */; };
-		E9C2C4D61AA229FD00C3A979 /* TWControls_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4D51AA229FD00C3A979 /* TWControls_DemoTests.swift */; };
+		E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */; };
+		E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4F61AA25FF200C3A979 /* GameScene.sks */; };
+		E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F81AA25FF200C3A979 /* GameScene.swift */; };
+		E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */; };
+		E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */; };
+		E9C2C5001AA25FF200C3A979 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */; };
+		E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */; };
+		E9C2C50F1AA25FF200C3A979 /* TWControls_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */; };
+		E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C5191AA2601500C3A979 /* TWButton.swift */; };
+		E9C2C51D1AA2601500C3A979 /* TWControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C51A1AA2601500C3A979 /* TWControl.swift */; };
+		E9C2C51E1AA2601500C3A979 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C51B1AA2601500C3A979 /* TWSwitch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E9C2C4D01AA229FD00C3A979 /* PBXContainerItemProxy */ = {
+		E9C2C5091AA25FF200C3A979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E9C2C4AE1AA229FD00C3A979 /* Project object */;
+			containerPortal = E9C2C4E71AA25FF200C3A979 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E9C2C4B51AA229FD00C3A979;
+			remoteGlobalIDString = E9C2C4EE1AA25FF200C3A979;
 			remoteInfo = "TWControls Demo";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E9C2C4B61AA229FD00C3A979 /* TWControls Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWControls Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9C2C4BA1AA229FD00C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9C2C4BB1AA229FD00C3A979 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9C2C4BD1AA229FD00C3A979 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		E9C2C4BF1AA229FD00C3A979 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		E9C2C4C11AA229FD00C3A979 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		E9C2C4C41AA229FD00C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E9C2C4C61AA229FD00C3A979 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E9C2C4C91AA229FD00C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E9C2C4CF1AA229FD00C3A979 /* TWControls DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TWControls DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9C2C4D41AA229FD00C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9C2C4D51AA229FD00C3A979 /* TWControls_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TWControls_DemoTests.swift; sourceTree = "<group>"; };
+		E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWControls Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C2C4F31AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E9C2C4F61AA25FF200C3A979 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		E9C2C4F81AA25FF200C3A979 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E9C2C4FD1AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9C2C5021AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TWControls DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C2C50D1AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TWControls_DemoTests.swift; sourceTree = "<group>"; };
+		E9C2C5191AA2601500C3A979 /* TWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWButton.swift; sourceTree = "<group>"; };
+		E9C2C51A1AA2601500C3A979 /* TWControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWControl.swift; sourceTree = "<group>"; };
+		E9C2C51B1AA2601500C3A979 /* TWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWSwitch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E9C2C4B31AA229FD00C3A979 /* Frameworks */ = {
+		E9C2C4EC1AA25FF200C3A979 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9C2C4CC1AA229FD00C3A979 /* Frameworks */ = {
+		E9C2C5051AA25FF200C3A979 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,74 +66,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E9C2C4AD1AA229FD00C3A979 = {
+		E9C2C4E61AA25FF200C3A979 = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4B81AA229FD00C3A979 /* TWControls Demo */,
-				E9C2C4D21AA229FD00C3A979 /* TWControls DemoTests */,
-				E9C2C4B71AA229FD00C3A979 /* Products */,
+				E9C2C4F11AA25FF200C3A979 /* TWControls Demo */,
+				E9C2C50B1AA25FF200C3A979 /* TWControls DemoTests */,
+				E9C2C4F01AA25FF200C3A979 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E9C2C4B71AA229FD00C3A979 /* Products */ = {
+		E9C2C4F01AA25FF200C3A979 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4B61AA229FD00C3A979 /* TWControls Demo.app */,
-				E9C2C4CF1AA229FD00C3A979 /* TWControls DemoTests.xctest */,
+				E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */,
+				E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E9C2C4B81AA229FD00C3A979 /* TWControls Demo */ = {
+		E9C2C4F11AA25FF200C3A979 /* TWControls Demo */ = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4BB1AA229FD00C3A979 /* AppDelegate.swift */,
-				E9C2C4BD1AA229FD00C3A979 /* GameScene.sks */,
-				E9C2C4BF1AA229FD00C3A979 /* GameScene.swift */,
-				E9C2C4C11AA229FD00C3A979 /* GameViewController.swift */,
-				E9C2C4C31AA229FD00C3A979 /* Main.storyboard */,
-				E9C2C4C61AA229FD00C3A979 /* Images.xcassets */,
-				E9C2C4C81AA229FD00C3A979 /* LaunchScreen.xib */,
-				E9C2C4B91AA229FD00C3A979 /* Supporting Files */,
+				E9C2C5181AA2601500C3A979 /* TWControls */,
+				E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */,
+				E9C2C4F61AA25FF200C3A979 /* GameScene.sks */,
+				E9C2C4F81AA25FF200C3A979 /* GameScene.swift */,
+				E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */,
+				E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */,
+				E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */,
+				E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */,
+				E9C2C4F21AA25FF200C3A979 /* Supporting Files */,
 			);
 			path = "TWControls Demo";
 			sourceTree = "<group>";
 		};
-		E9C2C4B91AA229FD00C3A979 /* Supporting Files */ = {
+		E9C2C4F21AA25FF200C3A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4BA1AA229FD00C3A979 /* Info.plist */,
+				E9C2C4F31AA25FF200C3A979 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E9C2C4D21AA229FD00C3A979 /* TWControls DemoTests */ = {
+		E9C2C50B1AA25FF200C3A979 /* TWControls DemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4D51AA229FD00C3A979 /* TWControls_DemoTests.swift */,
-				E9C2C4D31AA229FD00C3A979 /* Supporting Files */,
+				E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */,
+				E9C2C50C1AA25FF200C3A979 /* Supporting Files */,
 			);
 			path = "TWControls DemoTests";
 			sourceTree = "<group>";
 		};
-		E9C2C4D31AA229FD00C3A979 /* Supporting Files */ = {
+		E9C2C50C1AA25FF200C3A979 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E9C2C4D41AA229FD00C3A979 /* Info.plist */,
+				E9C2C50D1AA25FF200C3A979 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9C2C5181AA2601500C3A979 /* TWControls */ = {
+			isa = PBXGroup;
+			children = (
+				E9C2C5191AA2601500C3A979 /* TWButton.swift */,
+				E9C2C51A1AA2601500C3A979 /* TWControl.swift */,
+				E9C2C51B1AA2601500C3A979 /* TWSwitch.swift */,
+			);
+			name = TWControls;
+			path = ../../TWControls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E9C2C4B51AA229FD00C3A979 /* TWControls Demo */ = {
+		E9C2C4EE1AA25FF200C3A979 /* TWControls Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9C2C4D91AA229FD00C3A979 /* Build configuration list for PBXNativeTarget "TWControls Demo" */;
+			buildConfigurationList = E9C2C5121AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls Demo" */;
 			buildPhases = (
-				E9C2C4B21AA229FD00C3A979 /* Sources */,
-				E9C2C4B31AA229FD00C3A979 /* Frameworks */,
-				E9C2C4B41AA229FD00C3A979 /* Resources */,
+				E9C2C4EB1AA25FF200C3A979 /* Sources */,
+				E9C2C4EC1AA25FF200C3A979 /* Frameworks */,
+				E9C2C4ED1AA25FF200C3A979 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -135,46 +153,46 @@
 			);
 			name = "TWControls Demo";
 			productName = "TWControls Demo";
-			productReference = E9C2C4B61AA229FD00C3A979 /* TWControls Demo.app */;
+			productReference = E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9C2C4CE1AA229FD00C3A979 /* TWControls DemoTests */ = {
+		E9C2C5071AA25FF200C3A979 /* TWControls DemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9C2C4DC1AA229FD00C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */;
+			buildConfigurationList = E9C2C5151AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */;
 			buildPhases = (
-				E9C2C4CB1AA229FD00C3A979 /* Sources */,
-				E9C2C4CC1AA229FD00C3A979 /* Frameworks */,
-				E9C2C4CD1AA229FD00C3A979 /* Resources */,
+				E9C2C5041AA25FF200C3A979 /* Sources */,
+				E9C2C5051AA25FF200C3A979 /* Frameworks */,
+				E9C2C5061AA25FF200C3A979 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E9C2C4D11AA229FD00C3A979 /* PBXTargetDependency */,
+				E9C2C50A1AA25FF200C3A979 /* PBXTargetDependency */,
 			);
 			name = "TWControls DemoTests";
 			productName = "TWControls DemoTests";
-			productReference = E9C2C4CF1AA229FD00C3A979 /* TWControls DemoTests.xctest */;
+			productReference = E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E9C2C4AE1AA229FD00C3A979 /* Project object */ = {
+		E9C2C4E71AA25FF200C3A979 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Txai Wieser";
 				TargetAttributes = {
-					E9C2C4B51AA229FD00C3A979 = {
+					E9C2C4EE1AA25FF200C3A979 = {
 						CreatedOnToolsVersion = 6.3;
 					};
-					E9C2C4CE1AA229FD00C3A979 = {
+					E9C2C5071AA25FF200C3A979 = {
 						CreatedOnToolsVersion = 6.3;
-						TestTargetID = E9C2C4B51AA229FD00C3A979;
+						TestTargetID = E9C2C4EE1AA25FF200C3A979;
 					};
 				};
 			};
-			buildConfigurationList = E9C2C4B11AA229FD00C3A979 /* Build configuration list for PBXProject "TWControls Demo" */;
+			buildConfigurationList = E9C2C4EA1AA25FF200C3A979 /* Build configuration list for PBXProject "TWControls Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -182,30 +200,30 @@
 				en,
 				Base,
 			);
-			mainGroup = E9C2C4AD1AA229FD00C3A979;
-			productRefGroup = E9C2C4B71AA229FD00C3A979 /* Products */;
+			mainGroup = E9C2C4E61AA25FF200C3A979;
+			productRefGroup = E9C2C4F01AA25FF200C3A979 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E9C2C4B51AA229FD00C3A979 /* TWControls Demo */,
-				E9C2C4CE1AA229FD00C3A979 /* TWControls DemoTests */,
+				E9C2C4EE1AA25FF200C3A979 /* TWControls Demo */,
+				E9C2C5071AA25FF200C3A979 /* TWControls DemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E9C2C4B41AA229FD00C3A979 /* Resources */ = {
+		E9C2C4ED1AA25FF200C3A979 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9C2C4CA1AA229FD00C3A979 /* LaunchScreen.xib in Resources */,
-				E9C2C4C71AA229FD00C3A979 /* Images.xcassets in Resources */,
-				E9C2C4BE1AA229FD00C3A979 /* GameScene.sks in Resources */,
-				E9C2C4C51AA229FD00C3A979 /* Main.storyboard in Resources */,
+				E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */,
+				E9C2C5001AA25FF200C3A979 /* Images.xcassets in Resources */,
+				E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */,
+				E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9C2C4CD1AA229FD00C3A979 /* Resources */ = {
+		E9C2C5061AA25FF200C3A979 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,47 +233,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E9C2C4B21AA229FD00C3A979 /* Sources */ = {
+		E9C2C4EB1AA25FF200C3A979 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9C2C4C01AA229FD00C3A979 /* GameScene.swift in Sources */,
-				E9C2C4C21AA229FD00C3A979 /* GameViewController.swift in Sources */,
-				E9C2C4BC1AA229FD00C3A979 /* AppDelegate.swift in Sources */,
+				E9C2C51E1AA2601500C3A979 /* TWSwitch.swift in Sources */,
+				E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */,
+				E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */,
+				E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */,
+				E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */,
+				E9C2C51D1AA2601500C3A979 /* TWControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9C2C4CB1AA229FD00C3A979 /* Sources */ = {
+		E9C2C5041AA25FF200C3A979 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9C2C4D61AA229FD00C3A979 /* TWControls_DemoTests.swift in Sources */,
+				E9C2C50F1AA25FF200C3A979 /* TWControls_DemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E9C2C4D11AA229FD00C3A979 /* PBXTargetDependency */ = {
+		E9C2C50A1AA25FF200C3A979 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E9C2C4B51AA229FD00C3A979 /* TWControls Demo */;
-			targetProxy = E9C2C4D01AA229FD00C3A979 /* PBXContainerItemProxy */;
+			target = E9C2C4EE1AA25FF200C3A979 /* TWControls Demo */;
+			targetProxy = E9C2C5091AA25FF200C3A979 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E9C2C4C31AA229FD00C3A979 /* Main.storyboard */ = {
+		E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E9C2C4C41AA229FD00C3A979 /* Base */,
+				E9C2C4FD1AA25FF200C3A979 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		E9C2C4C81AA229FD00C3A979 /* LaunchScreen.xib */ = {
+		E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E9C2C4C91AA229FD00C3A979 /* Base */,
+				E9C2C5021AA25FF200C3A979 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -263,7 +284,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E9C2C4D71AA229FD00C3A979 /* Debug */ = {
+		E9C2C5101AA25FF200C3A979 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -308,7 +329,7 @@
 			};
 			name = Debug;
 		};
-		E9C2C4D81AA229FD00C3A979 /* Release */ = {
+		E9C2C5111AA25FF200C3A979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -346,7 +367,7 @@
 			};
 			name = Release;
 		};
-		E9C2C4DA1AA229FD00C3A979 /* Debug */ = {
+		E9C2C5131AA25FF200C3A979 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -356,7 +377,7 @@
 			};
 			name = Debug;
 		};
-		E9C2C4DB1AA229FD00C3A979 /* Release */ = {
+		E9C2C5141AA25FF200C3A979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -366,7 +387,7 @@
 			};
 			name = Release;
 		};
-		E9C2C4DD1AA229FD00C3A979 /* Debug */ = {
+		E9C2C5161AA25FF200C3A979 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -385,7 +406,7 @@
 			};
 			name = Debug;
 		};
-		E9C2C4DE1AA229FD00C3A979 /* Release */ = {
+		E9C2C5171AA25FF200C3A979 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -403,32 +424,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E9C2C4B11AA229FD00C3A979 /* Build configuration list for PBXProject "TWControls Demo" */ = {
+		E9C2C4EA1AA25FF200C3A979 /* Build configuration list for PBXProject "TWControls Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E9C2C4D71AA229FD00C3A979 /* Debug */,
-				E9C2C4D81AA229FD00C3A979 /* Release */,
+				E9C2C5101AA25FF200C3A979 /* Debug */,
+				E9C2C5111AA25FF200C3A979 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9C2C4D91AA229FD00C3A979 /* Build configuration list for PBXNativeTarget "TWControls Demo" */ = {
+		E9C2C5121AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E9C2C4DA1AA229FD00C3A979 /* Debug */,
-				E9C2C4DB1AA229FD00C3A979 /* Release */,
+				E9C2C5131AA25FF200C3A979 /* Debug */,
+				E9C2C5141AA25FF200C3A979 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		E9C2C4DC1AA229FD00C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */ = {
+		E9C2C5151AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E9C2C4DD1AA229FD00C3A979 /* Debug */,
-				E9C2C4DE1AA229FD00C3A979 /* Release */,
+				E9C2C5161AA25FF200C3A979 /* Debug */,
+				E9C2C5171AA25FF200C3A979 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E9C2C4AE1AA229FD00C3A979 /* Project object */;
+	rootObject = E9C2C4E71AA25FF200C3A979 /* Project object */;
 }

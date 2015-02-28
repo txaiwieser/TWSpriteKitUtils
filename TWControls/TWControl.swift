@@ -21,22 +21,6 @@ protocol TWControlDelegate: class {
     func controlValueChanged(control:TWControl)
 }
 
-struct TWTargetActionInfo {
-    var closure:(control:TWControl!)->()
-    var event:UIControlEvents
-    
-    static func executeClosuresOf(event:UIControlEvents, targetActionInfos:[TWTargetActionInfo]?, control:TWControl!)
-    {
-        if targetActionInfos != nil {
-            for targetAction in targetActionInfos! {
-                if targetAction.event == event {
-                    targetAction.closure(control: control)
-                }
-            }
-        }
-    }
-}
-
 enum TWControlType {
     case Texture
     case Color
@@ -124,10 +108,33 @@ class TWControl: SKSpriteNode {
     internal let stateSelectedLabel = SKLabelNode()
     
     
-    internal var stateDisabledLabelText:String? { didSet { updateVisualInterface() } }
-    internal var stateHighlightedLabelText:String? { didSet { updateVisualInterface() } }
-    internal var stateNormalLabelText:String? { didSet { updateVisualInterface() } }
-    internal var stateSelectedLabelText:String? { didSet { updateVisualInterface() } }
+    internal var stateDisabledLabelText:String? {
+        didSet {
+            if stateDisabledLabelText != nil { stateDisabledLabel.text = stateDisabledLabelText! }
+            updateVisualInterface()
+        }
+    }
+    
+    internal var stateHighlightedLabelText:String? {
+        didSet {
+            if stateHighlightedLabelText != nil { stateHighlightedLabel.text = stateHighlightedLabelText! }
+            updateVisualInterface()
+        }
+    }
+    
+    internal var stateNormalLabelText:String? {
+        didSet {
+            if stateNormalLabelText != nil { stateNormalLabel.text = stateNormalLabelText! }
+            updateVisualInterface()
+        }
+    }
+    
+    internal var stateSelectedLabelText:String? {
+        didSet {
+            if stateSelectedLabelText != nil { stateSelectedLabel.text = stateSelectedLabelText! }
+            updateVisualInterface()
+        }
+    }
     
     static let co = UIColor.whiteColor()
     
@@ -141,7 +148,7 @@ class TWControl: SKSpriteNode {
 
     private let type:TWControlType
     private var state:TWControlState = .Normal
-    private var targetActions:[TWTargetActionInfo]?
+    private var eventClosures:[(event: UIControlEvents, closure: TWControl -> ())] = []
     private var touch:UITouch?
     private var touchLocationLast:CGPoint?
     private var moved = false
@@ -208,20 +215,27 @@ class TWControl: SKSpriteNode {
     
     
     
-    func addClosureFor(event:UIControlEvents, closure:(control:TWControl!)->()) {
-        if targetActions == nil {
-            targetActions = [TWTargetActionInfo(closure: closure, event: event)]
-        }
-        else {
-            targetActions!.append(TWTargetActionInfo(closure: closure, event: event))
-        }
+    func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (T, TWControl) -> ())
+    {
+        self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
+            if let obj = target {
+                closure(obj, ctrl)
+            }
+            return
+            }))
     }
     
-    func removeTargetForControlEvent(event:UIControlEvents, action:()->()) {
+    func removeClosuresFor(event:UIControlEvents) {
         assertionFailure("TODO: Implement Remove Target")
     }
-    
-    
+
+    func executeClosuresOf(event: UIControlEvents) {
+        for eventClosure in eventClosures {
+            if eventClosure.event == event {
+                eventClosure.closure(self)
+            }
+        }
+    }
     
     func updateVisualInterface() {
         switch type {
@@ -267,42 +281,40 @@ class TWControl: SKSpriteNode {
         }
     }
     
-    // TWControlSubclass Protocol
-    
-    func removeTarget(target:()->()) {}
+    // soiudfnaisjdnvpasjdvnps kjsdnlkjsdnflksjdnflksjdnflskdjfnlskdjfn
     
     func touchDown() {
         self.highlighted = true
-        TWTargetActionInfo.executeClosuresOf(.TouchDown, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchDown)
     }
     
     func drag() {}
     
     func dragExit() {
         self.highlighted = false
-        TWTargetActionInfo.executeClosuresOf(.TouchDragExit, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchDragExit)
     }
 
     func dragOutside() {
-        TWTargetActionInfo.executeClosuresOf(.TouchDragOutside, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchDragOutside)
     }
     
     func dragEnter() {
         self.highlighted = true
-        TWTargetActionInfo.executeClosuresOf(.TouchDragEnter, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchDragEnter)
     }
     
     func dragInside() {
-        TWTargetActionInfo.executeClosuresOf(.TouchDragInside, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchDragInside)
     }
 
     func touchUpInside() {
         self.highlighted = false
-        TWTargetActionInfo.executeClosuresOf(.TouchUpInside, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchUpInside)
     }
     
     func touchUpOutside() {
-        TWTargetActionInfo.executeClosuresOf(.TouchUpOutside, targetActionInfos: self.targetActions, control: self)
+        executeClosuresOf(.TouchUpOutside)
     }
     
     
