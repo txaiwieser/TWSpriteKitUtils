@@ -10,6 +10,8 @@ This project requires Swift 1.2 and Xcode 6.3.
 
 ## Easy to use SpriteKit controls
 
+TWControls is a project that attempts to provide an easy-to-use API to perform actions based on user interaction (SpriteKit). It provides controls like Buttons and Switches. Is written in pure Swift and uses closures to perform actions triggered by the controls.
+
 * TWControl: A base class with handlers for UIControlEvents.
 * TWButton: Subclass of TWControl that implements a complete button for SpriteKit.
 * TWSwitch: Subclass of TWControl that implements a complete switch for SpriteKit.
