@@ -129,6 +129,11 @@ Here are some things that I still want to implement:
 * Support for audio effects;
 * Improve Documentation;
 
+## Thanks
+
+* This work is almost a translation of a ObjC control called "SpriteKit-iOS-Basic-Controls" by Nicolás Miari (https://github.com/nicolas-miari) with some modifications and improvments! So all credit must go to him! :) Thanks man!
+
 ## License
 
 See LICENSE for more information
+
