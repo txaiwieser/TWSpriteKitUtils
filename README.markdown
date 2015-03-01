@@ -14,7 +14,7 @@ This project requires Swift 1.2 and Xcode 6.3.
 * TWButton: Subclass of TWControl that implements a complete button for SpriteKit.
 * TWSwitch: Subclass of TWControl that implements a complete switch for SpriteKit.
 
-![Demonstration](demo.png)
+![Demonstration](https://github.com/txaidw/TWControls/blob/master/demo.gif)
 
 ## What's included
 
