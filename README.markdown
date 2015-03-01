@@ -1,4 +1,4 @@
-# SwiftGraphics
+# TWControls - Simple Controls for SpriteKit written in Swift
 
 ## **IMPORTANT**
 
