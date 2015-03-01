@@ -12,7 +12,7 @@ class TWSwitch: TWControl {
 
     
     
-    // Initializers
+    // MARK: Initializers
     init(normalText: String, selectedText: String) {
         super.init(normalText: normalText, highlightedText: normalText, selectedText: selectedText, disabledText: normalText)
     }
@@ -31,7 +31,7 @@ class TWSwitch: TWControl {
     
     
     
-    // Switch Methods
+    // MARK: Switch Methods
     
     override func touchUpInside() {
         

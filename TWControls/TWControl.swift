@@ -8,29 +8,31 @@
 
 import SpriteKit
 
-
-
-enum TWControlState: Int {
-    case Normal = 0
-    case Highlighted = 1
-    case Selected = 2
-    case Disabled = 3
-}
-
 protocol TWControlDelegate: class {
     func controlValueChanged(control:TWControl)
 }
 
-enum TWControlType {
-    case Texture
-    case Color
-    case Label
-}
-
 class TWControl: SKSpriteNode {
 
-    // Mark: Public properties
+    // MARK: Nested Types
+    
+    enum TWControlState: Int {
+        case Normal = 0
+        case Highlighted = 1
+        case Selected = 2
+        case Disabled = 3
+    }
+    
+    enum TWControlType {
+        case Texture
+        case Color
+        case Label
+    }
+
+    
+    // Mark: Public Properties
     internal weak var delegate:TWControlDelegate!
+    internal var boundsTolerance:CGFloat?
     internal var tag:Int?
     internal var isOn:Bool = false
     internal var enabled:Bool {
@@ -80,71 +82,103 @@ class TWControl: SKSpriteNode {
         }
     }
     
-    internal var boundsTolerance:CGFloat?
     
     
     
-    
-    
-    // Mark: Customization properties
+    // MARK: Customization Properties
 
-    // TYPE Color customizations
+    // TYPE Color Customizations
     internal var stateDisabledColor:SKColor! { didSet { updateVisualInterface() } }
     internal var stateHighlightedColor:SKColor! { didSet { updateVisualInterface() } }
     internal var stateNormalColor:SKColor! { didSet { updateVisualInterface() } }
     internal var stateSelectedColor:SKColor! { didSet { updateVisualInterface() } }
     
-    // TYPE Texture customizations
+    // TYPE Texture Customizations
     internal var stateDisabledTexture:SKTexture! { didSet { updateVisualInterface() } }
     internal var stateHighlightedTexture:SKTexture! { didSet { updateVisualInterface() } }
     internal var stateNormalTexture:SKTexture! { didSet { updateVisualInterface() } }
     internal var stateSelectedTexture:SKTexture! { didSet { updateVisualInterface() } }
     
-    
-    // Labels customizations
-    internal let stateDisabledLabel = SKLabelNode()
-    internal let stateHighlightedLabel = SKLabelNode()
-    internal let stateNormalLabel = SKLabelNode()
-    internal let stateSelectedLabel = SKLabelNode()
-    
+    // TEXT Labels Customizations
     
     internal var stateDisabledLabelText:String? {
         didSet {
             if stateDisabledLabelText != nil { stateDisabledLabel.text = stateDisabledLabelText! }
-            updateVisualInterface()
         }
     }
     
     internal var stateHighlightedLabelText:String? {
         didSet {
             if stateHighlightedLabelText != nil { stateHighlightedLabel.text = stateHighlightedLabelText! }
-            updateVisualInterface()
         }
     }
     
     internal var stateNormalLabelText:String? {
         didSet {
             if stateNormalLabelText != nil { stateNormalLabel.text = stateNormalLabelText! }
-            updateVisualInterface()
         }
     }
     
     internal var stateSelectedLabelText:String? {
         didSet {
             if stateSelectedLabelText != nil { stateSelectedLabel.text = stateSelectedLabelText! }
-            updateVisualInterface()
+        }
+    }
+    internal var allStatesLabelText:String! {
+        didSet {
+            stateDisabledLabelText = allStatesLabelText
+            stateHighlightedLabelText = allStatesLabelText
+            stateNormalLabelText = allStatesLabelText
+            stateSelectedLabelText = allStatesLabelText
+        }
+    }
+   
+    internal var stateDisabledFontColor:SKColor! { didSet { stateDisabledLabel.color = stateDisabledFontColor } }
+    internal var stateHighlightedFontColor:SKColor! { didSet { stateHighlightedLabel.color = stateHighlightedFontColor } }
+    internal var stateNormalFontColor:SKColor! { didSet { stateNormalLabel.color = stateNormalFontColor } }
+    internal var stateSelectedFontColor:SKColor! { didSet { stateSelectedLabel.color = stateSelectedFontColor } }
+    internal var allStatesFontColor:SKColor! {
+        didSet {
+            stateDisabledLabel.color = stateDisabledFontColor
+            stateHighlightedLabel.color = stateHighlightedFontColor
+            stateNormalLabel.color = stateNormalFontColor
+            stateSelectedLabel.color = stateSelectedFontColor
         }
     }
     
-    static let co = UIColor.whiteColor()
+    internal var allStatesLabelFontSize:CGFloat! {
+        didSet {
+            stateDisabledLabel.fontSize = allStatesLabelFontSize
+            stateHighlightedLabel.fontSize = allStatesLabelFontSize
+            stateNormalLabel.fontSize = allStatesLabelFontSize
+            stateSelectedLabel.fontSize = allStatesLabelFontSize
+        }
+    }
     
-    internal var stateDisabledFontColor:SKColor = co { didSet { updateVisualInterface() } }
-    internal var stateHighlightedFontColor:SKColor = co { didSet { updateVisualInterface() } }
-    internal var stateNormalFontColor:SKColor = co { didSet { updateVisualInterface() } }
-    internal var stateSelectedFontColor:SKColor = co { didSet { updateVisualInterface() } }
+    internal var allStatesLabelFontName:String! {
+        didSet {
+            stateDisabledLabel.fontName = allStatesLabelFontName
+            stateHighlightedLabel.fontName = allStatesLabelFontName
+            stateNormalLabel.fontName = allStatesLabelFontName
+            stateSelectedLabel.fontName = allStatesLabelFontName
+        }
+    }
     
     
-    // Mark: Private properties
+    // Labels Direct Access
+    internal let stateDisabledLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
+    internal let stateHighlightedLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
+    internal let stateNormalLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
+    internal let stateSelectedLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: Private Properties
 
     private let type:TWControlType
     private var state:TWControlState = .Normal
@@ -156,8 +190,7 @@ class TWControl: SKSpriteNode {
     
     
     
-    
-    // Mark: Initializers
+    // MARK: Initializers
     
     init(normalTexture:SKTexture, highlightedTexture:SKTexture, selectedTexture:SKTexture, disabledTexture:SKTexture) {
         type = .Texture
@@ -215,11 +248,15 @@ class TWControl: SKSpriteNode {
     
     
     
-    func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (T, TWControl) -> ())
+    
+    
+    // MARK: Control Actions
+    
+    func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (target:T, sender:TWControl) -> ())
     {
         self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
             if let obj = target {
-                closure(obj, ctrl)
+                closure(target: obj, sender: ctrl)
             }
             return
             }))
@@ -236,6 +273,11 @@ class TWControl: SKSpriteNode {
             }
         }
     }
+    
+    
+    
+    
+    // MARK: Control Functionality
     
     func updateVisualInterface() {
         switch type {
@@ -281,7 +323,7 @@ class TWControl: SKSpriteNode {
         }
     }
     
-    // soiudfnaisjdnvpasjdvnps kjsdnlkjsdnflksjdnflksjdnflskdjfnlskdjfn
+    // Control Events
     
     func touchDown() {
         self.highlighted = true
@@ -324,7 +366,7 @@ class TWControl: SKSpriteNode {
     
     
     
-    // UIResponder Methods
+    // MARK: UIResponder Methods
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = touches.first as! UITouch
@@ -399,9 +441,7 @@ class TWControl: SKSpriteNode {
     
     
     
-    
-    
-    // Helpers
+    // MARK: Helpers
     
     override func containsPoint(p: CGPoint) -> Bool {
         if let bounds = self.boundsTolerance {
@@ -419,12 +459,10 @@ class TWControl: SKSpriteNode {
             return super.containsPoint(p)
         }
     }
-    
-    // .............................................................................
 }
 
 
-
+// MARK: Array Extension
 
 extension Array {
     mutating func removeObject<U: Equatable>(object: U) {

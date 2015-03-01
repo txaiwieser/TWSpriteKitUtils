@@ -10,7 +10,7 @@ import SpriteKit
 
 class TWButton: TWControl {
     
-    // Initializers
+    // MARK: Initializers
     init(normalText: String, highlightedText: String) {
         super.init(normalText: normalText, highlightedText: highlightedText, selectedText: normalText, disabledText: normalText)
     }
@@ -29,7 +29,7 @@ class TWButton: TWControl {
     
     
     
-    // Button Methods
+    // MARK: Button Methods
     
     var icon:SKSpriteNode? {
         willSet {
