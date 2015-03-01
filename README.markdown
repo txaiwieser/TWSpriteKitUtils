@@ -1,4 +1,4 @@
-# TWControls - Simple Controls for SpriteKit written in Swift
+# TWControls - Simple Controls (Button, Switch) for SpriteKit, written in Swift!
 
 ## **IMPORTANT**
 
