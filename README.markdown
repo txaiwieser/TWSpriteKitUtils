@@ -40,11 +40,38 @@ You can set up a TWSwitch using one of the following initializers:
     init(normalTexture: SKTexture, selectedTexture: SKTexture)
     init(normalColor: SKColor, selectedColor: SKColor, size:CGSize)
 
-Or you can set up any of them using the complete methods found on TWControl:
+Or you can set up a TWButton or a TWSwitch using the complete methods found on TWControl:
 
     init(normalTexture:SKTexture, highlightedTexture:SKTexture, selectedTexture:SKTexture, disabledTexture:SKTexture)
     init(normalColor:SKColor, highlightedColor:SKColor, selectedColor:SKColor, disabledColor:SKColor, size:CGSize)
     init(normalText:String, highlightedText:String, selectedText:String, disabledText:String)
+
+Swift doesn't have a "performSelector: method, so my idea was to use only closures. The problem is we have to be *VERY CAREFUL*, because it is very easy to end up with a reference cycles.
+
+You should use in your closure only the objects that are on the capture list of the closure!
+
+To add an action to the control you use:
+
+	func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (target:T, sender:TWControl) -> ())
+
+
+
+Here's a full init code snippet:
+	class Test {
+    
+    	var testProperty = "Default String"
+    
+    	init() {
+        	let control = TWButton(normalColor: SKColor.blueColor(), highlightedColor: SKColor.redColor(), size: CGSize(width: 160, height: 80))
+        	control.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        	control.position.allStatesLabelText = "PLAY"
+        	control.addClosureFor(.TouchUpInside, target: self, closure: { (scene, sender) -> () in
+            scene.testProperty = "Changed Property"
+        	})
+        }
+    
+    	deinit { println("Class Released..") }
+	}
 
 
 You can customize the controls using the following properties:
@@ -62,8 +89,6 @@ You can customize the controls using the following properties:
     internal var stateSelectedTexture:SKTexture!
     
     // TEXT Labels Customizations
-
-    
     internal var allStatesLabelText:String!
     internal var allStatesFontColor:SKColor!
     internal var allStatesLabelFontSize:CGFloat!
@@ -101,8 +126,8 @@ You can help by using TWControls in your projects and discovering its shortcomin
 
 Here are some things that I still want to implement:
 
-* Support for audio effects
-
+* Support for audio effects;
+* Improve Documentation;
 
 ## License
 
