@@ -135,7 +135,6 @@ class GameScene: SKScene {
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textureButton.enabled = !scene.textureButton.enabled
         }
-        
     }
     
     override func update(currentTime: CFTimeInterval) {

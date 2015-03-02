@@ -252,6 +252,11 @@ class TWControl: SKSpriteNode {
     
     // MARK: Control Actions
     
+    /**
+    * Add a closure to a event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
+    Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
+    You have to be VERY CAREFUL!
+    */
     func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (target:T, sender:TWControl) -> ())
     {
         self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
@@ -262,11 +267,11 @@ class TWControl: SKSpriteNode {
             }))
     }
     
-    func removeClosuresFor(event:UIControlEvents) {
+    private func removeClosuresFor(event:UIControlEvents) {
         assertionFailure("TODO: Implement Remove Target")
     }
 
-    func executeClosuresOf(event: UIControlEvents) {
+    private func executeClosuresOf(event: UIControlEvents) {
         for eventClosure in eventClosures {
             if eventClosure.event == event {
                 eventClosure.closure(self)
@@ -279,7 +284,7 @@ class TWControl: SKSpriteNode {
     
     // MARK: Control Functionality
     
-    func updateVisualInterface() {
+    private func updateVisualInterface() {
         switch type {
             case .Color:
                 switch state {
@@ -325,37 +330,37 @@ class TWControl: SKSpriteNode {
     
     // Control Events
     
-    func touchDown() {
+    internal func touchDown() {
         self.highlighted = true
         executeClosuresOf(.TouchDown)
     }
     
-    func drag() {}
+    internal func drag() {}
     
-    func dragExit() {
+    internal func dragExit() {
         self.highlighted = false
         executeClosuresOf(.TouchDragExit)
     }
 
-    func dragOutside() {
+    internal func dragOutside() {
         executeClosuresOf(.TouchDragOutside)
     }
     
-    func dragEnter() {
+    internal func dragEnter() {
         self.highlighted = true
         executeClosuresOf(.TouchDragEnter)
     }
     
-    func dragInside() {
+    internal func dragInside() {
         executeClosuresOf(.TouchDragInside)
     }
 
-    func touchUpInside() {
+    internal func touchUpInside() {
         self.highlighted = false
         executeClosuresOf(.TouchUpInside)
     }
     
-    func touchUpOutside() {
+    internal func touchUpOutside() {
         executeClosuresOf(.TouchUpOutside)
     }
     
@@ -368,7 +373,7 @@ class TWControl: SKSpriteNode {
     
     // MARK: UIResponder Methods
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    internal override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = touches.first as! UITouch
         let touchPoint = touch.locationInNode(self.parent)
         
@@ -379,7 +384,7 @@ class TWControl: SKSpriteNode {
         }
     }
     
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    internal override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = touches.first as! UITouch
         let touchPoint = touch.locationInNode(self.parent)
         
@@ -411,7 +416,7 @@ class TWControl: SKSpriteNode {
     }
     
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    internal override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = touches.first as! UITouch
         let touchPoint = touch.locationInNode(self.parent)
 
@@ -433,7 +438,7 @@ class TWControl: SKSpriteNode {
     }
     
     
-    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    internal override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
         touchesEnded(touches, withEvent: event)
     }
     
@@ -443,7 +448,7 @@ class TWControl: SKSpriteNode {
     
     // MARK: Helpers
     
-    override func containsPoint(p: CGPoint) -> Bool {
+    internal override func containsPoint(p: CGPoint) -> Bool {
         if let bounds = self.boundsTolerance {
             let local = CGPoint(x: p.x - self.position.x, y: p.y - self.position.y)
             
