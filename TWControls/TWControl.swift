@@ -301,12 +301,16 @@ class TWControl: SKSpriteNode {
                 switch state {
                 case .Disabled:
                     self.texture = self.stateDisabledTexture
+                    self.size = self.texture!.size()
                 case .Highlighted:
                     self.texture = self.stateHighlightedTexture
+                    self.size = self.texture!.size()
                 case .Normal:
                     self.texture = self.stateNormalTexture
+                    self.size = self.texture!.size()
                 case .Selected:
                     self.texture = self.stateSelectedTexture
+                    self.size = self.texture!.size()
             }
             case .Label:
                 break //Doesnt need to do nothing
