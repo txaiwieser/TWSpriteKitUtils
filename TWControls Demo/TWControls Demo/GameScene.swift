@@ -12,7 +12,7 @@ class GameScene: SKScene {
     
     // SWITCHES
     lazy var switchesContainer:SKSpriteNode = {
-        let n = SKSpriteNode(color: SKColor.lightGrayColor(), size: CGSize(width: 220, height: 320))
+        let n = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 220, height: 320))
         n.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetHeight(self.frame) - n.size.height/2 - 30)
 
         let l = SKLabelNode(text: "Switches")
@@ -46,6 +46,7 @@ class GameScene: SKScene {
     let textSwitch:TWSwitch = {
         let s = TWSwitch(normalText: "ON", selectedText: "OFF")
         s.stateDisabledLabelText = "DISABLED"
+        s.allStatesFontColor = SKColor.blackColor()
         s.position = CGPoint(x: 0, y: -120)
         return s
         }()
@@ -53,7 +54,7 @@ class GameScene: SKScene {
     
     // BUTTONS
     lazy var buttonsContainer:SKSpriteNode = {
-        let n = SKSpriteNode(color: SKColor.lightGrayColor(), size: CGSize(width: 220, height: 320))
+        let n = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 220, height: 320))
         n.position = CGPoint(x: CGRectGetMidX(self.frame), y: n.size.height/2 + 30)
         
         let l = SKLabelNode(text: "Buttons")
@@ -86,6 +87,7 @@ class GameScene: SKScene {
     let textButton:TWButton = {
         let b = TWButton(normalText: "PLAY", highlightedText: "PRESSED")
         b.stateDisabledLabelText = "DISABLED"
+        b.allStatesFontColor = SKColor.blackColor()
         b.position = CGPoint(x: 0, y: -120)
         return b
         }()
@@ -93,7 +95,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-
+        self.backgroundColor = SKColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
         
         self.addChild(switchesContainer)
         switchesContainer.addChild(colorSwitch)
