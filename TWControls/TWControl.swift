@@ -162,7 +162,7 @@ class TWControl: SKSpriteNode {
             stateDisabledFontColor = allStatesFontColor
             stateHighlightedFontColor = allStatesFontColor
             stateNormalFontColor = allStatesFontColor
-            stateSelectedColor = allStatesFontColor
+            stateSelectedFontColor = allStatesFontColor
         }
     }
     

@@ -25,13 +25,13 @@ class GameScene: SKScene {
     
     let colorSwitch:TWSwitch = {
         let s = TWSwitch(normalColor: SKColor.blueColor(), selectedColor: SKColor.orangeColor(), size: CGSize(width: 102, height: 40))
-        s.stateDisabledColor = SKColor.grayColor()
         s.stateDisabledLabelText = "DISABLED"
-        s.stateNormalLabelText = "OFF"
-        s.stateHighlightedLabelText = "OFF"
-        s.stateSelectedLabelText = "ON"
+        s.stateNormalLabelText = "ON"
+        s.stateHighlightedLabelText = "ON"
+        s.stateSelectedLabelText = "OFF"
         s.allStatesLabelFontSize = 20
         s.allStatesLabelFontName = "Helvetica"
+        s.stateDisabledColor = SKColor.grayColor()
         s.position = CGPoint(x: 0, y: 40)
         return s
         }()
