@@ -59,21 +59,21 @@ To add an action to the control you use:
 
 
 Here's a full init code snippet:
-	class Test {
+
+        class Test {
+            var testProperty = "Default String"
     
-    	var testProperty = "Default String"
+            init() {
+                let control = TWButton(normalColor: SKColor.blueColor(), highlightedColor: SKColor.redColor(), size: CGSize(width: 160, height: 80))
+                control.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+                control.position.allStatesLabelText = "PLAY"
+                control.addClosureFor(.TouchUpInside, target: self, closure: { (scene, sender) -> () in
+                scene.testProperty = "Changed Property"
+                })
+            }
     
-    	init() {
-        	let control = TWButton(normalColor: SKColor.blueColor(), highlightedColor: SKColor.redColor(), size: CGSize(width: 160, height: 80))
-        	control.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
-        	control.position.allStatesLabelText = "PLAY"
-        	control.addClosureFor(.TouchUpInside, target: self, closure: { (scene, sender) -> () in
-            scene.testProperty = "Changed Property"
-        	})
+            deinit { println("Class Released..") }
         }
-    
-    	deinit { println("Class Released..") }
-	}
 
 
 You can customize the controls using the following properties:

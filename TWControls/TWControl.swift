@@ -133,16 +133,16 @@ class TWControl: SKSpriteNode {
         }
     }
    
-    internal var stateDisabledFontColor:SKColor! { didSet { stateDisabledLabel.color = stateDisabledFontColor } }
-    internal var stateHighlightedFontColor:SKColor! { didSet { stateHighlightedLabel.color = stateHighlightedFontColor } }
-    internal var stateNormalFontColor:SKColor! { didSet { stateNormalLabel.color = stateNormalFontColor } }
-    internal var stateSelectedFontColor:SKColor! { didSet { stateSelectedLabel.color = stateSelectedFontColor } }
+    internal var stateDisabledFontColor:SKColor! { didSet { stateDisabledLabel.fontColor = stateDisabledFontColor } }
+    internal var stateHighlightedFontColor:SKColor! { didSet { stateHighlightedLabel.fontColor = stateHighlightedFontColor } }
+    internal var stateNormalFontColor:SKColor! { didSet { stateNormalLabel.fontColor = stateNormalFontColor } }
+    internal var stateSelectedFontColor:SKColor! { didSet { stateSelectedLabel.fontColor = stateSelectedFontColor } }
     internal var allStatesFontColor:SKColor! {
         didSet {
-            stateDisabledLabel.color = stateDisabledFontColor
-            stateHighlightedLabel.color = stateHighlightedFontColor
-            stateNormalLabel.color = stateNormalFontColor
-            stateSelectedLabel.color = stateSelectedFontColor
+            stateDisabledFontColor = allStatesFontColor
+            stateHighlightedFontColor = allStatesFontColor
+            stateNormalFontColor = allStatesFontColor
+            stateSelectedColor = allStatesFontColor
         }
     }
     
@@ -166,10 +166,30 @@ class TWControl: SKSpriteNode {
     
     
     // Labels Direct Access
-    internal let stateDisabledLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
-    internal let stateHighlightedLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
-    internal let stateNormalLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
-    internal let stateSelectedLabel:SKLabelNode = { let l = SKLabelNode(); l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center; return l }()
+    internal let stateDisabledLabel:SKLabelNode = {
+        let l = SKLabelNode()
+        l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        return l
+    }()
+    internal let stateHighlightedLabel:SKLabelNode = {
+        let l = SKLabelNode()
+        l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        return l
+    }()
+    internal let stateNormalLabel:SKLabelNode = {
+        let l = SKLabelNode()
+        l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        return l
+    }()
+    internal let stateSelectedLabel:SKLabelNode = {
+        let l = SKLabelNode()
+        l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
+        l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        return l
+    }()
     
     
     
