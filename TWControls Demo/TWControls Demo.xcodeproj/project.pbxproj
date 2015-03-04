@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E91F9F691AA74E090015E42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91F9F681AA74E090015E42C /* Images.xcassets */; };
 		E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */; };
 		E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4F61AA25FF200C3A979 /* GameScene.sks */; };
 		E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F81AA25FF200C3A979 /* GameScene.swift */; };
 		E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */; };
 		E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */; };
-		E9C2C5001AA25FF200C3A979 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */; };
 		E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */; };
 		E9C2C50F1AA25FF200C3A979 /* TWControls_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */; };
 		E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C5191AA2601500C3A979 /* TWButton.swift */; };
@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E91F9F681AA74E090015E42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWControls Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C2C4F31AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		E9C2C4F81AA25FF200C3A979 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E9C2C4FD1AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9C2C5021AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TWControls DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C2C50D1AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 				E9C2C4F81AA25FF200C3A979 /* GameScene.swift */,
 				E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */,
 				E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */,
-				E9C2C4FF1AA25FF200C3A979 /* Images.xcassets */,
 				E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */,
+				E91F9F681AA74E090015E42C /* Images.xcassets */,
 				E9C2C4F21AA25FF200C3A979 /* Supporting Files */,
 			);
 			path = "TWControls Demo";
@@ -217,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */,
-				E9C2C5001AA25FF200C3A979 /* Images.xcassets in Resources */,
+				E91F9F691AA74E090015E42C /* Images.xcassets in Resources */,
 				E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */,
 				E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */,
 			);
