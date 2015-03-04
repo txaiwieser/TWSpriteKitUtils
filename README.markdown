@@ -10,7 +10,7 @@ This project requires Swift 1.2 and Xcode 6.3.
 
 ## Easy to use SpriteKit controls
 
-TWControls is a project that attempts to provide an easy-to-use API to perform actions based on user interaction (SpriteKit). It provides controls like Buttons and Switches. Is written in pure Swift and uses closures to perform actions triggered by the controls.
+TWControls is a project that attempts to provide an easy-to-use API to perform actions based on user interaction on SpriteKit. It provides controls like Buttons and Switches. Is written in pure Swift and uses closures to perform actions triggered by the controls.
 
 * TWControl: A base class with handlers for UIControlEvents.
 * TWButton: Subclass of TWControl that implements a complete button for SpriteKit.
@@ -68,7 +68,7 @@ Here's a full init code snippet:
                 control.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
                 control.position.allStatesLabelText = "PLAY"
                 control.addClosureFor(.TouchUpInside, target: self, closure: { (scene, sender) -> () in
-                scene.testProperty = "Changed Property"
+                    scene.testProperty = "Changed Property"
                 })
             }
     
@@ -118,6 +118,8 @@ You can customize the controls using the following properties:
 ## Help Wanted
 
 TWControls is really simple implementation. I made while learning Swift. If you can improve, please do it.
+
+You can add issues as well!
 
 Your help will be greatly appreciated. Please star, fork and submit pull requests.
 
