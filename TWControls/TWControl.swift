@@ -246,6 +246,7 @@ class TWControl: SKSpriteNode {
         self.addChild(self.stateHighlightedLabel)
         self.addChild(self.stateNormalLabel)
         self.addChild(self.stateSelectedLabel)
+        updateVisualInterface()
     }
     
     init(normalColor:SKColor, highlightedColor:SKColor, selectedColor:SKColor, disabledColor:SKColor, size:CGSize) {
@@ -262,6 +263,7 @@ class TWControl: SKSpriteNode {
         self.addChild(self.stateHighlightedLabel)
         self.addChild(self.stateNormalLabel)
         self.addChild(self.stateSelectedLabel)
+        updateVisualInterface()
     }
 
     init(normalText:String, highlightedText:String, selectedText:String, disabledText:String) {
