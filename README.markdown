@@ -8,6 +8,8 @@ All development happens on the [develop][develop] branch. Code is merged back on
 
 This project requires Swift 1.2 and Xcode 6.3.
 
+You can help adding issues and submitting pull requests.
+
 ## Easy to use SpriteKit controls
 
 TWControls is a project that attempts to provide an easy-to-use API to perform actions based on user interaction on SpriteKit. It provides controls like Buttons and Switches. Is written in pure Swift and uses closures to perform actions triggered by the controls.
@@ -132,6 +134,7 @@ Here are some things that I still want to implement:
 
 * Support for audio effects;
 * Improve Documentation;
+* Animations
 
 ## Thanks
 
