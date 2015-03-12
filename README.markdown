@@ -2,7 +2,7 @@
 
 ## **IMPORTANT**
 
-All development happens on the [develop][develop] branch. Code is merged back on master branch sometimes.
+All development happens on the [develop][develop] branch. Code is merged back on master branch.
 
 [develop]: https://github.com/txaidw/TWControls/tree/develop
 
@@ -50,9 +50,9 @@ Or you can set up a TWButton or a TWSwitch using the complete methods found on T
     init(normalColor:SKColor, highlightedColor:SKColor, selectedColor:SKColor, disabledColor:SKColor, size:CGSize)
     init(normalText:String, highlightedText:String, selectedText:String, disabledText:String)
 
-Swift doesn't have a "performSelector: method, so my idea was to use only closures. The problem is we have to be *VERY CAREFUL*, because it is very easy to end up with a reference cycles.
+Swift doesn't have a "performSelector: method, so my idea was to use only closures. The problem is we have to be *VERY CAREFUL*, because is very easy to end up with reference cycles.
 
-You should use in your closure only the objects that are on the capture list of the closure!
+You should use inside your closures only the objects that are on the capture list of the closure!
 
 To add an action to the control you use:
 
@@ -138,7 +138,7 @@ Here are some things that I still want to implement:
 
 ## Thanks
 
-* This work is almost a translation of a ObjC control called "SpriteKit-iOS-Basic-Controls" by Nicolás Miari (https://github.com/nicolas-miari) with some modifications and improvments! So all credit must go to him! :) Thanks man!
+* This work is almost a translation of a ObjC control called "SpriteKit-iOS-Basic-Controls" by Nicolás Miari (https://github.com/nicolas-miari) with modifications and improvements! So all credit must go to him! :) Thanks man!
 
 ## License
 

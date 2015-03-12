@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E91F9F691AA74E090015E42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91F9F681AA74E090015E42C /* Images.xcassets */; };
+		E9805D311AB1252000CADADB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E9805D2F1AB1252000CADADB /* LICENSE */; };
+		E9805D321AB1252000CADADB /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = E9805D301AB1252000CADADB /* README.markdown */; };
 		E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */; };
 		E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4F61AA25FF200C3A979 /* GameScene.sks */; };
 		E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F81AA25FF200C3A979 /* GameScene.swift */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		E91F9F681AA74E090015E42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9805D2F1AB1252000CADADB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
+		E9805D301AB1252000CADADB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = ../../README.markdown; sourceTree = "<group>"; };
 		E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWControls Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C2C4F31AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				E9C2C5181AA2601500C3A979 /* TWControls */,
+				E9805D2F1AB1252000CADADB /* LICENSE */,
+				E9805D301AB1252000CADADB /* README.markdown */,
 				E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */,
 				E9C2C4F61AA25FF200C3A979 /* GameScene.sks */,
 				E9C2C4F81AA25FF200C3A979 /* GameScene.swift */,
@@ -220,6 +226,7 @@
 				E91F9F691AA74E090015E42C /* Images.xcassets in Resources */,
 				E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */,
 				E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */,
+				E9805D311AB1252000CADADB /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +248,7 @@
 				E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */,
 				E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */,
 				E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */,
+				E9805D321AB1252000CADADB /* README.markdown in Sources */,
 				E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */,
 				E9C2C51D1AA2601500C3A979 /* TWControl.swift in Sources */,
 			);
