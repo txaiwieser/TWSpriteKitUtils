@@ -26,6 +26,7 @@
 //SOFTWARE.
 //
 //
+
 import SpriteKit
 
 protocol TWControlDelegate: class {
@@ -107,6 +108,13 @@ class TWControl: SKSpriteNode {
     
     // MARK: Customization Properties
 
+    internal static var defaultTouchDownSoundFileName:String?
+    internal static var defaultTouchUpSoundFileName:String?
+    
+    internal var touchDownSoundFileName:String?
+    internal var touchUpSoundFileName:String?
+    
+    
     // TYPE Color Customizations
     internal var stateDisabledColor:SKColor! { didSet { updateVisualInterface() } }
     internal var stateHighlightedColor:SKColor! { didSet { updateVisualInterface() } }
@@ -378,6 +386,7 @@ class TWControl: SKSpriteNode {
     
     internal func touchDown() {
         self.highlighted = true
+        playSound(instanceSoundFileName: touchDownSoundFileName, defaultSoundFileName: self.dynamicType.defaultTouchDownSoundFileName)
         executeClosuresOf(.TouchDown)
     }
     
@@ -404,18 +413,17 @@ class TWControl: SKSpriteNode {
     internal func touchUpInside() {
         self.highlighted = false
         executeClosuresOf(.TouchUpInside)
+        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: self.dynamicType.defaultTouchUpSoundFileName)
     }
     
     internal func touchUpOutside() {
         executeClosuresOf(.TouchUpOutside)
+        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: self.dynamicType.defaultTouchUpSoundFileName)
     }
     
     
     
-    
-    
-    
-    
+
     
     // MARK: UIResponder Methods
     
@@ -493,6 +501,20 @@ class TWControl: SKSpriteNode {
     
     
     // MARK: Helpers
+    
+    private func playSound(#instanceSoundFileName:String?, defaultSoundFileName:String?) {
+        if let soundFileName = instanceSoundFileName {
+            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+            self.runAction(action)
+        }
+        else if let soundFileName = defaultSoundFileName {
+            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+            self.runAction(action)
+        }
+    }
+    
+    
+    
     
     internal override func containsPoint(p: CGPoint) -> Bool {
         if let bounds = self.boundsTolerance {

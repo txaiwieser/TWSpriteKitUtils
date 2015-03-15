@@ -95,6 +95,15 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        TWControl.defaultTouchDownSoundFileName = "touchDownDefault.wav"
+        TWControl.defaultTouchUpSoundFileName = "touchUpDefault.wav"
+        
+        textureButton.touchDownSoundFileName = "touchDown.wav"
+        textureButton.touchUpSoundFileName = "touchUp.wav"
+        
+        textureSwitch.touchDownSoundFileName = "touchDown.wav"
+        textureSwitch.touchUpSoundFileName = "touchUp.wav"
+        
         self.backgroundColor = SKColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
         
         self.addChild(switchesContainer)
