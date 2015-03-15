@@ -132,7 +132,7 @@ You can help by using TWControls in your projects and discovering its shortcomin
 
 Here are some things that I still want to implement:
 
-* Support for audio effects;
+* (DONE) Support for audio effects; (DONE)
 * Improve Documentation;
 * Animations
 
