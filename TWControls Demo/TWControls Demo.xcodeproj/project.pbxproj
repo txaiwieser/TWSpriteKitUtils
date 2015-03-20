@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E91F9F691AA74E090015E42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91F9F681AA74E090015E42C /* Images.xcassets */; };
+		E93025EE1ABC753200421E8B /* touchDown_disabled.wav in Resources */ = {isa = PBXBuildFile; fileRef = E93025ED1ABC753200421E8B /* touchDown_disabled.wav */; };
 		E9423AE11AB50BAC0012507E /* touchDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423ADF1AB50BAC0012507E /* touchDown.wav */; };
 		E9423AE21AB50BAC0012507E /* touchUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423AE01AB50BAC0012507E /* touchUp.wav */; };
 		E9423AE41AB50BFD0012507E /* touchDownDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423AE31AB50BFD0012507E /* touchDownDefault.wav */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		E91F9F681AA74E090015E42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E93025ED1ABC753200421E8B /* touchDown_disabled.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchDown_disabled.wav; sourceTree = "<group>"; };
 		E9423ADF1AB50BAC0012507E /* touchDown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchDown.wav; sourceTree = "<group>"; };
 		E9423AE01AB50BAC0012507E /* touchUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchUp.wav; sourceTree = "<group>"; };
 		E9423AE31AB50BFD0012507E /* touchDownDefault.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchDownDefault.wav; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				E9423AE01AB50BAC0012507E /* touchUp.wav */,
 				E9423AE31AB50BFD0012507E /* touchDownDefault.wav */,
 				E9423AE51AB50C080012507E /* touchUpDefault.wav */,
+				E93025ED1ABC753200421E8B /* touchDown_disabled.wav */,
 				E91F9F681AA74E090015E42C /* Images.xcassets */,
 				E9C2C4F21AA25FF200C3A979 /* Supporting Files */,
 			);
@@ -236,6 +239,7 @@
 			files = (
 				E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */,
 				E91F9F691AA74E090015E42C /* Images.xcassets in Resources */,
+				E93025EE1ABC753200421E8B /* touchDown_disabled.wav in Resources */,
 				E9423AE21AB50BAC0012507E /* touchUp.wav in Resources */,
 				E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */,
 				E9423AE11AB50BAC0012507E /* touchDown.wav in Resources */,

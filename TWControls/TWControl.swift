@@ -110,9 +110,11 @@ class TWControl: SKSpriteNode {
 
     internal static var defaultTouchDownSoundFileName:String?
     internal static var defaultTouchUpSoundFileName:String?
+    internal static var defaultDisabledTouchDownFileName:String?
     
     internal var touchDownSoundFileName:String?
     internal var touchUpSoundFileName:String?
+    internal var disabledTouchDownFileName:String?
     
     
     // TYPE Color Customizations
