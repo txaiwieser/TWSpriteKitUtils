@@ -63,11 +63,9 @@ class TWControl: SKSpriteNode {
         set {
             if newValue {
                 self.state = .Normal
-                self.userInteractionEnabled = true
             }
             else {
                 self.state = .Disabled
-                self.userInteractionEnabled = false
             }
             updateVisualInterface()
         }
@@ -392,6 +390,10 @@ class TWControl: SKSpriteNode {
         executeClosuresOf(.TouchDown)
     }
     
+    internal func disabledTouchDown() {
+        playSound(instanceSoundFileName: disabledTouchDownFileName, defaultSoundFileName: self.dynamicType.defaultDisabledTouchDownFileName)
+    }
+    
     internal func drag() {}
     
     internal func dragExit() {
@@ -436,11 +438,18 @@ class TWControl: SKSpriteNode {
         if self.containsPoint(touchPoint) {
             self.touch = touch
             self.touchLocationLast = touchPoint
-            touchDown()
+            if self.state == .Disabled {
+                disabledTouchDown()
+            }
+            else {
+                touchDown()
+            }
         }
     }
     
     internal override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+        if self.state == .Disabled { return }
+        
         let touch = touches.first as! UITouch
         let touchPoint = touch.locationInNode(self.parent)
         
@@ -473,6 +482,8 @@ class TWControl: SKSpriteNode {
     
     
     internal override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        if self.state == .Disabled { return }
+        
         let touch = touches.first as! UITouch
         let touchPoint = touch.locationInNode(self.parent)
 

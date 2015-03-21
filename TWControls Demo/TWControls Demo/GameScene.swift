@@ -97,6 +97,7 @@ class GameScene: SKScene {
         
         TWControl.defaultTouchDownSoundFileName = "touchDownDefault.wav"
         TWControl.defaultTouchUpSoundFileName = "touchUpDefault.wav"
+        TWControl.defaultDisabledTouchDownFileName = "touchDown_disabled.wav"
         
         textureButton.touchDownSoundFileName = "touchDown.wav"
         textureButton.touchUpSoundFileName = "touchUp.wav"
