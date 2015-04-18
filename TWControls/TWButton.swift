@@ -62,8 +62,8 @@ class TWButton: TWControl {
             if let newValue = icon {
                 self.addChild(newValue)
                 newValue.colorBlendFactor = 1
-                if self.highlighted { newValue.color = self.stateHighlightedFontColor }
-                else { newValue.color = self.stateNormalFontColor }
+                if self.highlighted { newValue.color = self.highlightedStateFontColor }
+                else { newValue.color = self.normalStateFontColor }
 
             }
         }
@@ -72,8 +72,8 @@ class TWButton: TWControl {
     override var highlighted:Bool {
         set {
             super.highlighted = newValue
-            if newValue { self.icon?.color = self.stateHighlightedFontColor }
-            else { self.icon?.color = self.stateNormalFontColor }
+            if newValue { self.icon?.color = self.highlightedStateFontColor }
+            else { self.icon?.color = self.normalStateFontColor }
         }
         get {
             return super.highlighted

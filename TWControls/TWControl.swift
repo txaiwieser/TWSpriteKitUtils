@@ -29,29 +29,112 @@
 
 import SpriteKit
 
-protocol TWControlDelegate: class {
-    func controlValueChanged(control:TWControl)
-}
-
 class TWControl: SKSpriteNode {
 
-    // MARK: Nested Types
-    
-    enum TWControlState: Int {
-        case Normal = 0
-        case Highlighted = 1
-        case Selected = 2
-        case Disabled = 3
+    // MARK: Initializers
+
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    /**
+    * Initializes a general TWControl of type .Texture
+    */
+    init(normalTexture:SKTexture, highlightedTexture:SKTexture, selectedTexture:SKTexture, disabledTexture:SKTexture) {
+        type = .Texture
+        super.init(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.userInteractionEnabled = true
+
+        self.disabledStateTexture = disabledTexture
+        self.highlightedStateTexture = highlightedTexture
+        self.normalStateTexture = normalTexture
+        self.selectedStateTexture = selectedTexture
+        
+        self.addChild(self.disabledStateLabel)
+        self.addChild(self.highlightedStateLabel)
+        self.addChild(self.normalStateLabel)
+        self.addChild(self.selectedStateLabel)
+        updateVisualInterface()
     }
     
-    enum TWControlType {
-        case Texture
-        case Color
-        case Label
+    /**
+    * Initializes a general TWControl of type .Color
+    */
+    init(normalColor:SKColor, highlightedColor:SKColor, selectedColor:SKColor, disabledColor:SKColor, size:CGSize) {
+        type = .Color
+        super.init(texture: nil, color: normalColor, size: size)
+        self.userInteractionEnabled = true
+
+        self.disabledStateColor = disabledColor
+        self.highlightedStateColor = highlightedColor
+        self.normalStateColor = normalColor
+        self.selectedStateColor = selectedColor
+        
+        self.addChild(self.disabledStateLabel)
+        self.addChild(self.highlightedStateLabel)
+        self.addChild(self.normalStateLabel)
+        self.addChild(self.selectedStateLabel)
+        updateVisualInterface()
     }
 
+    /**
+    * Initializes a general TWControl of type .Text
+    */
+    init(normalText:String, highlightedText:String, selectedText:String, disabledText:String) {
+        type = .Label
+        super.init(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
+        self.userInteractionEnabled = true
+        
+        self.disabledStateLabel.text = disabledText
+        self.highlightedStateLabel.text = highlightedText
+        self.normalStateLabel.text = normalText
+        self.selectedStateLabel.text = selectedText
+        
+        self.addChild(self.disabledStateLabel)
+        self.addChild(self.highlightedStateLabel)
+        self.addChild(self.normalStateLabel)
+        self.addChild(self.selectedStateLabel)
+        updateVisualInterface()
+    }
     
-    // Mark: Public Properties
+
+    
+    // MARK: Control Actions
+    
+    /**
+    * Add a closure to a event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
+    Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
+    You have to be CAREFUL with this! Just pass your object to the function and use inside the closure.
+    */
+    func addClosure<T: AnyObject>(event: ControlEvent, target: T, closure: (target:T, sender:TWControl) -> ()) {
+        self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
+            if let obj = target {
+                closure(target: obj, sender: ctrl)
+            }
+            return
+            }))
+    }
+    
+    /**
+    * Removes all closure from a specific event.
+    */
+    func removeClosuresFor(event:ControlEvent) {
+        assertionFailure("TODO: Implement Remove Target")
+    }
+
+    private func executeClosuresOf(event: ControlEvent) {
+        for eventClosure in eventClosures {
+            if eventClosure.event == event {
+                eventClosure.closure(self)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    // MARK: Public Properties
+    
     internal weak var delegate:TWControlDelegate!
     internal var boundsTolerance:CGFloat?
     internal var tag:Int?
@@ -105,7 +188,7 @@ class TWControl: SKSpriteNode {
     
     
     // MARK: Customization Properties
-
+    
     internal static var defaultTouchDownSoundFileName:String?
     internal static var defaultTouchUpSoundFileName:String?
     internal static var defaultDisabledTouchDownFileName:String?
@@ -116,108 +199,137 @@ class TWControl: SKSpriteNode {
     
     
     // TYPE Color Customizations
-    internal var stateDisabledColor:SKColor! { didSet { updateVisualInterface() } }
-    internal var stateHighlightedColor:SKColor! { didSet { updateVisualInterface() } }
-    internal var stateNormalColor:SKColor! { didSet { updateVisualInterface() } }
-    internal var stateSelectedColor:SKColor! { didSet { updateVisualInterface() } }
+    internal var disabledStateColor:SKColor! { didSet { updateVisualInterface() } }
+    internal var highlightedStateColor:SKColor! { didSet { updateVisualInterface() } }
+    internal var normalStateColor:SKColor! { didSet { updateVisualInterface() } }
+    internal var selectedStateColor:SKColor! { didSet { updateVisualInterface() } }
     
     // TYPE Texture Customizations
-    internal var stateDisabledTexture:SKTexture! { didSet { updateVisualInterface() } }
-    internal var stateHighlightedTexture:SKTexture! { didSet { updateVisualInterface() } }
-    internal var stateNormalTexture:SKTexture! { didSet { updateVisualInterface() } }
-    internal var stateSelectedTexture:SKTexture! { didSet { updateVisualInterface() } }
+    internal var disabledStateTexture:SKTexture! { didSet { updateVisualInterface() } }
+    internal var highlightedStateTexture:SKTexture! { didSet { updateVisualInterface() } }
+    internal var normalStateTexture:SKTexture! { didSet { updateVisualInterface() } }
+    internal var selectedStateTexture:SKTexture! { didSet { updateVisualInterface() } }
     
     // TEXT Labels Customizations
     
-    internal var stateDisabledLabelText:String? {
+    internal var disabledStateLabelText:String? {
         didSet {
-            if stateDisabledLabelText != nil { stateDisabledLabel.text = stateDisabledLabelText! }
+            if disabledStateLabelText != nil { disabledStateLabel.text = disabledStateLabelText! }
         }
     }
     
-    internal var stateHighlightedLabelText:String? {
+    internal var highlightedStateLabelText:String? {
         didSet {
-            if stateHighlightedLabelText != nil { stateHighlightedLabel.text = stateHighlightedLabelText! }
+            if highlightedStateLabelText != nil { highlightedStateLabel.text = highlightedStateLabelText! }
         }
     }
     
-    internal var stateNormalLabelText:String? {
+    internal var normalStateLabelText:String? {
         didSet {
-            if stateNormalLabelText != nil { stateNormalLabel.text = stateNormalLabelText! }
+            if normalStateLabelText != nil { normalStateLabel.text = normalStateLabelText! }
         }
     }
     
-    internal var stateSelectedLabelText:String? {
+    internal var selectedStateLabelText:String? {
         didSet {
-            if stateSelectedLabelText != nil { stateSelectedLabel.text = stateSelectedLabelText! }
+            if selectedStateLabelText != nil { selectedStateLabel.text = selectedStateLabelText! }
         }
     }
     internal var allStatesLabelText:String! {
         didSet {
-            stateDisabledLabelText = allStatesLabelText
-            stateHighlightedLabelText = allStatesLabelText
-            stateNormalLabelText = allStatesLabelText
-            stateSelectedLabelText = allStatesLabelText
+            disabledStateLabelText = allStatesLabelText
+            highlightedStateLabelText = allStatesLabelText
+            normalStateLabelText = allStatesLabelText
+            selectedStateLabelText = allStatesLabelText
         }
     }
-   
-    internal var stateDisabledFontColor:SKColor! { didSet { stateDisabledLabel.fontColor = stateDisabledFontColor } }
-    internal var stateHighlightedFontColor:SKColor! { didSet { stateHighlightedLabel.fontColor = stateHighlightedFontColor } }
-    internal var stateNormalFontColor:SKColor! { didSet { stateNormalLabel.fontColor = stateNormalFontColor } }
-    internal var stateSelectedFontColor:SKColor! { didSet { stateSelectedLabel.fontColor = stateSelectedFontColor } }
+    
+    internal var disabledStateFontColor:SKColor! { didSet { disabledStateLabel.fontColor = disabledStateFontColor } }
+    internal var highlightedStateFontColor:SKColor! { didSet { highlightedStateLabel.fontColor = highlightedStateFontColor } }
+    internal var normalStateFontColor:SKColor! { didSet { normalStateLabel.fontColor = normalStateFontColor } }
+    internal var selectedStateFontColor:SKColor! { didSet { selectedStateLabel.fontColor = selectedStateFontColor } }
     internal var allStatesFontColor:SKColor! {
         didSet {
-            stateDisabledFontColor = allStatesFontColor
-            stateHighlightedFontColor = allStatesFontColor
-            stateNormalFontColor = allStatesFontColor
-            stateSelectedFontColor = allStatesFontColor
+            disabledStateFontColor = allStatesFontColor
+            highlightedStateFontColor = allStatesFontColor
+            normalStateFontColor = allStatesFontColor
+            selectedStateFontColor = allStatesFontColor
         }
     }
     
     internal var allStatesLabelFontSize:CGFloat! {
         didSet {
-            stateDisabledLabel.fontSize = allStatesLabelFontSize
-            stateHighlightedLabel.fontSize = allStatesLabelFontSize
-            stateNormalLabel.fontSize = allStatesLabelFontSize
-            stateSelectedLabel.fontSize = allStatesLabelFontSize
+            disabledStateLabel.fontSize = allStatesLabelFontSize
+            highlightedStateLabel.fontSize = allStatesLabelFontSize
+            normalStateLabel.fontSize = allStatesLabelFontSize
+            selectedStateLabel.fontSize = allStatesLabelFontSize
         }
     }
     
     internal var allStatesLabelFontName:String! {
         didSet {
-            stateDisabledLabel.fontName = allStatesLabelFontName
-            stateHighlightedLabel.fontName = allStatesLabelFontName
-            stateNormalLabel.fontName = allStatesLabelFontName
-            stateSelectedLabel.fontName = allStatesLabelFontName
+            disabledStateLabel.fontName = allStatesLabelFontName
+            highlightedStateLabel.fontName = allStatesLabelFontName
+            normalStateLabel.fontName = allStatesLabelFontName
+            selectedStateLabel.fontName = allStatesLabelFontName
         }
     }
     
     
-    // Labels Direct Access
-    internal let stateDisabledLabel:SKLabelNode = {
+    
+    internal static var defaultNormalLabelPosition = CGPointZero
+    internal static var defaultSelectedLabelPosition = CGPointZero
+    internal static var defaultHighlightedLabelPosition = CGPointZero
+    internal static var defaultDisabledLabelPosition = CGPointZero
+    internal static func setAllDefaultStatesLabelPosition(pos:CGPoint) {
+        defaultNormalLabelPosition = pos
+        defaultSelectedLabelPosition = pos
+        defaultHighlightedLabelPosition = pos
+        defaultDisabledLabelPosition = pos
+    }
+    
+    internal var normalLabelPosition:CGPoint = defaultNormalLabelPosition { didSet { normalStateLabel.position = normalLabelPosition } }
+    internal var selectedLabelPosition:CGPoint = defaultSelectedLabelPosition { didSet { selectedStateLabel.position = selectedLabelPosition } }
+    internal var highlightedLabelPosition:CGPoint = defaultHighlightedLabelPosition { didSet { highlightedStateLabel.position = highlightedLabelPosition } }
+    internal var disabledLabelPosition:CGPoint = defaultDisabledLabelPosition { didSet { disabledStateLabel.position = disabledLabelPosition } }
+    internal func setAllStatesLabelPosition(pos:CGPoint) {
+        normalLabelPosition = pos
+        disabledLabelPosition = pos
+        highlightedLabelPosition = pos
+        selectedLabelPosition = pos
+    }
+    
+    
+    // MARK: Labels Direct Access
+    
+    lazy internal var normalStateLabel:SKLabelNode = {
         let l = SKLabelNode()
         l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        l.position = self.normalLabelPosition
         return l
-    }()
-    internal let stateHighlightedLabel:SKLabelNode = {
+        }()
+    lazy internal var selectedStateLabel:SKLabelNode = {
         let l = SKLabelNode()
         l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        l.position = self.selectedLabelPosition
         return l
-    }()
-    internal let stateNormalLabel:SKLabelNode = {
+        }()
+    lazy internal var highlightedStateLabel:SKLabelNode = {
         let l = SKLabelNode()
         l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        l.position = self.highlightedLabelPosition
         return l
-    }()
-    internal let stateSelectedLabel:SKLabelNode = {
+        }()
+    lazy internal var disabledStateLabel:SKLabelNode = {
         let l = SKLabelNode()
         l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        l.position = self.disabledLabelPosition
         return l
-    }()
+        }()
     
     
     
@@ -227,110 +339,14 @@ class TWControl: SKSpriteNode {
     
     
     // MARK: Private Properties
-
+    
     private let type:TWControlType
     private var state:TWControlState = .Normal
-    private var eventClosures:[(event: UIControlEvents, closure: TWControl -> ())] = []
+    private var eventClosures:[(event: ControlEvent, closure: TWControl -> ())] = []
     private var touch:UITouch?
     private var touchLocationLast:CGPoint?
     private var moved = false
 
-    
-    
-    
-    // MARK: Initializers
-    
-    init(normalTexture:SKTexture, highlightedTexture:SKTexture, selectedTexture:SKTexture, disabledTexture:SKTexture) {
-        type = .Texture
-        super.init(texture: normalTexture, color: nil, size: normalTexture.size())
-        self.userInteractionEnabled = true
-
-        self.stateDisabledTexture = disabledTexture
-        self.stateHighlightedTexture = highlightedTexture
-        self.stateNormalTexture = normalTexture
-        self.stateSelectedTexture = selectedTexture
-        
-        self.addChild(self.stateDisabledLabel)
-        self.addChild(self.stateHighlightedLabel)
-        self.addChild(self.stateNormalLabel)
-        self.addChild(self.stateSelectedLabel)
-        updateVisualInterface()
-    }
-    
-    init(normalColor:SKColor, highlightedColor:SKColor, selectedColor:SKColor, disabledColor:SKColor, size:CGSize) {
-        type = .Color
-        super.init(texture: nil, color: normalColor, size: size)
-        self.userInteractionEnabled = true
-
-        self.stateDisabledColor = disabledColor
-        self.stateHighlightedColor = highlightedColor
-        self.stateNormalColor = normalColor
-        self.stateSelectedColor = selectedColor
-        
-        self.addChild(self.stateDisabledLabel)
-        self.addChild(self.stateHighlightedLabel)
-        self.addChild(self.stateNormalLabel)
-        self.addChild(self.stateSelectedLabel)
-        updateVisualInterface()
-    }
-
-    init(normalText:String, highlightedText:String, selectedText:String, disabledText:String) {
-        type = .Label
-        super.init(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
-        self.userInteractionEnabled = true
-        
-        self.stateDisabledLabel.text = disabledText
-        self.stateHighlightedLabel.text = highlightedText
-        self.stateNormalLabel.text = normalText
-        self.stateSelectedLabel.text = selectedText
-        
-        self.addChild(self.stateDisabledLabel)
-        self.addChild(self.stateHighlightedLabel)
-        self.addChild(self.stateNormalLabel)
-        self.addChild(self.stateSelectedLabel)
-        updateVisualInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    
-    
-    
-    
-    
-    // MARK: Control Actions
-    
-    /**
-    * Add a closure to a event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
-    Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
-    You have to be VERY CAREFUL!
-    */
-    func addClosureFor<T: AnyObject>(event: UIControlEvents, target: T, closure: (target:T, sender:TWControl) -> ())
-    {
-        self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
-            if let obj = target {
-                closure(target: obj, sender: ctrl)
-            }
-            return
-            }))
-    }
-    
-    private func removeClosuresFor(event:UIControlEvents) {
-        assertionFailure("TODO: Implement Remove Target")
-    }
-
-    private func executeClosuresOf(event: UIControlEvents) {
-        for eventClosure in eventClosures {
-            if eventClosure.event == event {
-                eventClosure.closure(self)
-            }
-        }
-    }
-    
-    
-    
     
     // MARK: Control Functionality
     
@@ -339,50 +355,55 @@ class TWControl: SKSpriteNode {
             case .Color:
                 switch state {
                 case .Disabled:
-                    self.color = self.stateDisabledColor
+                    self.color = self.disabledStateColor
                 case .Highlighted:
-                    self.color = self.stateHighlightedColor
+                    self.color = self.highlightedStateColor
                 case .Normal:
-                    self.color = self.stateNormalColor
+                    self.color = self.normalStateColor
                 case .Selected:
-                    self.color = self.stateSelectedColor
+                    self.color = self.selectedStateColor
             }
             case .Texture:
                 switch state {
                 case .Disabled:
-                    self.texture = self.stateDisabledTexture
+                    self.texture = self.disabledStateTexture
                     self.size = self.texture!.size()
                 case .Highlighted:
-                    self.texture = self.stateHighlightedTexture
+                    self.texture = self.highlightedStateTexture
                     self.size = self.texture!.size()
                 case .Normal:
-                    self.texture = self.stateNormalTexture
+                    self.texture = self.normalStateTexture
                     self.size = self.texture!.size()
                 case .Selected:
-                    self.texture = self.stateSelectedTexture
+                    self.texture = self.selectedStateTexture
                     self.size = self.texture!.size()
             }
             case .Label:
                 break //Doesnt need to do nothing
         }
-        stateDisabledLabel.alpha = 0
-        stateHighlightedLabel.alpha = 0
-        stateNormalLabel.alpha = 0
-        stateSelectedLabel.alpha = 0
+        disabledStateLabel.alpha = 0
+        highlightedStateLabel.alpha = 0
+        normalStateLabel.alpha = 0
+        selectedStateLabel.alpha = 0
         
         switch state {
         case .Disabled:
-            stateDisabledLabel.alpha = 1
+            disabledStateLabel.alpha = 1
         case .Highlighted:
-            stateHighlightedLabel.alpha = 1
+            highlightedStateLabel.alpha = 1
         case .Normal:
-            stateNormalLabel.alpha = 1
+            normalStateLabel.alpha = 1
         case .Selected:
-            stateSelectedLabel.alpha = 1
+            selectedStateLabel.alpha = 1
         }
     }
     
-    // Control Events
+    
+    
+    
+    
+    
+    // MARK: Control Events
     
     internal func touchDown() {
         self.highlighted = true
@@ -427,8 +448,10 @@ class TWControl: SKSpriteNode {
     
     
     
-
     
+    
+    
+
     // MARK: UIResponder Methods
     
     internal override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -509,26 +532,6 @@ class TWControl: SKSpriteNode {
         touchesEnded(touches, withEvent: event)
     }
     
-    // .............................................................................
-    
-    
-    
-    // MARK: Helpers
-    
-    private func playSound(#instanceSoundFileName:String?, defaultSoundFileName:String?) {
-        if let soundFileName = instanceSoundFileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
-        }
-        else if let soundFileName = defaultSoundFileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
-        }
-    }
-    
-    
-    
-    
     internal override func containsPoint(p: CGPoint) -> Bool {
         if let bounds = self.boundsTolerance {
             let local = CGPoint(x: p.x - self.position.x, y: p.y - self.position.y)
@@ -543,26 +546,6 @@ class TWControl: SKSpriteNode {
         }
         else {
             return super.containsPoint(p)
-        }
-    }
-}
-
-
-// MARK: Array Extension
-
-extension Array {
-    mutating func removeObject<U: Equatable>(object: U) {
-        var index: Int?
-        for (idx, objectToCompare) in enumerate(self) {
-            if let to = objectToCompare as? U {
-                if object == to {
-                    index = idx
-                }
-            }
-        }
-        
-        if(index != nil) {
-            self.removeAtIndex(index!)
         }
     }
 }

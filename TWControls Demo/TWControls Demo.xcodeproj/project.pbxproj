@@ -13,8 +13,8 @@
 		E9423AE21AB50BAC0012507E /* touchUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423AE01AB50BAC0012507E /* touchUp.wav */; };
 		E9423AE41AB50BFD0012507E /* touchDownDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423AE31AB50BFD0012507E /* touchDownDefault.wav */; };
 		E9423AE61AB50C080012507E /* touchUpDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E9423AE51AB50C080012507E /* touchUpDefault.wav */; };
+		E94336011AE1D40D008F647B /* TWControl+NestedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94336001AE1D40D008F647B /* TWControl+NestedTypes.swift */; };
 		E9805D311AB1252000CADADB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = E9805D2F1AB1252000CADADB /* LICENSE */; };
-		E9805D321AB1252000CADADB /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = E9805D301AB1252000CADADB /* README.markdown */; };
 		E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F41AA25FF200C3A979 /* AppDelegate.swift */; };
 		E9C2C4F71AA25FF200C3A979 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4F61AA25FF200C3A979 /* GameScene.sks */; };
 		E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4F81AA25FF200C3A979 /* GameScene.swift */; };
@@ -44,6 +44,7 @@
 		E9423AE01AB50BAC0012507E /* touchUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchUp.wav; sourceTree = "<group>"; };
 		E9423AE31AB50BFD0012507E /* touchDownDefault.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchDownDefault.wav; sourceTree = "<group>"; };
 		E9423AE51AB50C080012507E /* touchUpDefault.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touchUpDefault.wav; sourceTree = "<group>"; };
+		E94336001AE1D40D008F647B /* TWControl+NestedTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TWControl+NestedTypes.swift"; sourceTree = "<group>"; };
 		E9805D2F1AB1252000CADADB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		E9805D301AB1252000CADADB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.markdown; path = ../../README.markdown; sourceTree = "<group>"; };
 		E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWControls Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,8 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				E9C2C5191AA2601500C3A979 /* TWButton.swift */,
-				E9C2C51A1AA2601500C3A979 /* TWControl.swift */,
 				E9C2C51B1AA2601500C3A979 /* TWSwitch.swift */,
+				E9C2C51A1AA2601500C3A979 /* TWControl.swift */,
+				E94336001AE1D40D008F647B /* TWControl+NestedTypes.swift */,
 			);
 			name = TWControls;
 			path = ../../TWControls;
@@ -268,7 +270,7 @@
 				E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */,
 				E9C2C4F91AA25FF200C3A979 /* GameScene.swift in Sources */,
 				E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */,
-				E9805D321AB1252000CADADB /* README.markdown in Sources */,
+				E94336011AE1D40D008F647B /* TWControl+NestedTypes.swift in Sources */,
 				E9C2C4F51AA25FF200C3A979 /* AppDelegate.swift in Sources */,
 				E9C2C51D1AA2601500C3A979 /* TWControl.swift in Sources */,
 			);

@@ -32,18 +32,17 @@ import SpriteKit
 class TWSwitch: TWControl {
 
     
-    
     // MARK: Initializers
     init(normalText: String, selectedText: String) {
-        super.init(normalText: normalText, highlightedText: normalText, selectedText: selectedText, disabledText: normalText)
+        super.init(normalText: normalText, highlightedText: selectedText, selectedText: selectedText, disabledText: normalText)
     }
     
     init(normalTexture: SKTexture, selectedTexture: SKTexture) {
-        super.init(normalTexture: normalTexture, highlightedTexture: normalTexture, selectedTexture: selectedTexture, disabledTexture: normalTexture)
+        super.init(normalTexture: normalTexture, highlightedTexture: selectedTexture, selectedTexture: selectedTexture, disabledTexture: normalTexture)
     }
     
     init(normalColor: SKColor, selectedColor: SKColor, size:CGSize) {
-        super.init(normalColor: normalColor, highlightedColor: normalColor, selectedColor: selectedColor, disabledColor: normalColor, size:size)
+        super.init(normalColor: normalColor, highlightedColor: selectedColor, selectedColor: selectedColor, disabledColor: normalColor, size:size)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,6 +53,11 @@ class TWSwitch: TWControl {
     
     // MARK: Switch Methods
     
+    override var selected:Bool {
+        get { return super.selected }
+        set { super.selected = selected; self.isOn = selected }
+    }
+    
     override func touchUpInside() {
         
         super.touchUpInside()
@@ -62,7 +66,7 @@ class TWSwitch: TWControl {
         self.isOn = !self.isOn
         
         // Display it using Control's "selected" state:
-        self.selected = self.isOn
+        super.selected = self.isOn
         
         
         self.delegate?.controlValueChanged(self)

@@ -25,27 +25,27 @@ class GameScene: SKScene {
     
     let colorSwitch:TWSwitch = {
         let s = TWSwitch(normalColor: SKColor.blueColor(), selectedColor: SKColor.orangeColor(), size: CGSize(width: 102, height: 40))
-        s.stateDisabledLabelText = "DISABLED"
-        s.stateNormalLabelText = "ON"
-        s.stateHighlightedLabelText = "ON"
-        s.stateSelectedLabelText = "OFF"
+        s.disabledStateLabelText = "DISABLED"
+        s.normalStateLabelText = "ON"
+        s.highlightedStateLabelText = "ON"
+        s.selectedStateLabelText = "OFF"
         s.allStatesLabelFontSize = 20
         s.allStatesLabelFontName = "Helvetica"
-        s.stateDisabledColor = SKColor.grayColor()
+        s.disabledStateColor = SKColor.grayColor()
         s.position = CGPoint(x: 0, y: 40)
         return s
         }()
     
     let textureSwitch:TWSwitch = {
         let s = TWSwitch(normalTexture: SKTexture(imageNamed: "switch_off"), selectedTexture: SKTexture(imageNamed: "switch_on"))
-        s.stateDisabledTexture = SKTexture(imageNamed: "switch_d")
+        s.disabledStateTexture = SKTexture(imageNamed: "switch_d")
         s.position = CGPoint(x: 0, y: -40)
         return s
         }()
     
     let textSwitch:TWSwitch = {
         let s = TWSwitch(normalText: "ON", selectedText: "OFF")
-        s.stateDisabledLabelText = "DISABLED"
+        s.disabledStateLabelText = "DISABLED"
         s.allStatesFontColor = SKColor.blackColor()
         s.position = CGPoint(x: 0, y: -120)
         return s
@@ -67,10 +67,10 @@ class GameScene: SKScene {
     
     let colorButton:TWButton = {
         let b = TWButton(normalColor: SKColor.purpleColor(), highlightedColor: SKColor.greenColor(), size: CGSize(width: 102, height: 40))
-        b.stateDisabledColor = SKColor.grayColor()
-        b.stateDisabledLabelText = "DISABLED"
-        b.stateNormalLabelText = "PLAY"
-        b.stateHighlightedLabelText = "PRESSED"
+        b.disabledStateColor = SKColor.grayColor()
+        b.disabledStateLabelText = "DISABLED"
+        b.normalStateLabelText = "PLAY"
+        b.highlightedStateLabelText = "PRESSED"
         b.allStatesLabelFontSize = 20
         b.allStatesLabelFontName = "Helvetica"
         b.position = CGPoint(x: 0, y: 40)
@@ -79,14 +79,14 @@ class GameScene: SKScene {
     
     let textureButton:TWButton = {
         let b = TWButton(normalTexture: SKTexture(imageNamed: "button_n"), highlightedTexture: SKTexture(imageNamed: "button_h"))
-        b.stateDisabledTexture = SKTexture(imageNamed: "button_d")
+        b.disabledStateTexture = SKTexture(imageNamed: "button_d")
         b.position = CGPoint(x: 0, y: -40)
         return b
         }()
     
     let textButton:TWButton = {
         let b = TWButton(normalText: "PLAY", highlightedText: "PRESSED")
-        b.stateDisabledLabelText = "DISABLED"
+        b.disabledStateLabelText = "DISABLED"
         b.allStatesFontColor = SKColor.blackColor()
         b.position = CGPoint(x: 0, y: -120)
         return b
@@ -117,33 +117,32 @@ class GameScene: SKScene {
         buttonsContainer.addChild(textureButton)
         buttonsContainer.addChild(textButton)
         
-        
-        colorSwitch.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        colorSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.textureSwitch.enabled = control.isOn
             scene.textSwitch.enabled = control.isOn
         }
         
-        textureSwitch.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        textureSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.colorSwitch.enabled = control.isOn
             scene.textSwitch.enabled = control.isOn
         }
         
-        textSwitch.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        textSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.colorSwitch.enabled = control.isOn
             scene.textureSwitch.enabled = control.isOn
         }
         
-        colorButton.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        colorButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.textureButton.enabled = !scene.textureButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textureButton.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        textureButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textButton.addClosureFor(.TouchUpInside, target: self) { (scene, control) -> () in
+        textButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textureButton.enabled = !scene.textureButton.enabled
         }
