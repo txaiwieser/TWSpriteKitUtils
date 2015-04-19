@@ -73,11 +73,6 @@ extension TWControl {
     }
 }
 
-// MARK: TWControl Protocol
-protocol TWControlDelegate: class {
-    func controlValueChanged(control:TWControl)
-}
-
 
 // MARK: Array Extension
 extension Array {

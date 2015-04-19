@@ -32,43 +32,62 @@ import SpriteKit
 class TWSwitch: TWControl {
 
     
-    // MARK: Initializers
-    init(normalText: String, selectedText: String) {
-        super.init(normalText: normalText, highlightedText: selectedText, selectedText: selectedText, disabledText: normalText)
+    // MARK: Convenience Initializers
+    convenience init(normalText: String, selectedText: String?) {
+        self.init(normalText: normalText, selectedText: selectedText, singleHighlightedText: nil, disabledText: nil)
     }
     
-    init(normalTexture: SKTexture, selectedTexture: SKTexture) {
-        super.init(normalTexture: normalTexture, highlightedTexture: selectedTexture, selectedTexture: selectedTexture, disabledTexture: normalTexture)
+    convenience init(normalTexture: SKTexture, selectedTexture: SKTexture?) {
+        self.init(normalTexture: normalTexture, selectedTexture: selectedTexture, singleHighlightedTexture: nil, disabledTexture: nil)
     }
     
-    init(normalColor: SKColor, selectedColor: SKColor, size:CGSize) {
-        super.init(normalColor: normalColor, highlightedColor: selectedColor, selectedColor: selectedColor, disabledColor: normalColor, size:size)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    convenience init(size:CGSize, normalColor: SKColor, selectedColor: SKColor?) {
+        self.init(size: size, normalColor: normalColor, selectedColor: selectedColor, singleHighlightedColor: nil, disabledColor: nil)
     }
     
     
+    var stateMemory = false
+    // MARK: TWSwitch Events
     
-    // MARK: Switch Methods
-    
-    override var selected:Bool {
-        get { return super.selected }
-        set { super.selected = selected; self.isOn = selected }
+    internal override func touchDown() {
+        self.highlighted = true
+        super.touchDown()
     }
     
-    override func touchUpInside() {
-        
+    internal override func disabledTouchDown() {
+        super.disabledTouchDown()
+    }
+    
+    internal override func drag() {
+        super.drag()
+    }
+    
+    internal override func dragExit() {
+        self.highlighted = false
+        super.dragExit()
+    }
+    
+    internal override func dragOutside() {
+        super.dragOutside()
+    }
+    
+    internal override func dragEnter() {
+        self.highlighted = true
+        super.dragEnter()
+    }
+    
+    internal override func dragInside() {
+        super.dragInside()
+    }
+    
+    internal override func touchUpInside() {
+        stateMemory = !stateMemory
+        self.selected = stateMemory
         super.touchUpInside()
-
-        // Toggle Switch's selection state:
-        self.isOn = !self.isOn
-        
-        // Display it using Control's "selected" state:
-        super.selected = self.isOn
-        
-        
-        self.delegate?.controlValueChanged(self)
     }
+    
+    internal override func touchUpOutside() {
+        super.touchUpOutside()
+    }
+
 }

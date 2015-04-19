@@ -31,52 +31,61 @@ import SpriteKit
 
 class TWButton: TWControl {
     
-    // MARK: Initializers
-    init(normalText: String, highlightedText: String) {
-        super.init(normalText: normalText, highlightedText: highlightedText, selectedText: normalText, disabledText: normalText)
+    // MARK: Convenience Initializers
+    convenience init(normalText: String, highlightedText: String?) {
+        self.init(normalText: normalText, selectedText: nil, singleHighlightedText: highlightedText, disabledText: nil)
     }
     
-    init(normalTexture: SKTexture, highlightedTexture: SKTexture) {
-        super.init(normalTexture: normalTexture, highlightedTexture: highlightedTexture, selectedTexture: normalTexture, disabledTexture: normalTexture)
+    convenience init(normalTexture: SKTexture, highlightedTexture: SKTexture?) {
+        self.init(normalTexture: normalTexture, selectedTexture: nil, singleHighlightedTexture: highlightedTexture, disabledTexture: nil)
     }
     
-    init(normalColor: SKColor, highlightedColor: SKColor, size:CGSize) {
-        super.init(normalColor: normalColor, highlightedColor: highlightedColor, selectedColor: normalColor, disabledColor: normalColor, size:size)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    convenience init(size:CGSize, normalColor: SKColor, highlightedColor: SKColor?) {
+        self.init(size: size, normalColor: normalColor, selectedColor: nil, singleHighlightedColor: highlightedColor, disabledColor: nil)
     }
     
     
     
-    // MARK: Button Methods
     
-    var icon:SKSpriteNode? {
-        willSet {
-            if let oldValue = icon where oldValue.parent == self {
-                oldValue.removeFromParent()
-            }
-        }
-        didSet {
-            if let newValue = icon {
-                self.addChild(newValue)
-                newValue.colorBlendFactor = 1
-                if self.highlighted { newValue.color = self.highlightedStateFontColor }
-                else { newValue.color = self.normalStateFontColor }
-
-            }
-        }
+    // MARK: TWButton Events
+    
+    internal override func touchDown() {
+        self.highlighted = true
+        super.touchDown()
     }
     
-    override var highlighted:Bool {
-        set {
-            super.highlighted = newValue
-            if newValue { self.icon?.color = self.highlightedStateFontColor }
-            else { self.icon?.color = self.normalStateFontColor }
-        }
-        get {
-            return super.highlighted
-        }
+    internal override func disabledTouchDown() {
+        super.disabledTouchDown()
+    }
+    
+    internal override func drag() {
+        super.drag()
+    }
+    
+    internal override func dragExit() {
+        self.highlighted = false
+        super.dragExit()
+    }
+    
+    internal override func dragOutside() {
+        super.dragOutside()
+    }
+    
+    internal override func dragEnter() {
+        self.highlighted = true
+        super.dragEnter()
+    }
+    
+    internal override func dragInside() {
+        super.dragInside()
+    }
+    
+    internal override func touchUpInside() {
+        self.highlighted = false
+        super.touchUpInside()
+    }
+    
+    internal override func touchUpOutside() {
+        super.touchUpOutside()
     }
 }
