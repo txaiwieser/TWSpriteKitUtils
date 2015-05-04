@@ -50,6 +50,18 @@ extension TWControl {
         case Highlighted
         case Selected
         case Disabled
+        func asString() -> String {
+            switch self {
+            case Normal:
+                return "Normal"
+            case Highlighted:
+                return "Highlighted"
+            case Selected:
+                return "Selected"
+            case Disabled:
+                return "Disabled"
+            }
+        }
     }
     
     enum TWControlType {

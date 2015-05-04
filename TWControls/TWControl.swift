@@ -192,8 +192,7 @@ class TWControl: SKSpriteNode {
         set {
             if newValue {
                 self.state = .Normal
-            }
-            else {
+            } else {
                 self.state = .Disabled
             }
             updateVisualInterface()
@@ -207,8 +206,7 @@ class TWControl: SKSpriteNode {
         set {
             if newValue {
                 self.state = .Selected
-            }
-            else {
+            } else {
                 self.state = .Normal
             }
             updateVisualInterface()
@@ -222,9 +220,8 @@ class TWControl: SKSpriteNode {
         set {
             if newValue {
                 self.state = .Highlighted
-            }
-            else {
-                self.state = lastState
+            } else {
+                self.state = .Normal
             }
             updateVisualInterface()
         }
@@ -441,7 +438,7 @@ class TWControl: SKSpriteNode {
     // MARK: Private Properties
     
     private let type:TWControlType
-    private var state:TWControlState = .Normal { didSet { lastState = oldValue } }
+    private var state:TWControlState = .Normal { didSet { println(state.asString());lastState = oldValue } }
     private var lastState:TWControlState = .Normal
     internal var eventClosures:[(event: ControlEvent, closure: TWControl -> ())] = []
     private var touch:UITouch?
@@ -472,23 +469,20 @@ class TWControl: SKSpriteNode {
         case .Selected:
             if let selColor = self.selectedStateColor {
                 self.color = selColor
-            }
-            else {
+            } else {
                 self.color = normalStateColor
             }
         case .Disabled:
             if let disColor = self.disabledStateColor {
                 self.color = disColor
-            }
-            else {
+            } else {
                 self.color = normalStateColor
             }
         case .Highlighted:
             
             if let single = highlightedStateSingleColor {
                 self.color = single
-            }
-            else {
+            } else {
                 if lastState == .Normal {
                     if let fromNormal = self.highlightedStateMultiColorFromNormal {
                         self.color = fromNormal
@@ -520,23 +514,20 @@ class TWControl: SKSpriteNode {
         case .Selected:
             if let selTex = self.selectedStateTexture {
                 self.texture = selTex
-            }
-            else {
+            } else {
                 self.texture = normalStateTexture
             }
         case .Disabled:
             if let disTex = self.disabledStateTexture {
                 self.texture = disTex
-            }
-            else {
+            } else {
                 self.texture = normalStateTexture
             }
         case .Highlighted:
             
             if let single = highlightedStateSingleTexture {
                 self.texture = single
-            }
-            else {
+            } else {
                 if lastState == .Normal {
                     if let fromNormal = self.highlightedStateMultiTextureFromNormal {
                         self.texture = fromNormal
@@ -547,8 +538,7 @@ class TWControl: SKSpriteNode {
                     else {
                         self.texture = self.normalStateTexture
                     }
-                }
-                else if lastState == .Selected {
+                } else if lastState == .Selected {
                     if let fromSelected = self.highlightedStateMultiTextureFromSelected {
                         self.texture = fromSelected
                     }
@@ -577,35 +567,31 @@ class TWControl: SKSpriteNode {
         case .Selected:
             if let selLabel = self.selectedStateLabel {
                 selLabel.alpha = 1
-            }
-            else {
+            } else {
                 normalStateLabel?.alpha = 1
             }
         case .Disabled:
             if let disLabel = self.disabledStateLabel {
                 disLabel.alpha = 1
-            }
-            else {
+            } else {
                 normalStateLabel?.alpha = 1
             }
         case .Highlighted:
             if let single = highlightedStateSingleLabel {
                 single.alpha = 1
-            }
-            else {
+            } else {
                 if lastState == .Normal {
                     if let fromNormal = self.highlightedStateMultiLabelFromNormal {
                         fromNormal.alpha = 1
+                    } else if let selectedLabel = self.selectedStateLabel {
+                        selectedLabel.alpha = 1
+                    } else {
+                        self.normalStateLabel?.alpha = 1
                     }
-                    else {
-                        self.selectedStateLabel?.alpha = 1
-                    }
-                }
-                else if lastState == .Selected {
+                } else if lastState == .Selected {
                     if let fromSelected = self.highlightedStateMultiLabelFromSelected {
                         fromSelected.alpha = 1
-                    }
-                    else {
+                    } else {
                         self.normalStateLabel?.alpha = 1
                     }
                 }
@@ -671,8 +657,7 @@ class TWControl: SKSpriteNode {
             self.touchLocationLast = touchPoint
             if self.state == .Disabled {
                 disabledTouchDown()
-            }
-            else {
+            } else {
                 touchDown()
             }
         }
@@ -692,8 +677,7 @@ class TWControl: SKSpriteNode {
             if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
                 // All along
                 dragInside()
-            }
-            else {
+            } else {
                 self.dragEnter()
             }
         } else {
@@ -701,8 +685,7 @@ class TWControl: SKSpriteNode {
             if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
                 // Since now
                 dragExit()
-            }
-            else {
+            } else {
                 // All along
                 dragOutside()
             }
@@ -721,8 +704,7 @@ class TWControl: SKSpriteNode {
             if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
                 // Ended inside
                 touchUpInside()
-            }
-            else {
+            } else {
                 // Ended outside
                 touchUpOutside()
             }
