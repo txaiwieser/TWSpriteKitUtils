@@ -314,8 +314,7 @@ class TWControl: SKSpriteNode {
                 self.addChild(label!)
             }
             label!.text = newText
-        }
-        else {
+        } else {
             label?.removeFromParent()
             label = nil
         }
@@ -697,8 +696,7 @@ class TWControl: SKSpriteNode {
             else {
                 self.dragEnter()
             }
-        }
-        else {
+        } else {
             // Outside
             if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
                 // Since now
@@ -728,8 +726,7 @@ class TWControl: SKSpriteNode {
                 // Ended outside
                 touchUpOutside()
             }
-        }
-        else {
+        } else {
             // Needed??
             touchUpInside()
         }
@@ -752,8 +749,7 @@ class TWControl: SKSpriteNode {
                 return true
             }
             return false
-        }
-        else {
+        } else {
             return super.containsPoint(p)
         }
     }
