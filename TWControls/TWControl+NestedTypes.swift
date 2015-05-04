@@ -45,11 +45,11 @@ extension TWControl {
         case ValueChanged // sliders, etc.
     }
     
-    enum TWControlState: Int {
-        case Normal = 0
-        case Highlighted = 1
-        case Selected = 2
-        case Disabled = 3
+    enum TWControlState {
+        case Normal
+        case Highlighted
+        case Selected
+        case Disabled
     }
     
     enum TWControlType {

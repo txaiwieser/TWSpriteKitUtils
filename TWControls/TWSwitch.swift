@@ -46,7 +46,17 @@ class TWSwitch: TWControl {
     }
     
     
-    var stateMemory = false
+    
+    
+    
+    var selectedStateMemory = false
+    // MARK: Switch Methods
+    
+    override var selected:Bool {
+        get { return super.selected }
+        set { super.selected = newValue; self.selectedStateMemory = newValue }
+    }
+    
     // MARK: TWSwitch Events
     
     internal override func touchDown() {
@@ -81,8 +91,8 @@ class TWSwitch: TWControl {
     }
     
     internal override func touchUpInside() {
-        stateMemory = !stateMemory
-        self.selected = stateMemory
+        selectedStateMemory = !selectedStateMemory
+        self.selected = selectedStateMemory
         super.touchUpInside()
     }
     
