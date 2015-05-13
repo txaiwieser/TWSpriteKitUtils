@@ -41,6 +41,10 @@ class TWSwitch: TWControl {
         self.init(normalTexture: normalTexture, selectedTexture: selectedTexture, singleHighlightedTexture: nil, disabledTexture: nil)
     }
     
+    convenience init(normalShape: SKShapeNode, selectedShape: SKShapeNode?) {
+        self.init(normalTexture: normalShape.getTexture(), selectedTexture: selectedShape?.getTexture(), singleHighlightedTexture: nil, disabledTexture: nil)
+    }
+    
     convenience init(size:CGSize, normalColor: SKColor, selectedColor: SKColor?) {
         self.init(size: size, normalColor: normalColor, selectedColor: selectedColor, singleHighlightedColor: nil, disabledColor: nil)
     }

@@ -69,20 +69,6 @@ extension TWControl {
         case Color
         case Label
     }
-    
-    
-    // MARK: Helpers
-    
-    internal func playSound(#instanceSoundFileName:String?, defaultSoundFileName:String?) {
-        if let soundFileName = instanceSoundFileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
-        }
-        else if let soundFileName = defaultSoundFileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
-        }
-    }
 }
 
 

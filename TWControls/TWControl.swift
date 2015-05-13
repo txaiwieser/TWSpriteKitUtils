@@ -69,7 +69,19 @@ class TWControl: SKSpriteNode {
     }
     
     
+    /**
+    * Initializes a general TWControl of type .Shape with a single highlighted texture possibility
+    */
+    convenience init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, singleHighlightedShape:SKShapeNode?, disabledShape:SKShapeNode?) {
+        self.init(normalTexture: normalShape.getTexture(), selectedTexture: selectedShape?.getTexture(), singleHighlightedTexture: singleHighlightedShape?.getTexture(), disabledTexture: disabledShape?.getTexture())
+    }
     
+    /**
+    * Initializes a general TWControl of type .Shape with multiple highlighted textures possibility
+    */
+    convenience init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, multiHighlightedShape:(fromNormal:SKShapeNode?, fromSelected:SKShapeNode?), disabledShape:SKShapeNode?) {
+        self.init(normalTexture: normalShape.getTexture(), selectedTexture: selectedShape?.getTexture(), multiHighlightedTexture: (multiHighlightedShape.fromNormal?.getTexture(), multiHighlightedShape.fromSelected?.getTexture()), disabledTexture: disabledShape?.getTexture())
+    }
     
     
     /**
@@ -718,21 +730,5 @@ class TWControl: SKSpriteNode {
     
     internal override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
         touchesEnded(touches, withEvent: event)
-    }
-    
-    internal override func containsPoint(p: CGPoint) -> Bool {
-        if let bounds = self.boundsTolerance {
-            let local = CGPoint(x: p.x - self.position.x, y: p.y - self.position.y)
-            
-            let width = self.size.width + bounds
-            let height = self.size.height + bounds
-            
-            if (fabs(local.x) <= 0.5*width) && (fabs(local.y) <= 0.5*height) {
-                return true
-            }
-            return false
-        } else {
-            return super.containsPoint(p)
-        }
     }
 }
