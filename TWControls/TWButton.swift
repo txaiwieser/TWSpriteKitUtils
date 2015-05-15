@@ -40,8 +40,8 @@ class TWButton: TWControl {
         self.init(normalTexture: normalTexture, selectedTexture: nil, singleHighlightedTexture: highlightedTexture, disabledTexture: nil)
     }
     
-    convenience init(normalShape: SKShapeNode, highlightedShape: SKShapeNode?) {
-        self.init(normalTexture: normalShape.getTexture(), selectedTexture: nil, singleHighlightedTexture: highlightedShape?.getTexture(), disabledTexture: nil)
+    convenience init(normalShape: SKShapeNode.Definition, highlightedShape: SKShapeNode.Definition?) {
+        self.init(normalShape: normalShape, selectedShape: nil, singleHighlightedShape: highlightedShape, disabledShape: nil)
     }
     
     convenience init(size:CGSize, normalColor: SKColor, highlightedColor: SKColor?) {

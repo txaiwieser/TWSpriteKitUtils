@@ -29,7 +29,7 @@
 
 import SpriteKit
 
-class TWControl: SKSpriteNode {
+class TWControl: SKNode {
 
     // MARK: Initializers
 
@@ -40,7 +40,8 @@ class TWControl: SKSpriteNode {
     */
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, singleHighlightedTexture:SKTexture?, disabledTexture:SKTexture?) {
         type = .Texture
-        super.init(texture: normalTexture, color: nil, size: normalTexture.size())
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
         self.userInteractionEnabled = true
 
         self.disabledStateTexture = disabledTexture
@@ -56,7 +57,8 @@ class TWControl: SKSpriteNode {
     */
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, multiHighlightedTexture:(fromNormal:SKTexture?, fromSelected:SKTexture?), disabledTexture:SKTexture?) {
         type = .Texture
-        super.init(texture: normalTexture, color: nil, size: normalTexture.size())
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
         self.userInteractionEnabled = true
         
         self.disabledStateTexture = disabledTexture
@@ -72,15 +74,36 @@ class TWControl: SKSpriteNode {
     /**
     * Initializes a general TWControl of type .Shape with a single highlighted texture possibility
     */
-    convenience init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, singleHighlightedShape:SKShapeNode?, disabledShape:SKShapeNode?) {
-        self.init(normalTexture: normalShape.getTexture(), selectedTexture: selectedShape?.getTexture(), singleHighlightedTexture: singleHighlightedShape?.getTexture(), disabledTexture: disabledShape?.getTexture())
+    init(normalShape:SKShapeNode.Definition, selectedShape:SKShapeNode.Definition?, singleHighlightedShape:SKShapeNode.Definition?, disabledShape:SKShapeNode.Definition?) {
+        type = .Shape
+        super.init()
+        self.generalShape = SKShapeNode(definition: normalShape)
+        self.userInteractionEnabled = true
+        
+        self.disabledStateShapeDef = disabledShape
+        self.highlightedStateSingleShapeDef = singleHighlightedShape
+        self.normalStateShapeDef = normalShape
+        self.selectedStateShapeDef = selectedShape
+        
+        updateVisualInterface()
     }
     
     /**
     * Initializes a general TWControl of type .Shape with multiple highlighted textures possibility
     */
-    convenience init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, multiHighlightedShape:(fromNormal:SKShapeNode?, fromSelected:SKShapeNode?), disabledShape:SKShapeNode?) {
-        self.init(normalTexture: normalShape.getTexture(), selectedTexture: selectedShape?.getTexture(), multiHighlightedTexture: (multiHighlightedShape.fromNormal?.getTexture(), multiHighlightedShape.fromSelected?.getTexture()), disabledTexture: disabledShape?.getTexture())
+    init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, multiHighlightedShape:(fromNormal:SKShapeNode?, fromSelected:SKShapeNode?), disabledShape:SKShapeNode?) {
+        type = .Shape
+        super.init()
+        self.generalShape = normalShape
+        self.userInteractionEnabled = true
+        
+        self.disabledStateShapeDef = SKShapeNode.Definition(disabledShape)
+        self.highlightedStateMultiShapeFromNormalDef = SKShapeNode.Definition(multiHighlightedShape.fromNormal)
+        self.highlightedStateMultiShapeFromNormalDef = SKShapeNode.Definition(multiHighlightedShape.fromSelected)
+        self.normalStateShapeDef = SKShapeNode.Definition(normalShape)
+        self.selectedStateShapeDef = SKShapeNode.Definition(selectedShape)
+        
+        updateVisualInterface()
     }
     
     
@@ -89,7 +112,8 @@ class TWControl: SKSpriteNode {
     */
     init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, singleHighlightedColor:SKColor?, disabledColor:SKColor?) {
         type = .Color
-        super.init(texture: nil, color: normalColor, size: size)
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
         self.userInteractionEnabled = true
 
         self.disabledStateColor = disabledColor
@@ -105,7 +129,8 @@ class TWControl: SKSpriteNode {
     */
     init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, multiHighlightedColor:(fromNormal:SKColor?, fromSelected:SKColor?), disabledColor:SKColor?) {
         type = .Color
-        super.init(texture: nil, color: normalColor, size: size)
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
         self.userInteractionEnabled = true
         
         self.disabledStateColor = disabledColor
@@ -126,7 +151,8 @@ class TWControl: SKSpriteNode {
     */
     init(normalText:String, selectedText:String?, singleHighlightedText:String?, disabledText:String?) {
         type = .Label
-        super.init(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
         self.userInteractionEnabled = true
         
         setNormalStateLabelText(normalText)
@@ -142,7 +168,8 @@ class TWControl: SKSpriteNode {
     */
     init(normalText:String, selectedText:String?, multiHighlightedText:(fromNormal:String?, fromSelected:String?), disabledText:String?)  {
         type = .Label
-        super.init(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
+        super.init()
+        self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
         self.userInteractionEnabled = true
         
         setNormalStateLabelText(normalText)
@@ -187,7 +214,6 @@ class TWControl: SKSpriteNode {
             }
         }
     }
-    
     
     
     
@@ -242,6 +268,11 @@ class TWControl: SKSpriteNode {
     
     
     
+    // MARK: General Nodes
+    
+    private(set) var generalSprite:SKSpriteNode!
+    private(set) var generalShape:SKShapeNode!
+    
     // MARK: Sound Properties
     
     internal static var defaultTouchDownSoundFileName:String?
@@ -251,8 +282,6 @@ class TWControl: SKSpriteNode {
     internal var touchDownSoundFileName:String?
     internal var touchUpSoundFileName:String?
     internal var disabledTouchDownFileName:String?
-    
-    
     
     
     
@@ -276,6 +305,17 @@ class TWControl: SKSpriteNode {
     internal var highlightedStateSingleTexture:SKTexture? { didSet { updateVisualInterface() } }
     internal var highlightedStateMultiTextureFromNormal:SKTexture? { didSet { updateVisualInterface() } }
     internal var highlightedStateMultiTextureFromSelected:SKTexture? { didSet { updateVisualInterface() } }
+    
+    
+    // MARK: SHAPE Type Customizations
+    
+    internal var normalStateShapeDef:SKShapeNode.Definition! { didSet { updateVisualInterface() } }
+    internal var selectedStateShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    internal var disabledStateShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    internal var highlightedStateSingleShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    internal var highlightedStateMultiShapeFromNormalDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    internal var highlightedStateMultiShapeFromSelectedDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    
     
     
     
@@ -466,6 +506,8 @@ class TWControl: SKSpriteNode {
                 updateColorVisualInterface()
             case .Texture:
                 updateTextureVisualInterface()
+            case .Shape:
+                updateShapeVisualInterface()
             case .Label:
                 break //Doesnt need to do nothing
         }
@@ -477,41 +519,41 @@ class TWControl: SKSpriteNode {
     private func updateColorVisualInterface() {
         switch state {
         case .Normal:
-            self.color = self.normalStateColor
+            self.generalSprite.color = self.normalStateColor
         case .Selected:
             if let selColor = self.selectedStateColor {
-                self.color = selColor
+                self.generalSprite.color = selColor
             } else {
-                self.color = normalStateColor
+                self.generalSprite.color = normalStateColor
             }
         case .Disabled:
             if let disColor = self.disabledStateColor {
-                self.color = disColor
+                self.generalSprite.color = disColor
             } else {
-                self.color = normalStateColor
+                self.generalSprite.color = normalStateColor
             }
         case .Highlighted:
             
             if let single = highlightedStateSingleColor {
-                self.color = single
+                self.generalSprite.color = single
             } else {
                 if lastState == .Normal {
                     if let fromNormal = self.highlightedStateMultiColorFromNormal {
-                        self.color = fromNormal
+                        self.generalSprite.color = fromNormal
                     }
                     else if let sel = self.selectedStateColor {
-                        self.color = sel
+                        self.generalSprite.color = sel
                     }
                     else {
-                        self.color = self.normalStateColor
+                        self.generalSprite.color = self.normalStateColor
                     }
                 }
                 else if lastState == .Selected {
                     if let fromSelected = self.highlightedStateMultiColorFromSelected {
-                        self.color = fromSelected
+                        self.generalSprite.color = fromSelected
                     }
                     else {
-                        self.color = self.normalStateColor
+                        self.generalSprite.color = self.normalStateColor
                     }
                 }
             }
@@ -522,45 +564,89 @@ class TWControl: SKSpriteNode {
     private func updateTextureVisualInterface() {
         switch state {
         case .Normal:
-            self.texture = self.normalStateTexture
+            self.generalSprite.texture = self.normalStateTexture
         case .Selected:
             if let selTex = self.selectedStateTexture {
-                self.texture = selTex
+                self.generalSprite.texture = selTex
             } else {
-                self.texture = normalStateTexture
+                self.generalSprite.texture = normalStateTexture
             }
         case .Disabled:
             if let disTex = self.disabledStateTexture {
-                self.texture = disTex
+                self.generalSprite.texture = disTex
             } else {
-                self.texture = normalStateTexture
+                self.generalSprite.texture = normalStateTexture
             }
         case .Highlighted:
             
             if let single = highlightedStateSingleTexture {
-                self.texture = single
+                self.generalSprite.texture = single
             } else {
                 if lastState == .Normal {
                     if let fromNormal = self.highlightedStateMultiTextureFromNormal {
-                        self.texture = fromNormal
+                        self.generalSprite.texture = fromNormal
                     }
                     else if let sel = self.selectedStateTexture {
-                        self.texture = sel
+                        self.generalSprite.texture = sel
                     }
                     else {
-                        self.texture = self.normalStateTexture
+                        self.generalSprite.texture = self.normalStateTexture
                     }
                 } else if lastState == .Selected {
                     if let fromSelected = self.highlightedStateMultiTextureFromSelected {
-                        self.texture = fromSelected
+                        self.generalSprite.texture = fromSelected
                     }
                     else {
-                        self.texture = self.normalStateTexture
+                        self.generalSprite.texture = self.normalStateTexture
                     }
                 }
             }
         }
-        self.size = self.texture!.size()
+        self.generalSprite.size = self.generalSprite.texture!.size()
+    }
+    
+    
+    private func updateShapeVisualInterface() {
+        switch state {
+        case .Normal:
+            self.generalShape.redefine(normalStateShapeDef)
+        case .Selected:
+            if let selSha = self.selectedStateShapeDef {
+                self.generalShape.redefine(selSha)
+            } else {
+                self.generalShape.redefine(normalStateShapeDef)
+            }
+        case .Disabled:
+            if let disSha = self.disabledStateShapeDef {
+                self.generalShape.redefine(disSha)
+            } else {
+                self.generalShape.redefine(normalStateShapeDef)
+            }
+        case .Highlighted:
+            
+            if let single = highlightedStateSingleShapeDef {
+                self.generalShape.redefine(single)
+            } else {
+                if lastState == .Normal {
+                    if let fromNormal = self.highlightedStateMultiShapeFromNormalDef {
+                        self.generalShape.redefine(fromNormal)
+                    }
+                    else if let sel = self.selectedStateShapeDef {
+                        self.generalShape.redefine(sel)
+                    }
+                    else {
+                        self.generalShape.redefine(self.normalStateShapeDef)
+                    }
+                } else if lastState == .Selected {
+                    if let fromSelected = self.highlightedStateMultiShapeFromSelectedDef {
+                        self.generalShape.redefine(fromSelected)
+                    }
+                    else {
+                        self.generalShape.redefine(self.normalStateShapeDef)
+                    }
+                }
+            }
+        }
     }
     
     

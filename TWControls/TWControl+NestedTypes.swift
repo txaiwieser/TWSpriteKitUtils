@@ -66,8 +66,62 @@ extension TWControl {
     
     enum TWControlType {
         case Texture
+        case Shape
         case Color
         case Label
+    }
+}
+
+
+extension SKShapeNode {
+    convenience init(definition:Definition) {
+        self.init()
+        self.redefine(definition)
+    }
+    func redefine(definition:Definition) {
+        self.path = definition.path
+        self.strokeColor = definition.strokeColor
+        self.fillColor = definition.fillColor
+        self.lineWidth = definition.lineWidth
+        self.glowWidth = definition.glowWidth
+        self.fillTexture = definition.fillTexture
+    }
+    
+    func definition() -> Definition {
+        var shapeDef = Definition(path: self.path)
+        shapeDef.path = self.path
+        shapeDef.strokeColor = self.strokeColor
+        shapeDef.fillColor = self.fillColor
+        shapeDef.lineWidth = self.lineWidth
+        shapeDef.glowWidth = self.glowWidth
+        shapeDef.fillTexture = self.fillTexture
+        return shapeDef
+    }
+    
+    // MARK: Shape Definition - Description
+    public struct Definition {
+        var path: CGPath
+        var strokeColor: UIColor = SKColor.whiteColor()
+        var fillColor: UIColor = SKColor.clearColor()
+        var lineWidth: CGFloat = 1.0
+        var glowWidth: CGFloat = 0.0
+        var fillTexture: SKTexture? = nil
+        
+        init(path:CGPath) {
+            self.path = path
+        }
+        init(path:CGPath, color:SKColor) {
+            self.path = path
+            self.fillColor = color
+            self.strokeColor = color
+        }
+        init(_ node:SKShapeNode) {
+            self = node.definition()
+        }
+        init?(_ node:SKShapeNode?) {
+            if let shape = node { self.init(shape) }
+            else { return nil }
+        }
     }
 }
 
