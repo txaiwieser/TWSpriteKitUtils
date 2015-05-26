@@ -42,6 +42,7 @@ class TWControl: SKNode {
         type = .Texture
         super.init()
         self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
 
         self.disabledStateTexture = disabledTexture
@@ -59,6 +60,7 @@ class TWControl: SKNode {
         type = .Texture
         super.init()
         self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
         
         self.disabledStateTexture = disabledTexture
@@ -78,6 +80,7 @@ class TWControl: SKNode {
         type = .Shape
         super.init()
         self.generalShape = SKShapeNode(definition: normalShape)
+        self.addChild(self.generalShape)
         self.userInteractionEnabled = true
         
         self.disabledStateShapeDef = disabledShape
@@ -95,6 +98,7 @@ class TWControl: SKNode {
         type = .Shape
         super.init()
         self.generalShape = normalShape
+        self.addChild(self.generalShape)
         self.userInteractionEnabled = true
         
         self.disabledStateShapeDef = SKShapeNode.Definition(disabledShape)
@@ -114,6 +118,7 @@ class TWControl: SKNode {
         type = .Color
         super.init()
         self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
 
         self.disabledStateColor = disabledColor
@@ -131,6 +136,7 @@ class TWControl: SKNode {
         type = .Color
         super.init()
         self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
         
         self.disabledStateColor = disabledColor
@@ -153,6 +159,7 @@ class TWControl: SKNode {
         type = .Label
         super.init()
         self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
         
         setNormalStateLabelText(normalText)
@@ -170,6 +177,7 @@ class TWControl: SKNode {
         type = .Label
         super.init()
         self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
+        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
         
         setNormalStateLabelText(normalText)
@@ -221,6 +229,7 @@ class TWControl: SKNode {
     
     // MARK: Public Properties
     
+    internal var size:CGSize { get { return self.calculateAccumulatedFrame().size } }
     internal var boundsTolerance:CGFloat?
     internal var tag:Int?
     internal var enabled:Bool {
@@ -266,6 +275,13 @@ class TWControl: SKNode {
     }
     
     
+    func setGeneralTouchProperties(changes:(node:SKNode)->()) {
+        if generalSprite != nil {
+            changes(node: generalSprite)
+        } else if generalShape != nil {
+            changes(node: generalShape)
+        }
+    }
     
     
     // MARK: General Nodes
@@ -490,7 +506,7 @@ class TWControl: SKNode {
     // MARK: Private Properties
     
     private let type:TWControlType
-    private var state:TWControlState = .Normal { didSet { println(state.asString());lastState = oldValue } }
+    private var state:TWControlState = .Normal { didSet { lastState = oldValue } }
     private var lastState:TWControlState = .Normal
     internal var eventClosures:[(event: ControlEvent, closure: TWControl -> ())] = []
     private var touch:UITouch?
