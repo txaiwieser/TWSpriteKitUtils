@@ -70,6 +70,46 @@ extension TWControl {
         case Color
         case Label
     }
+    
+    class TWShapeNode:SKShapeNode {
+        var control:TWControl?
+        override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesBegan(touches, withEvent: event)
+            control?.touchesBegan(touches, withEvent: event)
+        }
+        override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesMoved(touches, withEvent: event)
+            control?.touchesMoved(touches, withEvent: event)
+        }
+        override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesEnded(touches, withEvent: event)
+            control?.touchesEnded(touches, withEvent: event)
+        }
+        override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+            super.touchesCancelled(touches, withEvent: event)
+            control?.touchesCancelled(touches, withEvent: event)
+        }
+    }
+    
+    class TWSpriteNode:SKSpriteNode {
+        weak var control:TWControl?
+        override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesBegan(touches, withEvent: event)
+            control?.touchesBegan(touches, withEvent: event)
+        }
+        override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesMoved(touches, withEvent: event)
+            control?.touchesMoved(touches, withEvent: event)
+        }
+        override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+            super.touchesEnded(touches, withEvent: event)
+            control?.touchesEnded(touches, withEvent: event)
+        }
+        override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+            super.touchesCancelled(touches, withEvent: event)
+            control?.touchesCancelled(touches, withEvent: event)
+        }
+    }
 }
 
 

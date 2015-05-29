@@ -42,29 +42,4 @@ extension TWControl {
             self.runAction(action)
         }
     }
-
-    // Override containsPoint:
-    internal override func containsPoint(p: CGPoint) -> Bool {
-        if let bounds = self.boundsTolerance {
-            let local = CGPoint(x: p.x - self.position.x, y: p.y - self.position.y)
-            
-            var width:CGFloat = 1
-            var height:CGFloat = 1
-            assertionFailure("Not Implemented")
-//            if  == .Texture {
-//                width = self.generalShape.siz.size.width + bounds
-//                height = self.generalShape.size.height + bounds
-//            } else if type == .Shape {
-//                width = self.generalSprite.size.width + bounds
-//                height = self.generalSprite.size.height + bounds
-//
-//            }
-            if (fabs(local.x) <= 0.5*width) && (fabs(local.y) <= 0.5*height) {
-                return true
-            }
-            return false
-        } else {
-            return super.containsPoint(p)
-        }
-    }
 }

@@ -41,9 +41,11 @@ class TWControl: SKNode {
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, singleHighlightedTexture:SKTexture?, disabledTexture:SKTexture?) {
         type = .Texture
         super.init()
-        self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.generalSprite = TWSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        (self.generalSprite as! TWSpriteNode).control = self
         self.addChild(self.generalSprite)
-        self.userInteractionEnabled = true
+        self.userInteractionEnabled = false
+        self.generalSprite.userInteractionEnabled = true
 
         self.disabledStateTexture = disabledTexture
         self.highlightedStateSingleTexture = singleHighlightedTexture
@@ -59,9 +61,11 @@ class TWControl: SKNode {
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, multiHighlightedTexture:(fromNormal:SKTexture?, fromSelected:SKTexture?), disabledTexture:SKTexture?) {
         type = .Texture
         super.init()
-        self.generalSprite = SKSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.generalSprite = TWSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        (self.generalSprite as! TWSpriteNode).control = self
         self.addChild(self.generalSprite)
-        self.userInteractionEnabled = true
+        self.userInteractionEnabled = false
+        self.generalSprite.userInteractionEnabled = true
         
         self.disabledStateTexture = disabledTexture
         self.highlightedStateMultiTextureFromNormal = multiHighlightedTexture.fromNormal
@@ -79,9 +83,11 @@ class TWControl: SKNode {
     init(normalShape:SKShapeNode.Definition, selectedShape:SKShapeNode.Definition?, singleHighlightedShape:SKShapeNode.Definition?, disabledShape:SKShapeNode.Definition?) {
         type = .Shape
         super.init()
-        self.generalShape = SKShapeNode(definition: normalShape)
+        self.generalShape = TWShapeNode(definition: normalShape)
+        (self.generalShape as! TWShapeNode).control = self
         self.addChild(self.generalShape)
-        self.userInteractionEnabled = true
+        self.userInteractionEnabled = false
+        self.generalShape.userInteractionEnabled = true
         
         self.disabledStateShapeDef = disabledShape
         self.highlightedStateSingleShapeDef = singleHighlightedShape
@@ -94,18 +100,20 @@ class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Shape with multiple highlighted textures possibility
     */
-    init(normalShape:SKShapeNode, selectedShape:SKShapeNode?, multiHighlightedShape:(fromNormal:SKShapeNode?, fromSelected:SKShapeNode?), disabledShape:SKShapeNode?) {
+    init(normalShape:SKShapeNode.Definition, selectedShape:SKShapeNode.Definition?, multiHighlightedShape:(fromNormal:SKShapeNode.Definition?, fromSelected:SKShapeNode.Definition?), disabledShape:SKShapeNode.Definition?) {
         type = .Shape
         super.init()
-        self.generalShape = normalShape
+        self.generalShape = TWShapeNode(definition: normalShape)
+        (self.generalShape as! TWShapeNode).control = self
         self.addChild(self.generalShape)
-        self.userInteractionEnabled = true
+        self.userInteractionEnabled = false
+        self.generalShape.userInteractionEnabled = true
         
-        self.disabledStateShapeDef = SKShapeNode.Definition(disabledShape)
-        self.highlightedStateMultiShapeFromNormalDef = SKShapeNode.Definition(multiHighlightedShape.fromNormal)
-        self.highlightedStateMultiShapeFromNormalDef = SKShapeNode.Definition(multiHighlightedShape.fromSelected)
-        self.normalStateShapeDef = SKShapeNode.Definition(normalShape)
-        self.selectedStateShapeDef = SKShapeNode.Definition(selectedShape)
+        self.disabledStateShapeDef = disabledShape
+        self.highlightedStateMultiShapeFromNormalDef = multiHighlightedShape.fromNormal
+        self.highlightedStateMultiShapeFromNormalDef = multiHighlightedShape.fromSelected
+        self.normalStateShapeDef = normalShape
+        self.selectedStateShapeDef = selectedShape
         
         updateVisualInterface()
     }
@@ -117,10 +125,13 @@ class TWControl: SKNode {
     init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, singleHighlightedColor:SKColor?, disabledColor:SKColor?) {
         type = .Color
         super.init()
-        self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
-        self.addChild(self.generalSprite)
-        self.userInteractionEnabled = true
+        self.generalSprite = TWSpriteNode(texture: nil, color: normalColor, size: size)
+        (self.generalSprite as! TWSpriteNode).control = self
 
+        self.addChild(self.generalSprite)
+        self.userInteractionEnabled = false
+        self.generalSprite.userInteractionEnabled = true
+        
         self.disabledStateColor = disabledColor
         self.highlightedStateSingleColor = singleHighlightedColor
         self.normalStateColor = normalColor
@@ -135,10 +146,13 @@ class TWControl: SKNode {
     init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, multiHighlightedColor:(fromNormal:SKColor?, fromSelected:SKColor?), disabledColor:SKColor?) {
         type = .Color
         super.init()
-        self.generalSprite = SKSpriteNode(texture: nil, color: normalColor, size: size)
+        self.generalSprite = TWSpriteNode(texture: nil, color: normalColor, size: size)
+        (self.generalSprite as! TWSpriteNode).control = self
+
         self.addChild(self.generalSprite)
-        self.userInteractionEnabled = true
-        
+        self.userInteractionEnabled = false
+        self.generalSprite.userInteractionEnabled = true
+
         self.disabledStateColor = disabledColor
         self.highlightedStateMultiColorFromNormal = multiHighlightedColor.fromNormal
         self.highlightedStateMultiColorFromSelected = multiHighlightedColor.fromSelected
@@ -158,10 +172,8 @@ class TWControl: SKNode {
     init(normalText:String, selectedText:String?, singleHighlightedText:String?, disabledText:String?) {
         type = .Label
         super.init()
-        self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
-        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
-        
+
         setNormalStateLabelText(normalText)
         setSelectedStateLabelText(selectedText)
         setDisabledStateLabelText(disabledText)
@@ -176,8 +188,6 @@ class TWControl: SKNode {
     init(normalText:String, selectedText:String?, multiHighlightedText:(fromNormal:String?, fromSelected:String?), disabledText:String?)  {
         type = .Label
         super.init()
-        self.generalSprite = SKSpriteNode(texture: nil, color: SKColor.blackColor(), size: CGSizeZero)
-        self.addChild(self.generalSprite)
         self.userInteractionEnabled = true
         
         setNormalStateLabelText(normalText)
@@ -188,9 +198,6 @@ class TWControl: SKNode {
         
         updateVisualInterface()
     }
-    
-    
-    
     
     // MARK: Control Actions
     
@@ -230,7 +237,6 @@ class TWControl: SKNode {
     // MARK: Public Properties
     
     internal var size:CGSize { get { return self.calculateAccumulatedFrame().size } }
-    internal var boundsTolerance:CGFloat?
     internal var tag:Int?
     internal var enabled:Bool {
         get {
@@ -288,6 +294,20 @@ class TWControl: SKNode {
     
     private(set) var generalSprite:SKSpriteNode!
     private(set) var generalShape:SKShapeNode!
+    
+    var genericNode:SKNode {
+        get {
+            if let gen = generalSprite {
+                return gen
+            }
+            else if let gen = generalShape {
+                return gen
+            }
+            else {
+                return self
+            }
+        }
+    }
     
     // MARK: Sound Properties
     
@@ -353,6 +373,8 @@ class TWControl: SKNode {
     
     // Labels Text Setters
     
+    internal static var defaultLabelFont = "Helvetica-Neue"
+
     func setNormalStateLabelText(text:String?) {
         self.setLabelText(&normalStateLabel, text: text, pos: normalStateLabelPosition)
     }
@@ -376,7 +398,7 @@ class TWControl: SKNode {
             if label == nil {
                 label = generalLabel()
                 label!.position = pos
-                self.addChild(label!)
+                self.genericNode.addChild(label!)
             }
             label!.text = newText
         } else {
@@ -386,6 +408,7 @@ class TWControl: SKNode {
     }
     private func generalLabel() -> SKLabelNode {
         let l = SKLabelNode()
+        l.fontName = TWControl.defaultLabelFont
         l.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
         return l
@@ -764,9 +787,9 @@ class TWControl: SKNode {
     
     internal override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.parent)
-        
-        if self.containsPoint(touchPoint) {
+        let touchPoint = touch.locationInNode(self.genericNode.parent)
+
+        if self.genericNode.containsPoint(touchPoint) {
             self.touch = touch
             self.touchLocationLast = touchPoint
             if self.state == .Disabled {
@@ -779,16 +802,15 @@ class TWControl: SKNode {
     
     internal override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         if self.state == .Disabled { return }
-        
         let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.parent)
+        let touchPoint = touch.locationInNode(self.genericNode.parent)
         
         drag()
         
         self.moved = true
-        if self.containsPoint(touchPoint) {
+        if self.genericNode.containsPoint(touchPoint) {
             // Inside
-            if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
+            if let lastPoint = self.touchLocationLast where self.genericNode.containsPoint(lastPoint) {
                 // All along
                 dragInside()
             } else {
@@ -796,7 +818,7 @@ class TWControl: SKNode {
             }
         } else {
             // Outside
-            if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
+            if let lastPoint = self.touchLocationLast where self.genericNode.containsPoint(lastPoint) {
                 // Since now
                 dragExit()
             } else {
@@ -810,12 +832,11 @@ class TWControl: SKNode {
     
     internal override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if self.state == .Disabled { return }
-        
         let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.parent)
+        let touchPoint = touch.locationInNode(self.genericNode.parent)
 
         if self.moved {
-            if let lastPoint = self.touchLocationLast where self.containsPoint(lastPoint) {
+            if let lastPoint = self.touchLocationLast where self.genericNode.containsPoint(lastPoint) {
                 // Ended inside
                 touchUpInside()
             } else {
