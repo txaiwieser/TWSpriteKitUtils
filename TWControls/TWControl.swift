@@ -69,7 +69,7 @@ class TWControl: SKNode {
         
         self.disabledStateTexture = disabledTexture
         self.highlightedStateMultiTextureFromNormal = multiHighlightedTexture.fromNormal
-        self.highlightedStateMultiTextureFromNormal = multiHighlightedTexture.fromSelected
+        self.highlightedStateMultiTextureFromSelected = multiHighlightedTexture.fromSelected
         self.normalStateTexture = normalTexture
         self.selectedStateTexture = selectedTexture
         
@@ -111,7 +111,7 @@ class TWControl: SKNode {
         
         self.disabledStateShapeDef = disabledShape
         self.highlightedStateMultiShapeFromNormalDef = multiHighlightedShape.fromNormal
-        self.highlightedStateMultiShapeFromNormalDef = multiHighlightedShape.fromSelected
+        self.highlightedStateMultiShapeFromSelectedDef = multiHighlightedShape.fromSelected
         self.normalStateShapeDef = normalShape
         self.selectedStateShapeDef = selectedShape
         
