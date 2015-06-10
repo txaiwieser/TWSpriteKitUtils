@@ -22,21 +22,10 @@
 		E9C2C4FB1AA25FF200C3A979 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */; };
 		E9C2C4FE1AA25FF200C3A979 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */; };
 		E9C2C5031AA25FF200C3A979 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C2C5011AA25FF200C3A979 /* LaunchScreen.xib */; };
-		E9C2C50F1AA25FF200C3A979 /* TWControls_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */; };
 		E9C2C51C1AA2601500C3A979 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C5191AA2601500C3A979 /* TWButton.swift */; };
 		E9C2C51D1AA2601500C3A979 /* TWControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C51A1AA2601500C3A979 /* TWControl.swift */; };
 		E9C2C51E1AA2601500C3A979 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C2C51B1AA2601500C3A979 /* TWSwitch.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E9C2C5091AA25FF200C3A979 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9C2C4E71AA25FF200C3A979 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9C2C4EE1AA25FF200C3A979;
-			remoteInfo = "TWControls Demo";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E91F9F681AA74E090015E42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -57,7 +46,6 @@
 		E9C2C4FA1AA25FF200C3A979 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E9C2C4FD1AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9C2C5021AA25FF200C3A979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TWControls DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C2C50D1AA25FF200C3A979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C2C50E1AA25FF200C3A979 /* TWControls_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TWControls_DemoTests.swift; sourceTree = "<group>"; };
 		E9C2C5191AA2601500C3A979 /* TWButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWButton.swift; sourceTree = "<group>"; };
@@ -67,13 +55,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		E9C2C4EC1AA25FF200C3A979 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9C2C5051AA25FF200C3A979 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -96,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */,
-				E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,39 +162,18 @@
 			productReference = E9C2C4EF1AA25FF200C3A979 /* TWControls Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E9C2C5071AA25FF200C3A979 /* TWControls DemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E9C2C5151AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */;
-			buildPhases = (
-				E9C2C5041AA25FF200C3A979 /* Sources */,
-				E9C2C5051AA25FF200C3A979 /* Frameworks */,
-				E9C2C5061AA25FF200C3A979 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E9C2C50A1AA25FF200C3A979 /* PBXTargetDependency */,
-			);
-			name = "TWControls DemoTests";
-			productName = "TWControls DemoTests";
-			productReference = E9C2C5081AA25FF200C3A979 /* TWControls DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E9C2C4E71AA25FF200C3A979 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Txai Wieser";
 				TargetAttributes = {
 					E9C2C4EE1AA25FF200C3A979 = {
 						CreatedOnToolsVersion = 6.3;
-					};
-					E9C2C5071AA25FF200C3A979 = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = E9C2C4EE1AA25FF200C3A979;
 					};
 				};
 			};
@@ -232,7 +191,6 @@
 			projectRoot = "";
 			targets = (
 				E9C2C4EE1AA25FF200C3A979 /* TWControls Demo */,
-				E9C2C5071AA25FF200C3A979 /* TWControls DemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -255,13 +213,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9C2C5061AA25FF200C3A979 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -280,23 +231,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9C2C5041AA25FF200C3A979 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9C2C50F1AA25FF200C3A979 /* TWControls_DemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E9C2C50A1AA25FF200C3A979 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9C2C4EE1AA25FF200C3A979 /* TWControls Demo */;
-			targetProxy = E9C2C5091AA25FF200C3A979 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E9C2C4FC1AA25FF200C3A979 /* Main.storyboard */ = {
@@ -425,40 +360,6 @@
 			};
 			name = Release;
 		};
-		E9C2C5161AA25FF200C3A979 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TWControls DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWControls Demo.app/TWControls Demo";
-			};
-			name = Debug;
-		};
-		E9C2C5171AA25FF200C3A979 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "TWControls DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TWControls Demo.app/TWControls Demo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -476,15 +377,6 @@
 			buildConfigurations = (
 				E9C2C5131AA25FF200C3A979 /* Debug */,
 				E9C2C5141AA25FF200C3A979 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E9C2C5151AA25FF200C3A979 /* Build configuration list for PBXNativeTarget "TWControls DemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9C2C5161AA25FF200C3A979 /* Debug */,
-				E9C2C5171AA25FF200C3A979 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

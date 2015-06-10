@@ -32,7 +32,7 @@ import SpriteKit
 extension TWControl {
     
     // Sounds
-    internal func playSound(#instanceSoundFileName:String?, defaultSoundFileName:String?) {
+    internal func playSound(instanceSoundFileName instanceSoundFileName:String?, defaultSoundFileName:String?) {
         if let soundFileName = instanceSoundFileName {
             let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
             self.runAction(action)

@@ -41,7 +41,7 @@ class TWControl: SKNode {
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, singleHighlightedTexture:SKTexture?, disabledTexture:SKTexture?) {
         type = .Texture
         super.init()
-        self.generalSprite = TWSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.generalSprite = TWSpriteNode(texture: normalTexture, size: normalTexture.size())
         (self.generalSprite as! TWSpriteNode).control = self
         self.addChild(self.generalSprite)
         self.userInteractionEnabled = false
@@ -61,7 +61,7 @@ class TWControl: SKNode {
     init(normalTexture:SKTexture, selectedTexture:SKTexture?, multiHighlightedTexture:(fromNormal:SKTexture?, fromSelected:SKTexture?), disabledTexture:SKTexture?) {
         type = .Texture
         super.init()
-        self.generalSprite = TWSpriteNode(texture: normalTexture, color: nil, size: normalTexture.size())
+        self.generalSprite = TWSpriteNode(texture: normalTexture, size: normalTexture.size())
         (self.generalSprite as! TWSpriteNode).control = self
         self.addChild(self.generalSprite)
         self.userInteractionEnabled = false
@@ -785,9 +785,9 @@ class TWControl: SKNode {
 
     // MARK: UIResponder Methods
     
-    internal override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.genericNode.parent)
+    internal override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first!
+        let touchPoint = touch.locationInNode(self.genericNode.parent!)
 
         if self.genericNode.containsPoint(touchPoint) {
             self.touch = touch
@@ -800,10 +800,10 @@ class TWControl: SKNode {
         }
     }
     
-    internal override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    internal override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.state == .Disabled { return }
-        let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.genericNode.parent)
+        let touch = touches.first!
+        let touchPoint = touch.locationInNode(self.genericNode.parent!)
         
         drag()
         
@@ -830,10 +830,8 @@ class TWControl: SKNode {
     }
     
     
-    internal override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    internal override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.state == .Disabled { return }
-        let touch = touches.first as! UITouch
-        let touchPoint = touch.locationInNode(self.genericNode.parent)
 
         if self.moved {
             if let lastPoint = self.touchLocationLast where self.genericNode.containsPoint(lastPoint) {
@@ -851,7 +849,7 @@ class TWControl: SKNode {
     }
     
     
-    internal override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+    internal override func touchesCancelled(touches: Set<UITouch>!, withEvent event: UIEvent!) {
         touchesEnded(touches, withEvent: event)
     }
 }

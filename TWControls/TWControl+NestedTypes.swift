@@ -73,19 +73,19 @@ extension TWControl {
     
     class TWShapeNode:SKShapeNode {
         var control:TWControl?
-        override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
             control?.touchesBegan(touches, withEvent: event)
         }
-        override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesMoved(touches, withEvent: event)
             control?.touchesMoved(touches, withEvent: event)
         }
-        override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesEnded(touches, withEvent: event)
             control?.touchesEnded(touches, withEvent: event)
         }
-        override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+        override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
             super.touchesCancelled(touches, withEvent: event)
             control?.touchesCancelled(touches, withEvent: event)
         }
@@ -93,19 +93,19 @@ extension TWControl {
     
     class TWSpriteNode:SKSpriteNode {
         weak var control:TWControl?
-        override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
             control?.touchesBegan(touches, withEvent: event)
         }
-        override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesMoved(touches, withEvent: event)
             control?.touchesMoved(touches, withEvent: event)
         }
-        override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesEnded(touches, withEvent: event)
             control?.touchesEnded(touches, withEvent: event)
         }
-        override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+        override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
             super.touchesCancelled(touches, withEvent: event)
             control?.touchesCancelled(touches, withEvent: event)
         }
@@ -128,8 +128,8 @@ extension SKShapeNode {
     }
     
     func definition() -> Definition {
-        var shapeDef = Definition(path: self.path)
-        shapeDef.path = self.path
+        var shapeDef = Definition(path: self.path!)
+        shapeDef.path = self.path!
         shapeDef.strokeColor = self.strokeColor
         shapeDef.fillColor = self.fillColor
         shapeDef.lineWidth = self.lineWidth
@@ -170,7 +170,7 @@ extension SKShapeNode {
 extension Array {
     mutating func removeObject<U: Equatable>(object: U) {
         var index: Int?
-        for (idx, objectToCompare) in enumerate(self) {
+        for (idx, objectToCompare) in self.enumerate() {
             if let to = objectToCompare as? U {
                 if object == to {
                     index = idx

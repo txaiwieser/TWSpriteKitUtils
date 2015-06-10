@@ -131,7 +131,7 @@ class GameScene: SKScene {
         textSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
             scene.colorSwitch.enabled = control.selected
             scene.textureSwitch.enabled = control.selected
-            println(control.selected)
+            print(control.selected)
         }
         
         colorButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
