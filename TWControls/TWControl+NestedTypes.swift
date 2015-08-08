@@ -72,7 +72,7 @@ extension TWControl {
     }
     
     class TWShapeNode:SKShapeNode {
-        var control:TWControl?
+        weak var control:TWControl?
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
             control?.touchesBegan(touches, withEvent: event)
@@ -113,7 +113,7 @@ extension TWControl {
 }
 
 
-extension SKShapeNode {
+public extension SKShapeNode {
     convenience init(definition:Definition) {
         self.init()
         self.redefine(definition)

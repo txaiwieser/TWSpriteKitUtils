@@ -29,7 +29,7 @@
 
 import SpriteKit
 
-class TWSwitch: TWControl {
+public class TWSwitch: TWControl {
 
     
     // MARK: Convenience Initializers

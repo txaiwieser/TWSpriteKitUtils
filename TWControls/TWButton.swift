@@ -29,22 +29,22 @@
 
 import SpriteKit
 
-class TWButton: TWControl {
+public class TWButton: TWControl {
     
     // MARK: Convenience Initializers
-    convenience init(normalText: String, highlightedText: String?) {
+    public convenience init(normalText: String, highlightedText: String?) {
         self.init(normalText: normalText, selectedText: nil, singleHighlightedText: highlightedText, disabledText: nil)
     }
     
-    convenience init(normalTexture: SKTexture, highlightedTexture: SKTexture?) {
+    public convenience init(normalTexture: SKTexture, highlightedTexture: SKTexture?) {
         self.init(normalTexture: normalTexture, selectedTexture: nil, singleHighlightedTexture: highlightedTexture, disabledTexture: nil)
     }
     
-    convenience init(normalShape: SKShapeNode.Definition, highlightedShape: SKShapeNode.Definition?) {
+    public convenience init(normalShape: SKShapeNode.Definition, highlightedShape: SKShapeNode.Definition?) {
         self.init(normalShape: normalShape, selectedShape: nil, singleHighlightedShape: highlightedShape, disabledShape: nil)
     }
     
-    convenience init(size:CGSize, normalColor: SKColor, highlightedColor: SKColor?) {
+    public convenience init(size:CGSize, normalColor: SKColor, highlightedColor: SKColor?) {
         self.init(size: size, normalColor: normalColor, selectedColor: nil, singleHighlightedColor: highlightedColor, disabledColor: nil)
     }
     

@@ -29,11 +29,11 @@
 
 import SpriteKit
 
-class TWControl: SKNode {
+public class TWControl: SKNode {
 
     // MARK: Initializers
 
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     /**
     * Initializes a general TWControl of type .Texture with a single highlighted texture possibility
@@ -295,6 +295,13 @@ class TWControl: SKNode {
     private(set) var generalSprite:SKSpriteNode!
     private(set) var generalShape:SKShapeNode!
     
+    override public var userInteractionEnabled:Bool {
+        didSet {
+            self.generalSprite?.userInteractionEnabled = userInteractionEnabled
+            self.generalShape?.userInteractionEnabled = userInteractionEnabled
+        }
+    }
+    
     var genericNode:SKNode {
         get {
             if let gen = generalSprite {
@@ -311,15 +318,32 @@ class TWControl: SKNode {
     
     // MARK: Sound Properties
     
-    internal static var defaultTouchDownSoundFileName:String?
-    internal static var defaultTouchUpSoundFileName:String?
-    internal static var defaultDisabledTouchDownFileName:String?
+    internal static var defaultTouchDownSoundFileName:String? {
+        didSet { soundPreLoad(defaultTouchDownSoundFileName) }
+    }
+    internal static var defaultTouchUpSoundFileName:String? {
+        didSet { soundPreLoad(defaultTouchUpSoundFileName) }
+    }
+    internal static var defaultDisabledTouchDownFileName:String? {
+        didSet { soundPreLoad(defaultDisabledTouchDownFileName) }
+    }
     
-    internal var touchDownSoundFileName:String?
-    internal var touchUpSoundFileName:String?
-    internal var disabledTouchDownFileName:String?
+    internal var touchDownSoundFileName:String? {
+        didSet { TWControl.soundPreLoad(touchDownSoundFileName) }
+    }
+    internal var touchUpSoundFileName:String? {
+        didSet { TWControl.soundPreLoad(touchUpSoundFileName) }
+    }
+    internal var disabledTouchDownFileName:String? {
+        didSet { TWControl.soundPreLoad(disabledTouchDownFileName) }
+    }
     
-    
+    static func soundPreLoad(named:String?) {
+        // Preloads the sound
+        if let named = named {
+            SKAction.playSoundFileNamed(named, waitForCompletion: true)
+        }
+    }
     
     // MARK: COLOR Type Customizations
     
@@ -785,7 +809,7 @@ class TWControl: SKNode {
 
     // MARK: UIResponder Methods
     
-    internal override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
         let touchPoint = touch.locationInNode(self.genericNode.parent!)
 
@@ -800,7 +824,8 @@ class TWControl: SKNode {
         }
     }
     
-    internal override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.state == .Disabled { return }
         let touch = touches.first!
         let touchPoint = touch.locationInNode(self.genericNode.parent!)
@@ -830,9 +855,17 @@ class TWControl: SKNode {
     }
     
     
-    internal override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        endedTouch()
+    }
+    
+    override public func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        endedTouch()
+    }
+    
+    func endedTouch() {
         if self.state == .Disabled { return }
-
+        
         if self.moved {
             if let lastPoint = self.touchLocationLast where self.genericNode.containsPoint(lastPoint) {
                 // Ended inside
@@ -846,10 +879,5 @@ class TWControl: SKNode {
             touchUpInside()
         }
         self.moved = false
-    }
-    
-    
-    internal override func touchesCancelled(touches: Set<UITouch>!, withEvent event: UIEvent!) {
-        touchesEnded(touches, withEvent: event)
     }
 }
