@@ -1,0 +1,10 @@
+framework module TWSpriteKitUtils {
+  umbrella header "TWSpriteKitUtils.h"
+
+  export *
+  module * { export * }
+}
+
+module TWSpriteKitUtils.Swift {
+    header "TWSpriteKitUtils-Swift.h"
+}

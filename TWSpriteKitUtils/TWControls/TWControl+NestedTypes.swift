@@ -29,10 +29,10 @@
 
 import SpriteKit
 
-extension TWControl {
+public extension TWControl {
     
     // MARK: Nested Types
-    enum ControlEvent {
+    public enum ControlEvent {
         
         case TouchDown // on all touch downs
         case TouchUpInside
@@ -45,7 +45,7 @@ extension TWControl {
         case ValueChanged // sliders, etc.
     }
     
-    enum TWControlState {
+    internal enum TWControlState {
         case Normal
         case Highlighted
         case Selected
@@ -64,14 +64,14 @@ extension TWControl {
         }
     }
     
-    enum TWControlType {
+    internal enum TWControlType {
         case Texture
         case Shape
         case Color
         case Label
     }
     
-    class TWShapeNode:SKShapeNode {
+    internal class TWShapeNode:SKShapeNode {
         weak var control:TWControl?
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
@@ -91,7 +91,7 @@ extension TWControl {
         }
     }
     
-    class TWSpriteNode:SKSpriteNode {
+    internal class TWSpriteNode:SKSpriteNode {
         weak var control:TWControl?
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
@@ -114,7 +114,7 @@ extension TWControl {
 
 
 public extension SKShapeNode {
-    convenience init(definition:Definition) {
+    public convenience init(definition:Definition) {
         self.init()
         self.redefine(definition)
     }
@@ -161,25 +161,6 @@ public extension SKShapeNode {
         init?(_ node:SKShapeNode?) {
             if let shape = node { self.init(shape) }
             else { return nil }
-        }
-    }
-}
-
-
-// MARK: Array Extension
-extension Array {
-    mutating func removeObject<U: Equatable>(object: U) {
-        var index: Int?
-        for (idx, objectToCompare) in self.enumerate() {
-            if let to = objectToCompare as? U {
-                if object == to {
-                    index = idx
-                }
-            }
-        }
-        
-        if(index != nil) {
-            self.removeAtIndex(index!)
         }
     }
 }

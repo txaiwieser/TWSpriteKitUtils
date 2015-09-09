@@ -29,7 +29,7 @@
 
 import SpriteKit
 
-extension TWControl {
+internal extension TWControl {
     
     // Sounds
     internal func playSound(instanceSoundFileName fileName:String?, defaultSoundFileName:String?) {

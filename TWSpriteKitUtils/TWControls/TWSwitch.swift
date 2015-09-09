@@ -33,19 +33,19 @@ public class TWSwitch: TWControl {
 
     
     // MARK: Convenience Initializers
-    convenience init(normalText: String, selectedText: String?) {
+    public convenience init(normalText: String, selectedText: String?) {
         self.init(normalText: normalText, selectedText: selectedText, singleHighlightedText: nil, disabledText: nil)
     }
     
-    convenience init(normalTexture: SKTexture, selectedTexture: SKTexture?) {
+    public convenience init(normalTexture: SKTexture, selectedTexture: SKTexture?) {
         self.init(normalTexture: normalTexture, selectedTexture: selectedTexture, singleHighlightedTexture: nil, disabledTexture: nil)
     }
     
-    convenience init(normalShape: SKShapeNode.Definition, selectedShape: SKShapeNode.Definition?) {
+    public convenience init(normalShape: SKShapeNode.Definition, selectedShape: SKShapeNode.Definition?) {
         self.init(normalShape: normalShape, selectedShape: selectedShape, singleHighlightedShape: nil, disabledShape: nil)
     }
     
-    convenience init(size:CGSize, normalColor: SKColor, selectedColor: SKColor?) {
+    public convenience init(size:CGSize, normalColor: SKColor, selectedColor: SKColor?) {
         self.init(size: size, normalColor: normalColor, selectedColor: selectedColor, singleHighlightedColor: nil, disabledColor: nil)
     }
     
@@ -53,10 +53,10 @@ public class TWSwitch: TWControl {
     
     
     
-    var selectedStateMemory = false
+    private var selectedStateMemory = false
     // MARK: Switch Methods
     
-    override var selected:Bool {
+    public override var selected:Bool {
         get { return super.selected }
         set { super.selected = newValue; self.selectedStateMemory = newValue }
     }
@@ -94,7 +94,8 @@ public class TWSwitch: TWControl {
         super.dragInside()
     }
     
-    internal override func touchUpInside() {
+    // WARNING: This should not be public ;/
+    public override func touchUpInside() {
         selectedStateMemory = !selectedStateMemory
         self.selected = selectedStateMemory
         super.touchUpInside()

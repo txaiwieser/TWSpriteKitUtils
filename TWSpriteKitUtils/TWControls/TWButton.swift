@@ -84,7 +84,7 @@ public class TWButton: TWControl {
         super.dragInside()
     }
     
-    internal override func touchUpInside() {
+    public override func touchUpInside() {
         self.highlighted = false
         super.touchUpInside()
     }
