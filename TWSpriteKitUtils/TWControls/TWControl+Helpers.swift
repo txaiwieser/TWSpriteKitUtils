@@ -33,13 +33,18 @@ internal extension TWControl {
     
     // Sounds
     internal func playSound(instanceSoundFileName fileName:String?, defaultSoundFileName:String?) {
-        if let soundFileName = fileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
-        }
-        else if let soundFileName = defaultSoundFileName {
-            let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-            self.runAction(action)
+        
+        let soundEnabled = TWControl.defaultSoundEffectsEnabled ?? soundEffectsEnabled
+        
+        if soundEnabled {
+            if let soundFileName = fileName {
+                let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+                self.runAction(action)
+            }
+            else if let soundFileName = defaultSoundFileName {
+                let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+                self.runAction(action)
+            }
         }
     }
 }

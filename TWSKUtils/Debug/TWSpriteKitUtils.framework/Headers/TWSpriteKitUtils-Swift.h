@@ -125,6 +125,7 @@ SWIFT_CLASS("_TtC16TWSpriteKitUtils9TWControl")
 @property (nonatomic) BOOL highlighted;
 @property (nonatomic, getter=isUserInteractionEnabled) BOOL userInteractionEnabled;
 @property (nonatomic, readonly) SKNode * __nonnull genericNode;
+@property (nonatomic) BOOL soundEffectsEnabled;
 + (NSString * __nullable)defaultTouchDownSoundFileName;
 + (void)setDefaultTouchDownSoundFileName:(NSString * __nullable)newValue;
 + (NSString * __nullable)defaultTouchUpSoundFileName;

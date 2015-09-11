@@ -318,6 +318,9 @@ public class TWControl: SKNode {
     
     // MARK: Sound Properties
     
+    public static var defaultSoundEffectsEnabled:Bool? = nil
+    public var soundEffectsEnabled:Bool = true
+    
     public static var defaultTouchDownSoundFileName:String? {
         didSet { soundPreLoad(defaultTouchDownSoundFileName) }
     }
