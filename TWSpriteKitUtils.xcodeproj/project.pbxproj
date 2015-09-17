@@ -15,6 +15,11 @@
 		E9099AE01B9F5A5900758069 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD81B9F5A5900758069 /* TWSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		E9099AE11B9F5A5900758069 /* TWCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */; settings = {ASSET_TAGS = (); }; };
 		E9099AE21B9F5A5900758069 /* TWStackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADB1B9F5A5900758069 /* TWStackNode.swift */; settings = {ASSET_TAGS = (); }; };
+		E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C751BAAEF15003A900C /* AppDelegate.swift */; };
+		E9306C781BAAEF15003A900C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C771BAAEF15003A900C /* ViewController.swift */; };
+		E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9306C791BAAEF15003A900C /* Main.storyboard */; };
+		E9306C7D1BAAEF15003A900C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9306C7C1BAAEF15003A900C /* Assets.xcassets */; };
+		E9306C801BAAEF15003A900C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9306C7E1BAAEF15003A900C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +33,24 @@
 		E9099AD81B9F5A5900758069 /* TWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWSwitch.swift; sourceTree = "<group>"; };
 		E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWCollectionNode.swift; sourceTree = "<group>"; };
 		E9099ADB1B9F5A5900758069 /* TWStackNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWStackNode.swift; sourceTree = "<group>"; };
+		E9306C731BAAEF15003A900C /* TWSpriteKitUtils Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWSpriteKitUtils Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9306C751BAAEF15003A900C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E9306C771BAAEF15003A900C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E9306C7A1BAAEF15003A900C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E9306C7C1BAAEF15003A900C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E9306C7F1BAAEF15003A900C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E9306C811BAAEF15003A900C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E9099AC41B9F589500758069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9306C701BAAEF15003A900C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				E9099ACA1B9F589500758069 /* TWSpriteKitUtils */,
+				E9306C741BAAEF15003A900C /* TWSpriteKitUtils Demo */,
 				E9099AC91B9F589500758069 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				E9099AC81B9F589500758069 /* TWSpriteKitUtils.framework */,
+				E9306C731BAAEF15003A900C /* TWSpriteKitUtils Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +110,19 @@
 			path = TWLayout;
 			sourceTree = "<group>";
 		};
+		E9306C741BAAEF15003A900C /* TWSpriteKitUtils Demo */ = {
+			isa = PBXGroup;
+			children = (
+				E9306C751BAAEF15003A900C /* AppDelegate.swift */,
+				E9306C771BAAEF15003A900C /* ViewController.swift */,
+				E9306C791BAAEF15003A900C /* Main.storyboard */,
+				E9306C7C1BAAEF15003A900C /* Assets.xcassets */,
+				E9306C7E1BAAEF15003A900C /* LaunchScreen.storyboard */,
+				E9306C811BAAEF15003A900C /* Info.plist */,
+			);
+			path = "TWSpriteKitUtils Demo";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -121,6 +155,23 @@
 			productReference = E9099AC81B9F589500758069 /* TWSpriteKitUtils.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		E9306C721BAAEF15003A900C /* TWSpriteKitUtils Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9306C841BAAEF15003A900C /* Build configuration list for PBXNativeTarget "TWSpriteKitUtils Demo" */;
+			buildPhases = (
+				E9306C6F1BAAEF15003A900C /* Sources */,
+				E9306C701BAAEF15003A900C /* Frameworks */,
+				E9306C711BAAEF15003A900C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TWSpriteKitUtils Demo";
+			productName = "TWSpriteKitUtils Demo";
+			productReference = E9306C731BAAEF15003A900C /* TWSpriteKitUtils Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,6 +184,9 @@
 					E9099AC71B9F589500758069 = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					E9306C721BAAEF15003A900C = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = E9099AC21B9F589400758069 /* Build configuration list for PBXProject "TWSpriteKitUtils" */;
@@ -141,6 +195,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E9099ABE1B9F589400758069;
 			productRefGroup = E9099AC91B9F589500758069 /* Products */;
@@ -148,6 +203,7 @@
 			projectRoot = "";
 			targets = (
 				E9099AC71B9F589500758069 /* TWSpriteKitUtils */,
+				E9306C721BAAEF15003A900C /* TWSpriteKitUtils Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -157,6 +213,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9306C711BAAEF15003A900C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9306C801BAAEF15003A900C /* LaunchScreen.storyboard in Resources */,
+				E9306C7D1BAAEF15003A900C /* Assets.xcassets in Resources */,
+				E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +243,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9306C6F1BAAEF15003A900C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9306C781BAAEF15003A900C /* ViewController.swift in Sources */,
+				E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E9306C791BAAEF15003A900C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9306C7A1BAAEF15003A900C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E9306C7E1BAAEF15003A900C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9306C7F1BAAEF15003A900C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E9099ACE1B9F589500758069 /* Debug */ = {
@@ -309,6 +403,29 @@
 			};
 			name = Release;
 		};
+		E9306C821BAAEF15003A900C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TWSpriteKitUtils Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "TDW.TWSpriteKitUtils-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E9306C831BAAEF15003A900C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TWSpriteKitUtils Demo/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "TDW.TWSpriteKitUtils-Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +446,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E9306C841BAAEF15003A900C /* Build configuration list for PBXNativeTarget "TWSpriteKitUtils Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9306C821BAAEF15003A900C /* Debug */,
+				E9306C831BAAEF15003A900C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
