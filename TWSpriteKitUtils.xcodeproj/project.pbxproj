@@ -20,6 +20,11 @@
 		E917B7A11BAB037600BD10F5 /* StackNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
 		E917B7A21BAB037600BD10F5 /* CollectionNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
 		E917B7A31BAB037600BD10F5 /* SwitchesDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
+		E91FC68B1BAB148E00F9D5CD /* touchDown_disabled.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6861BAB148E00F9D5CD /* touchDown_disabled.wav */; settings = {ASSET_TAGS = (); }; };
+		E91FC68C1BAB148E00F9D5CD /* touchDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6871BAB148E00F9D5CD /* touchDown.wav */; settings = {ASSET_TAGS = (); }; };
+		E91FC68D1BAB148E00F9D5CD /* touchDownDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6881BAB148E00F9D5CD /* touchDownDefault.wav */; settings = {ASSET_TAGS = (); }; };
+		E91FC68E1BAB148E00F9D5CD /* touchUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6891BAB148E00F9D5CD /* touchUp.wav */; settings = {ASSET_TAGS = (); }; };
+		E91FC68F1BAB148E00F9D5CD /* touchUpDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC68A1BAB148E00F9D5CD /* touchUpDefault.wav */; settings = {ASSET_TAGS = (); }; };
 		E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C751BAAEF15003A900C /* AppDelegate.swift */; };
 		E9306C781BAAEF15003A900C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C771BAAEF15003A900C /* ViewController.swift */; };
 		E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9306C791BAAEF15003A900C /* Main.storyboard */; };
@@ -43,6 +48,11 @@
 		E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackNodeDemoScene.swift; sourceTree = "<group>"; };
 		E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionNodeDemoScene.swift; sourceTree = "<group>"; };
 		E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchesDemoScene.swift; sourceTree = "<group>"; };
+		E91FC6861BAB148E00F9D5CD /* touchDown_disabled.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = touchDown_disabled.wav; path = "TWSpriteKitUtils Demo/touchDown_disabled.wav"; sourceTree = "<group>"; };
+		E91FC6871BAB148E00F9D5CD /* touchDown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = touchDown.wav; path = "TWSpriteKitUtils Demo/touchDown.wav"; sourceTree = "<group>"; };
+		E91FC6881BAB148E00F9D5CD /* touchDownDefault.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = touchDownDefault.wav; path = "TWSpriteKitUtils Demo/touchDownDefault.wav"; sourceTree = "<group>"; };
+		E91FC6891BAB148E00F9D5CD /* touchUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = touchUp.wav; path = "TWSpriteKitUtils Demo/touchUp.wav"; sourceTree = "<group>"; };
+		E91FC68A1BAB148E00F9D5CD /* touchUpDefault.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = touchUpDefault.wav; path = "TWSpriteKitUtils Demo/touchUpDefault.wav"; sourceTree = "<group>"; };
 		E9306C731BAAEF15003A900C /* TWSpriteKitUtils Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWSpriteKitUtils Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9306C751BAAEF15003A900C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9306C771BAAEF15003A900C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,12 +142,25 @@
 		E917B7A41BAB03AB00BD10F5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */,
+				E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */,
 				E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */,
 				E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */,
-				E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */,
-				E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */,
 			);
 			name = Scenes;
+			sourceTree = "<group>";
+		};
+		E91FC6851BAB146000F9D5CD /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E91FC6861BAB148E00F9D5CD /* touchDown_disabled.wav */,
+				E91FC6871BAB148E00F9D5CD /* touchDown.wav */,
+				E91FC6881BAB148E00F9D5CD /* touchDownDefault.wav */,
+				E91FC6891BAB148E00F9D5CD /* touchUp.wav */,
+				E91FC68A1BAB148E00F9D5CD /* touchUpDefault.wav */,
+			);
+			name = Assets;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E9306C741BAAEF15003A900C /* TWSpriteKitUtils Demo */ = {
@@ -145,6 +168,7 @@
 			children = (
 				E917B7A41BAB03AB00BD10F5 /* Scenes */,
 				E917B79B1BAB032C00BD10F5 /* Controllers */,
+				E91FC6851BAB146000F9D5CD /* Assets */,
 				E9306C751BAAEF15003A900C /* AppDelegate.swift */,
 				E9306C791BAAEF15003A900C /* Main.storyboard */,
 				E9306C7C1BAAEF15003A900C /* Assets.xcassets */,
@@ -251,8 +275,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E91FC68D1BAB148E00F9D5CD /* touchDownDefault.wav in Resources */,
+				E91FC68B1BAB148E00F9D5CD /* touchDown_disabled.wav in Resources */,
+				E91FC68C1BAB148E00F9D5CD /* touchDown.wav in Resources */,
+				E91FC68F1BAB148E00F9D5CD /* touchUpDefault.wav in Resources */,
 				E9306C801BAAEF15003A900C /* LaunchScreen.storyboard in Resources */,
 				E9306C7D1BAAEF15003A900C /* Assets.xcassets in Resources */,
+				E91FC68E1BAB148E00F9D5CD /* touchUp.wav in Resources */,
 				E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +477,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "TDW.TWSpriteKitUtils-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -459,6 +489,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "TDW.TWSpriteKitUtils-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

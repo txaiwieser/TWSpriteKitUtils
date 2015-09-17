@@ -19,13 +19,13 @@ class TableViewController: UITableViewController {
         
         switch segue.identifier! {
         case "ButtonsSegue":
-            skView?.presentScene(ButtonsDemoScene(), transition: transition)
+            skView?.presentScene(ButtonsDemoScene(size:skView!.frame.size), transition: transition)
         case "SwitchesSegue":
-            skView?.presentScene(SwitchesDemoScene(), transition: transition)
+            skView?.presentScene(SwitchesDemoScene(size:skView!.frame.size), transition: transition)
         case "CollectionNodeSegue":
-            skView?.presentScene(CollectionNodeDemoScene(), transition: transition)
+            skView?.presentScene(CollectionNodeDemoScene(size:skView!.frame.size), transition: transition)
         case "StackNodeSegue":
-            skView?.presentScene(StackNodeDemoScene(), transition: transition)
+            skView?.presentScene(StackNodeDemoScene(size:skView!.frame.size), transition: transition)
         default:
             break
         }

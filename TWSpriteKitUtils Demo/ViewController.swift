@@ -10,7 +10,6 @@ import UIKit
 import SpriteKit
 
 class ViewController: UIViewController {
-    
     override func viewDidAppear(animated: Bool) {
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         navigationItem.leftItemsSupplementBackButton = true

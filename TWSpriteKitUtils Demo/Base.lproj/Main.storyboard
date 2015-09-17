@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="cRr-QR-7Bj" customClass="TableViewController" customModule="TWSpriteKitUtils_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="t8V-aU-RL7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -17,7 +17,7 @@
                             <tableViewSection headerTitle="Controls" id="a6F-rP-jOW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="pa4-5F-iwe" style="IBUITableViewCellStyleDefault" id="b9b-6K-0T5">
-                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b9b-6K-0T5" id="yTc-jZ-tEb">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -40,7 +40,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ubX-6d-yEC" style="IBUITableViewCellStyleDefault" id="peT-B7-k36">
-                                        <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="peT-B7-k36" id="fWF-NK-NH2">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -67,7 +67,7 @@
                             <tableViewSection headerTitle="Layout" id="t53-ce-2On">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="4KT-UX-kEA" style="IBUITableViewCellStyleDefault" id="Nkt-lA-cQH">
-                                        <rect key="frame" x="0.0" y="253" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="189" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nkt-lA-cQH" id="5bR-fK-Gp5">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -90,7 +90,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="IaG-mT-n5m" style="IBUITableViewCellStyleDefault" id="qjo-Hs-tSD">
-                                        <rect key="frame" x="0.0" y="297" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="233" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qjo-Hs-tSD" id="41B-Wc-wfg">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -135,10 +135,10 @@
                         <viewControllerLayoutGuide type="bottom" id="yfW-yl-22T"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9Av-bF-55A" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TWSpriteKitUtils" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8o-XA-ijY">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TWSpriteKitUtils" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8o-XA-ijY">
                                 <rect key="frame" x="135" y="270" width="331" height="60"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
@@ -153,6 +153,7 @@
                             <constraint firstItem="B8o-XA-ijY" firstAttribute="centerX" secondItem="9Av-bF-55A" secondAttribute="centerX" id="gmB-9g-Ccw"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Xhz-qv-wbO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SDf-4Q-6FP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,7 +164,7 @@
         <scene sceneID="loP-2R-Ydv">
             <objects>
                 <navigationController title="Components" id="FJg-sE-26v" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4pg-Kz-rn0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4pg-Kz-rn0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -194,7 +195,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hp5-RR-bEU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WIb-pf-X3i">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WIb-pf-X3i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
@@ -210,6 +211,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mV4-fI-6PG"/>
+        <segue reference="Ahh-SB-L2w"/>
     </inferredMetricsTieBreakers>
 </document>
