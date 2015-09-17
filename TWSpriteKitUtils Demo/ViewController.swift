@@ -7,19 +7,17 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        navigationItem.leftItemsSupplementBackButton = true
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        if (view as? SKView)?.scene != nil {
+            view.subviews.first?.removeFromSuperview()
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

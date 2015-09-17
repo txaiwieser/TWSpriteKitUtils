@@ -15,6 +15,11 @@
 		E9099AE01B9F5A5900758069 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD81B9F5A5900758069 /* TWSwitch.swift */; settings = {ASSET_TAGS = (); }; };
 		E9099AE11B9F5A5900758069 /* TWCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */; settings = {ASSET_TAGS = (); }; };
 		E9099AE21B9F5A5900758069 /* TWStackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADB1B9F5A5900758069 /* TWStackNode.swift */; settings = {ASSET_TAGS = (); }; };
+		E917B79A1BAB00F100BD10F5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7991BAB00F100BD10F5 /* TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E917B79D1BAB035900BD10F5 /* ButtonsDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
+		E917B7A11BAB037600BD10F5 /* StackNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
+		E917B7A21BAB037600BD10F5 /* CollectionNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
+		E917B7A31BAB037600BD10F5 /* SwitchesDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
 		E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C751BAAEF15003A900C /* AppDelegate.swift */; };
 		E9306C781BAAEF15003A900C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C771BAAEF15003A900C /* ViewController.swift */; };
 		E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9306C791BAAEF15003A900C /* Main.storyboard */; };
@@ -33,6 +38,11 @@
 		E9099AD81B9F5A5900758069 /* TWSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWSwitch.swift; sourceTree = "<group>"; };
 		E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWCollectionNode.swift; sourceTree = "<group>"; };
 		E9099ADB1B9F5A5900758069 /* TWStackNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TWStackNode.swift; sourceTree = "<group>"; };
+		E917B7991BAB00F100BD10F5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonsDemoScene.swift; sourceTree = "<group>"; };
+		E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackNodeDemoScene.swift; sourceTree = "<group>"; };
+		E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionNodeDemoScene.swift; sourceTree = "<group>"; };
+		E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchesDemoScene.swift; sourceTree = "<group>"; };
 		E9306C731BAAEF15003A900C /* TWSpriteKitUtils Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TWSpriteKitUtils Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9306C751BAAEF15003A900C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9306C771BAAEF15003A900C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,11 +120,32 @@
 			path = TWLayout;
 			sourceTree = "<group>";
 		};
+		E917B79B1BAB032C00BD10F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9306C771BAAEF15003A900C /* ViewController.swift */,
+				E917B7991BAB00F100BD10F5 /* TableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E917B7A41BAB03AB00BD10F5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */,
+				E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */,
+				E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */,
+				E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		E9306C741BAAEF15003A900C /* TWSpriteKitUtils Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E917B7A41BAB03AB00BD10F5 /* Scenes */,
+				E917B79B1BAB032C00BD10F5 /* Controllers */,
 				E9306C751BAAEF15003A900C /* AppDelegate.swift */,
-				E9306C771BAAEF15003A900C /* ViewController.swift */,
 				E9306C791BAAEF15003A900C /* Main.storyboard */,
 				E9306C7C1BAAEF15003A900C /* Assets.xcassets */,
 				E9306C7E1BAAEF15003A900C /* LaunchScreen.storyboard */,
@@ -248,7 +279,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9306C781BAAEF15003A900C /* ViewController.swift in Sources */,
+				E917B79A1BAB00F100BD10F5 /* TableViewController.swift in Sources */,
+				E917B7A21BAB037600BD10F5 /* CollectionNodeDemoScene.swift in Sources */,
+				E917B7A11BAB037600BD10F5 /* StackNodeDemoScene.swift in Sources */,
 				E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */,
+				E917B7A31BAB037600BD10F5 /* SwitchesDemoScene.swift in Sources */,
+				E917B79D1BAB035900BD10F5 /* ButtonsDemoScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +490,7 @@
 				E9306C831BAAEF15003A900C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
