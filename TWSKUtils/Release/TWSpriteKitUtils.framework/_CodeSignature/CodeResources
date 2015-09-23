@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/TWSpriteKitUtils-Swift.h</key>
 		<data>
-		xk4qmt+d6ZlxyDhNn8AgRje4qiE=
+		10IDpexmz2MgIM1A6EydloOE4nk=
 		</data>
 		<key>Headers/TWSpriteKitUtils.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		JlhxfN5u4IutmbOVGiJygF6qup4=
+		+DNOTAMiBhC4Hu69N9i13JXDUbY=
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Y6lmHHLKEazWCpSd2j25JxS9bq0=
+		gcjGCOZvrFgCo4y/bBobzLyJzDU=
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		EWvV75srUzWjehqJYkvlR0ocLyw=
+		NhJgJIwOkLXkGmjvyxyg0jzXOpc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/TWSpriteKitUtils-Swift.h</key>
 		<data>
-		xk4qmt+d6ZlxyDhNn8AgRje4qiE=
+		10IDpexmz2MgIM1A6EydloOE4nk=
 		</data>
 		<key>Headers/TWSpriteKitUtils.h</key>
 		<data>
@@ -53,7 +53,7 @@
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Y6lmHHLKEazWCpSd2j25JxS9bq0=
+		gcjGCOZvrFgCo4y/bBobzLyJzDU=
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -61,7 +61,7 @@
 		</data>
 		<key>Modules/TWSpriteKitUtils.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		EWvV75srUzWjehqJYkvlR0ocLyw=
+		NhJgJIwOkLXkGmjvyxyg0jzXOpc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

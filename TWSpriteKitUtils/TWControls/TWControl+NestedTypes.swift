@@ -43,6 +43,7 @@ public extension TWControl {
         case TouchDragEnter
         case TouchDragInside
         case ValueChanged // sliders, etc.
+        case DisabledTouchDown
     }
     
     internal enum TWControlState {

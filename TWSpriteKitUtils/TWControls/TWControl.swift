@@ -774,6 +774,7 @@ public class TWControl: SKNode {
     
     internal func disabledTouchDown() {
         playSound(instanceSoundFileName: disabledTouchDownFileName, defaultSoundFileName: self.dynamicType.defaultDisabledTouchDownFileName)
+        executeClosuresOf(.DisabledTouchDown)
     }
     
     internal func drag() {}
