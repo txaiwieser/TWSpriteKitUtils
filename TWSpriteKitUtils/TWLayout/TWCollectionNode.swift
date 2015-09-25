@@ -52,6 +52,7 @@ public class TWCollectionNode:SKSpriteNode {
     }
     
     func removeNode(node: SKNode, reload:Bool = false) {
+        node.removeFromParent()
         if let ind = subNodes.indexOf(node) {
             subNodes.removeAtIndex(ind)
         }
