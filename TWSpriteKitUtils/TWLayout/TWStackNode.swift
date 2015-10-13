@@ -10,9 +10,9 @@ import SpriteKit
 
 
 public class TWStackNode:SKSpriteNode {
-    private(set) var fillMode:FillMode = FillMode.Vertical
-    private(set) var subNodes:[SKNode] = []
-    public var automaticSpacing = false
+    public private(set) var fillMode:FillMode = FillMode.Vertical
+    public private(set) var subNodes:[SKNode] = []
+    public private(set) var automaticSpacing = false
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public init(lenght: CGFloat, fillMode:FillMode = .Vertical) {
@@ -31,24 +31,25 @@ public class TWStackNode:SKSpriteNode {
         
         switch fillMode {
         case .Vertical:
-            if automaticSpacing == false {
+            if automaticSpacing {
+                let firstMargin = subNodes.first!.calculateAccumulatedFrame().height/2
+                let lastMargin = subNodes.last!.calculateAccumulatedFrame().height/2
+
+                for (index, node) in subNodes.enumerate() {
+                    node.position.y = -CGFloat(index)*(size.height - firstMargin - lastMargin)/CGFloat(subNodes.count-1) + self.size.height/2
+                    node.position.y -= firstMargin
+                }
+            } else {
                 for node in subNodes {
                     let f = node.calculateAccumulatedFrame()
                     let ff =  f.maxY
                     let fff = ff - f.size.height/2
                     
-                    node.position.y = -(accumulatedLenght + f.size.height/2) - fff
+                    node.position.y = -(accumulatedLenght + f.size.height/2)// - fff
                     accumulatedLenght += f.size.height
                 }
                 subNodes.forEach { $0.position.y += accumulatedLenght/2 }
                 self.size.height = accumulatedLenght
-            } else {
-                for (index, node) in subNodes.enumerate() {
-                    let firstMargin = subNodes.first!.calculateAccumulatedFrame().height/2
-                    let lastMargin = subNodes.last!.calculateAccumulatedFrame().height/2
-                    node.position.y = -CGFloat(index)*(size.height - firstMargin - lastMargin)/CGFloat(subNodes.count-1) + self.size.height/2
-                    node.position.y -= firstMargin
-                }
             }
             
         case .Horizontal:
@@ -84,13 +85,16 @@ public class TWStackNode:SKSpriteNode {
         }
     }
     
-    public func removeNode(node: SKNode, reload:Bool = false) {
-        if let ind = subNodes.indexOf(node) {
-            subNodes.removeAtIndex(ind)
-        }
+    public func removeNode(node: SKNode?, reload:Bool = false) {
+        if let n = node {
+            n.removeFromParent()
+            if let ind = subNodes.indexOf(n) {
+                subNodes.removeAtIndex(ind)
+            }
         
-        if reload {
-            self.reloadStack()
+            if reload {
+                self.reloadStack()
+            }
         }
     }
     
@@ -114,6 +118,18 @@ public class TWStackNode:SKSpriteNode {
             case .Vertical:
                 return size.height
             }
+        }
+    }
+}
+
+public extension SKNode {
+    public func removeNodeFromStack(withRefresh:Bool = true) {
+        if let stack = self.parent as? TWStackNode {
+            stack.removeNode(self, reload: withRefresh)
+        } else {
+            let message = "TWSKUtils ERROR: Node is not in a TWStackNode"
+            print(message)
+            assertionFailure(message)
         }
     }
 }

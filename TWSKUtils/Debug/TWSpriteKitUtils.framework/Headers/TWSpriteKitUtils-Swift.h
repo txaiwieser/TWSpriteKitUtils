@@ -98,6 +98,11 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @end
 
 
+@interface SKNode (SWIFT_EXTENSION(TWSpriteKitUtils))
+- (void)removeNodeFromStack:(BOOL)withRefresh;
+@end
+
+
 @interface SKShapeNode (SWIFT_EXTENSION(TWSpriteKitUtils))
 @end
 
@@ -211,9 +216,12 @@ SWIFT_CLASS("_TtC16TWSpriteKitUtils8TWButton")
 
 SWIFT_CLASS("_TtC16TWSpriteKitUtils16TWCollectionNode")
 @interface TWCollectionNode : SKSpriteNode
+@property (nonatomic, readonly, copy) NSArray<SKNode *> * __nonnull subNodes;
+@property (nonatomic, copy) void (^ __nullable reloadCompletion)(void);
 - (nullable instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)reloadCollection;
 - (void)addNode:(SKNode * __nonnull)node reload:(BOOL)reload;
+- (void)removeNode:(SKNode * __nullable)node reload:(BOOL)reload;
 @end
 
 
@@ -228,11 +236,12 @@ SWIFT_CLASS("_TtC16TWSpriteKitUtils16TWCollectionNode")
 
 SWIFT_CLASS("_TtC16TWSpriteKitUtils11TWStackNode")
 @interface TWStackNode : SKSpriteNode
-@property (nonatomic) BOOL automaticSpacing;
+@property (nonatomic, readonly, copy) NSArray<SKNode *> * __nonnull subNodes;
+@property (nonatomic, readonly) BOOL automaticSpacing;
 - (nullable instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)reloadStack;
 - (void)addNode:(SKNode * __nonnull)node reload:(BOOL)reload;
-- (void)removeNode:(SKNode * __nonnull)node reload:(BOOL)reload;
+- (void)removeNode:(SKNode * __nullable)node reload:(BOOL)reload;
 @end
 
 

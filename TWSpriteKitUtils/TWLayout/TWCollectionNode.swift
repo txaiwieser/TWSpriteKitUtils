@@ -9,10 +9,10 @@
 import SpriteKit
 
 public class TWCollectionNode:SKSpriteNode {
-    private(set) var fillMode:FillMode
-    private(set) var subNodes:[SKNode] = []
+    public private(set) var fillMode:FillMode
+    public private(set) var subNodes:[SKNode] = []
     
-    
+    public var reloadCompletion: (()->())? = nil
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     public init(fillMode: FillMode) {
@@ -40,6 +40,8 @@ public class TWCollectionNode:SKSpriteNode {
         }
         subNodes.forEach { $0.position.y += accumulatedHeight/2 - self.fillMode.verticalMargin/2 }
         self.size.height = accumulatedHeight - self.fillMode.verticalMargin
+        
+        reloadCompletion?()
     }
     
     public func addNode(node: SKNode, reload:Bool = false) {
@@ -51,14 +53,16 @@ public class TWCollectionNode:SKSpriteNode {
         }
     }
     
-    func removeNode(node: SKNode, reload:Bool = false) {
-        node.removeFromParent()
-        if let ind = subNodes.indexOf(node) {
-            subNodes.removeAtIndex(ind)
-        }
-        
-        if reload {
-            self.reloadCollection()
+    public func removeNode(node: SKNode?, reload:Bool = false) {
+        if let n = node {
+            n.removeFromParent()
+            if let ind = subNodes.indexOf(n) {
+                subNodes.removeAtIndex(ind)
+            }
+            
+            if reload {
+                self.reloadCollection()
+            }
         }
     }
     
@@ -81,12 +85,11 @@ public class TWCollectionNode:SKSpriteNode {
 public extension SKNode {
     public func removeNodeFromCollection(withRefresh:Bool = true) {
         if let collection = self.parent as? TWCollectionNode {
-            collection.removeNode(self)
-            if withRefresh {
-                collection.reloadCollection()
-            }
+            collection.removeNode(self, reload: withRefresh)
         } else {
-            assertionFailure("Node is not in a TWCollectionNode")
+            let message = "TWSKUtils ERROR: Node is not in a TWCollectionNode"
+            print(message)
+            assertionFailure(message)
         }
     }
 }
