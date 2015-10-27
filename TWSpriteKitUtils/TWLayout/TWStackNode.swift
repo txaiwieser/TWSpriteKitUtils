@@ -12,7 +12,7 @@ import SpriteKit
 public class TWStackNode:SKSpriteNode {
     public private(set) var fillMode:FillMode = FillMode.Vertical
     public private(set) var subNodes:[SKNode] = []
-    public private(set) var automaticSpacing = false
+    public var automaticSpacing = false
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public init(lenght: CGFloat, fillMode:FillMode = .Vertical) {
