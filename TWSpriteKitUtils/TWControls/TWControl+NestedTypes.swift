@@ -148,18 +148,18 @@ public extension SKShapeNode {
         var glowWidth: CGFloat = 0.0
         var fillTexture: SKTexture? = nil
         
-        init(path:CGPath) {
+        public init(path:CGPath) {
             self.path = path
         }
-        init(path:CGPath, color:SKColor) {
+        public init(path:CGPath, color:SKColor) {
             self.path = path
             self.fillColor = color
             self.strokeColor = color
         }
-        init(_ node:SKShapeNode) {
+        public init(_ node:SKShapeNode) {
             self = node.definition()
         }
-        init?(_ node:SKShapeNode?) {
+        public init?(_ node:SKShapeNode?) {
             if let shape = node { self.init(shape) }
             else { return nil }
         }

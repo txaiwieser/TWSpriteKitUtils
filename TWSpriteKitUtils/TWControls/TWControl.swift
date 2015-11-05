@@ -281,7 +281,7 @@ public class TWControl: SKNode {
     }
     
     
-    private func setGeneralTouchProperties(changes:(node:SKNode)->()) {
+    public func setGeneralTouchProperties(changes:(node:SKNode)->()) {
         if generalSprite != nil {
             changes(node: generalSprite)
         } else if generalShape != nil {
@@ -402,7 +402,7 @@ public class TWControl: SKNode {
     
     // Labels Text Setters
     
-    internal static var defaultLabelFont = "Helvetica-Neue"
+    public static var defaultLabelFont = "Helvetica-Neue"
 
     public func setNormalStateLabelText(text:String?) {
         self.setLabelText(&normalStateLabel, text: text, pos: normalStateLabelPosition)

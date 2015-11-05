@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		E9099ACC1B9F589500758069 /* TWSpriteKitUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E9099ACB1B9F589500758069 /* TWSpriteKitUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E9099ADC1B9F5A5900758069 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD41B9F5A5900758069 /* TWButton.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099ADD1B9F5A5900758069 /* TWControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD51B9F5A5900758069 /* TWControl+Helpers.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099ADE1B9F5A5900758069 /* TWControl+NestedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD61B9F5A5900758069 /* TWControl+NestedTypes.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099ADF1B9F5A5900758069 /* TWControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD71B9F5A5900758069 /* TWControl.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099AE01B9F5A5900758069 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD81B9F5A5900758069 /* TWSwitch.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099AE11B9F5A5900758069 /* TWCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */; settings = {ASSET_TAGS = (); }; };
-		E9099AE21B9F5A5900758069 /* TWStackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADB1B9F5A5900758069 /* TWStackNode.swift */; settings = {ASSET_TAGS = (); }; };
-		E917B79A1BAB00F100BD10F5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7991BAB00F100BD10F5 /* TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E917B79D1BAB035900BD10F5 /* ButtonsDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
-		E917B7A11BAB037600BD10F5 /* StackNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
-		E917B7A21BAB037600BD10F5 /* CollectionNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
-		E917B7A31BAB037600BD10F5 /* SwitchesDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */; settings = {ASSET_TAGS = (); }; };
-		E91FC68B1BAB148E00F9D5CD /* touchDown_disabled.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6861BAB148E00F9D5CD /* touchDown_disabled.wav */; settings = {ASSET_TAGS = (); }; };
-		E91FC68C1BAB148E00F9D5CD /* touchDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6871BAB148E00F9D5CD /* touchDown.wav */; settings = {ASSET_TAGS = (); }; };
-		E91FC68D1BAB148E00F9D5CD /* touchDownDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6881BAB148E00F9D5CD /* touchDownDefault.wav */; settings = {ASSET_TAGS = (); }; };
-		E91FC68E1BAB148E00F9D5CD /* touchUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6891BAB148E00F9D5CD /* touchUp.wav */; settings = {ASSET_TAGS = (); }; };
-		E91FC68F1BAB148E00F9D5CD /* touchUpDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC68A1BAB148E00F9D5CD /* touchUpDefault.wav */; settings = {ASSET_TAGS = (); }; };
+		E9099ADC1B9F5A5900758069 /* TWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD41B9F5A5900758069 /* TWButton.swift */; };
+		E9099ADD1B9F5A5900758069 /* TWControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD51B9F5A5900758069 /* TWControl+Helpers.swift */; };
+		E9099ADE1B9F5A5900758069 /* TWControl+NestedTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD61B9F5A5900758069 /* TWControl+NestedTypes.swift */; };
+		E9099ADF1B9F5A5900758069 /* TWControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD71B9F5A5900758069 /* TWControl.swift */; };
+		E9099AE01B9F5A5900758069 /* TWSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099AD81B9F5A5900758069 /* TWSwitch.swift */; };
+		E9099AE11B9F5A5900758069 /* TWCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADA1B9F5A5900758069 /* TWCollectionNode.swift */; };
+		E9099AE21B9F5A5900758069 /* TWStackNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9099ADB1B9F5A5900758069 /* TWStackNode.swift */; };
+		E917B79A1BAB00F100BD10F5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7991BAB00F100BD10F5 /* TableViewController.swift */; };
+		E917B79D1BAB035900BD10F5 /* ButtonsDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79C1BAB035900BD10F5 /* ButtonsDemoScene.swift */; };
+		E917B7A11BAB037600BD10F5 /* StackNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79E1BAB037600BD10F5 /* StackNodeDemoScene.swift */; };
+		E917B7A21BAB037600BD10F5 /* CollectionNodeDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B79F1BAB037600BD10F5 /* CollectionNodeDemoScene.swift */; };
+		E917B7A31BAB037600BD10F5 /* SwitchesDemoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E917B7A01BAB037600BD10F5 /* SwitchesDemoScene.swift */; };
+		E91FC68B1BAB148E00F9D5CD /* touchDown_disabled.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6861BAB148E00F9D5CD /* touchDown_disabled.wav */; };
+		E91FC68C1BAB148E00F9D5CD /* touchDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6871BAB148E00F9D5CD /* touchDown.wav */; };
+		E91FC68D1BAB148E00F9D5CD /* touchDownDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6881BAB148E00F9D5CD /* touchDownDefault.wav */; };
+		E91FC68E1BAB148E00F9D5CD /* touchUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC6891BAB148E00F9D5CD /* touchUp.wav */; };
+		E91FC68F1BAB148E00F9D5CD /* touchUpDefault.wav in Resources */ = {isa = PBXBuildFile; fileRef = E91FC68A1BAB148E00F9D5CD /* touchUpDefault.wav */; };
 		E9306C761BAAEF15003A900C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C751BAAEF15003A900C /* AppDelegate.swift */; };
 		E9306C781BAAEF15003A900C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9306C771BAAEF15003A900C /* ViewController.swift */; };
 		E9306C7B1BAAEF15003A900C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9306C791BAAEF15003A900C /* Main.storyboard */; };
@@ -262,7 +262,7 @@
 		E9099ABF1B9F589400758069 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Txai Wieser";
 				TargetAttributes = {
 					E9099AC71B9F589500758069 = {
@@ -415,7 +415,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";

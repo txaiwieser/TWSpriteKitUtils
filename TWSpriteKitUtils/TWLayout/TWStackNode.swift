@@ -43,7 +43,7 @@ public class TWStackNode:SKSpriteNode {
                 for node in subNodes {
                     let f = node.calculateAccumulatedFrame()
                     let ff =  f.maxY
-                    let fff = ff - f.size.height/2
+                    _ = ff - f.size.height/2
                     
                     node.position.y = -(accumulatedLenght + f.size.height/2)// - fff
                     accumulatedLenght += f.size.height
