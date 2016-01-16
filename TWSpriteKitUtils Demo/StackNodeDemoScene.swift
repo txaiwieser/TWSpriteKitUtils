@@ -15,7 +15,7 @@ class StackNodeDemoScene: SKScene {
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.lightGrayColor()
         
-        stack = TWStackNode(lenght: view.frame.size.width*0.8)
+        stack = TWStackNode(lenght: view.frame.size.width*0.8, fillMode: .Vertical)
         
         stack.position = CGPoint(x: CGRectGetMidX(view.frame), y: CGRectGetMidY(view.frame))
         stack.color = SKColor.redColor()

@@ -12,15 +12,16 @@ import SpriteKit
 public class TWStackNode:SKSpriteNode {
     public private(set) var fillMode:FillMode = FillMode.Vertical
     public private(set) var subNodes:[SKNode] = []
-    public var automaticSpacing = false
+    public let automaticSpacing:Bool
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    public init(lenght: CGFloat, fillMode:FillMode = .Vertical) {
+    public init(lenght: CGFloat, fillMode:FillMode) {
         self.fillMode = fillMode
+        self.automaticSpacing = false
         super.init(texture: nil, color: SKColor.clearColor(), size: fillMode.size(lenght))
     }
     
-    public init(size: CGSize, fillMode:FillMode = .Vertical) {
+    public init(size: CGSize, fillMode:FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = true
         super.init(texture: nil, color: SKColor.clearColor(), size: size)
@@ -53,7 +54,14 @@ public class TWStackNode:SKSpriteNode {
             }
             
         case .Horizontal:
-            if automaticSpacing == false {
+            if automaticSpacing {
+                for (index, node) in subNodes.enumerate() {
+                    let firstMargin = subNodes.first!.calculateAccumulatedFrame().width/2
+                    let lastMargin = subNodes.last!.calculateAccumulatedFrame().width/2
+                    node.position.x = CGFloat(index)*(size.width - firstMargin - lastMargin)/CGFloat(subNodes.count-1) - self.size.width/2
+                    node.position.x += firstMargin
+                }
+            } else  {
                 for node in subNodes {
                     let f = node.calculateAccumulatedFrame()
                     let ff =  f.minX
@@ -64,13 +72,6 @@ public class TWStackNode:SKSpriteNode {
                 }
                 subNodes.forEach { $0.position.x -= accumulatedLenght/2 }
                 self.size.width = accumulatedLenght
-            } else {
-                for (index, node) in subNodes.enumerate() {
-                    let firstMargin = subNodes.first!.calculateAccumulatedFrame().width/2
-                    let lastMargin = subNodes.last!.calculateAccumulatedFrame().width/2
-                    node.position.x = CGFloat(index)*(size.width - firstMargin - lastMargin)/CGFloat(subNodes.count-1) - self.size.width/2
-                    node.position.x += firstMargin
-                }
             }
         }
         
