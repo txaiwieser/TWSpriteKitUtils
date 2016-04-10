@@ -512,7 +512,6 @@ public class TWControl: SKNode {
         defaultHighlightedStateMultiLabelPositionFromNormal = pos
         defaultHighlightedStateMultiLabelPositionFromSelected = pos
     }
-
     
     // Control Instance Label Position
     
@@ -544,9 +543,11 @@ public class TWControl: SKNode {
     }
 
     
+    // Control Animations
     
-    
-    
+    public static var defaultAnimationHighlightedAction: (to: SKAction, back: SKAction)? = nil
+    public var animationHighlightedAction: (to: SKAction, back: SKAction)? = defaultAnimationHighlightedAction
+
     
     
 
@@ -581,8 +582,23 @@ public class TWControl: SKNode {
         }
         
         updateLabelsVisualInterface()
+        updateAnimationInterface()
     }
     
+    func updateAnimationInterface() {
+        let ANIMATION_HIGHLIGHTED_ACTION = "ANIMATION_HIGHLIGHTED_ACTION"
+        if let animation = animationHighlightedAction {
+            removeActionForKey(ANIMATION_HIGHLIGHTED_ACTION)
+            switch state {
+            case .Normal: fallthrough
+            case .Disabled:
+                runAction(animation.back, withKey: ANIMATION_HIGHLIGHTED_ACTION)
+            case .Highlighted: fallthrough
+            case .Selected:
+                runAction(animation.to, withKey: ANIMATION_HIGHLIGHTED_ACTION)
+            }
+        }
+    }
     
     private func updateColorVisualInterface() {
         switch state {
@@ -672,7 +688,6 @@ public class TWControl: SKNode {
         }
         self.generalSprite.size = self.generalSprite.texture!.size()
     }
-    
     
     private func updateShapeVisualInterface() {
         switch state {
