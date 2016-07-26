@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-public class TWCollectionNode:SKSpriteNode {
-    public private(set) var fillMode:FillMode
-    public private(set) var subNodes:[SKNode] = []
+public class TWCollectionNode: SKSpriteNode {
+    public private(set) var fillMode: FillMode
+    public private(set) var subNodes: [SKNode] = []
     
     public var reloadCompletion: (()->())? = nil
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -44,7 +44,7 @@ public class TWCollectionNode:SKSpriteNode {
         reloadCompletion?()
     }
     
-    public func addNode(node: SKNode, reload:Bool = false) {
+    public func addNode(node: SKNode, reload: Bool = false) {
         subNodes.append(node)
         self.addChild(node)
         
@@ -53,7 +53,7 @@ public class TWCollectionNode:SKSpriteNode {
         }
     }
     
-    public func removeNode(node: SKNode?, reload:Bool = false) {
+    public func removeNode(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
             if let ind = subNodes.indexOf(n) {
@@ -67,10 +67,10 @@ public class TWCollectionNode:SKSpriteNode {
     }
     
     public struct FillMode {
-        let columns:Int
-        let width:CGFloat
-        let verticalMargin:CGFloat
-        let objectSize:CGSize
+        let columns: Int
+        let width: CGFloat
+        let verticalMargin: CGFloat
+        let objectSize: CGSize
         
         public init(columns: Int, width: CGFloat, verticalMargin: CGFloat, objectSize: CGSize) {
             self.columns = columns
@@ -83,12 +83,11 @@ public class TWCollectionNode:SKSpriteNode {
 
 
 public extension SKNode {
-    public func removeNodeFromCollection(withRefresh:Bool = true) {
+    public func removeNodeFromCollection(withRefresh: Bool = true) {
         if let collection = self.parent as? TWCollectionNode {
             collection.removeNode(self, reload: withRefresh)
         } else {
             let message = "TWSKUtils ERROR: Node is not in a TWCollectionNode"
-            print(message)
             assertionFailure(message)
         }
     }

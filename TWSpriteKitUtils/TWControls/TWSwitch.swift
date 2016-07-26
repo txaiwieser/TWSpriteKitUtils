@@ -45,7 +45,7 @@ public class TWSwitch: TWControl {
         self.init(normalShape: normalShape, selectedShape: selectedShape, singleHighlightedShape: nil, disabledShape: nil)
     }
     
-    public convenience init(size:CGSize, normalColor: SKColor, selectedColor: SKColor?) {
+    public convenience init(size: CGSize, normalColor: SKColor, selectedColor: SKColor?) {
         self.init(size: size, normalColor: normalColor, selectedColor: selectedColor, singleHighlightedColor: nil, disabledColor: nil)
     }
     

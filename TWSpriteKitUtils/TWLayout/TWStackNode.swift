@@ -9,19 +9,19 @@
 import SpriteKit
 
 
-public class TWStackNode:SKSpriteNode {
-    public private(set) var fillMode:FillMode = FillMode.Vertical
-    public private(set) var subNodes:[SKNode] = []
-    public let automaticSpacing:Bool
+public class TWStackNode: SKSpriteNode {
+    public private(set) var fillMode: FillMode = FillMode.Vertical
+    public private(set) var subNodes: [SKNode] = []
+    public let automaticSpacing: Bool
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    public init(lenght: CGFloat, fillMode:FillMode) {
+    public init(lenght: CGFloat, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = false
         super.init(texture: nil, color: SKColor.clearColor(), size: fillMode.size(lenght))
     }
     
-    public init(size: CGSize, fillMode:FillMode) {
+    public init(size: CGSize, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = true
         super.init(texture: nil, color: SKColor.clearColor(), size: size)
@@ -77,7 +77,7 @@ public class TWStackNode:SKSpriteNode {
         
     }
     
-    public func addNode(node: SKNode, reload:Bool = false) {
+    public func addNode(node: SKNode, reload: Bool = false) {
         subNodes.append(node)
         self.addChild(node)
         
@@ -86,7 +86,7 @@ public class TWStackNode:SKSpriteNode {
         }
     }
     
-    public func removeNode(node: SKNode?, reload:Bool = false) {
+    public func removeNode(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
             if let ind = subNodes.indexOf(n) {
@@ -103,7 +103,7 @@ public class TWStackNode:SKSpriteNode {
         case Horizontal
         case Vertical
         
-        func size(lenght:CGFloat) -> CGSize {
+        func size(lenght: CGFloat) -> CGSize {
             switch self {
             case .Horizontal:
                 return CGSize(width: lenght, height: 2)
@@ -112,7 +112,7 @@ public class TWStackNode:SKSpriteNode {
             }
         }
         
-        func lenght(size:CGSize) -> CGFloat {
+        func lenght(size: CGSize) -> CGFloat {
             switch self {
             case .Horizontal:
                 return size.width
@@ -124,12 +124,11 @@ public class TWStackNode:SKSpriteNode {
 }
 
 public extension SKNode {
-    public func removeNodeFromStack(withRefresh:Bool = true) {
+    public func removeNodeFromStack(withRefresh: Bool = true) {
         if let stack = self.parent as? TWStackNode {
             stack.removeNode(self, reload: withRefresh)
         } else {
             let message = "TWSKUtils ERROR: Node is not in a TWStackNode"
-            print(message)
             assertionFailure(message)
         }
     }

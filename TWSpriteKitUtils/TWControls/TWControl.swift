@@ -38,7 +38,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Texture with a single highlighted texture possibility
     */
-    public init(normalTexture:SKTexture, selectedTexture:SKTexture?, singleHighlightedTexture:SKTexture?, disabledTexture:SKTexture?) {
+    public init(normalTexture: SKTexture, selectedTexture: SKTexture?, singleHighlightedTexture: SKTexture?, disabledTexture: SKTexture?) {
         type = .Texture
         super.init()
         self.generalSprite = TWSpriteNode(texture: normalTexture, size: normalTexture.size())
@@ -58,7 +58,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Texture with multiple highlighted textures possibility
     */
-    public init(normalTexture:SKTexture, selectedTexture:SKTexture?, multiHighlightedTexture:(fromNormal:SKTexture?, fromSelected:SKTexture?), disabledTexture:SKTexture?) {
+    public init(normalTexture: SKTexture, selectedTexture: SKTexture?, multiHighlightedTexture: (fromNormal: SKTexture?, fromSelected: SKTexture?), disabledTexture: SKTexture?) {
         type = .Texture
         super.init()
         self.generalSprite = TWSpriteNode(texture: normalTexture, size: normalTexture.size())
@@ -80,7 +80,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Shape with a single highlighted texture possibility
     */
-    public init(normalShape:SKShapeNode.Definition, selectedShape:SKShapeNode.Definition?, singleHighlightedShape:SKShapeNode.Definition?, disabledShape:SKShapeNode.Definition?) {
+    public init(normalShape: SKShapeNode.Definition, selectedShape: SKShapeNode.Definition?, singleHighlightedShape: SKShapeNode.Definition?, disabledShape: SKShapeNode.Definition?) {
         type = .Shape
         super.init()
         self.generalShape = TWShapeNode(definition: normalShape)
@@ -100,7 +100,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Shape with multiple highlighted textures possibility
     */
-    public init(normalShape:SKShapeNode.Definition, selectedShape:SKShapeNode.Definition?, multiHighlightedShape:(fromNormal:SKShapeNode.Definition?, fromSelected:SKShapeNode.Definition?), disabledShape:SKShapeNode.Definition?) {
+    public init(normalShape: SKShapeNode.Definition, selectedShape: SKShapeNode.Definition?, multiHighlightedShape: (fromNormal: SKShapeNode.Definition?, fromSelected: SKShapeNode.Definition?), disabledShape: SKShapeNode.Definition?) {
         type = .Shape
         super.init()
         self.generalShape = TWShapeNode(definition: normalShape)
@@ -122,7 +122,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Color with a single highlighted color possibility
     */
-    public init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, singleHighlightedColor:SKColor?, disabledColor:SKColor?) {
+    public init(size: CGSize, normalColor: SKColor, selectedColor: SKColor?, singleHighlightedColor: SKColor?, disabledColor: SKColor?) {
         type = .Color
         super.init()
         self.generalSprite = TWSpriteNode(texture: nil, color: normalColor, size: size)
@@ -143,7 +143,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Color with with multiple highlighted color possibility
     */
-    public init(size:CGSize, normalColor:SKColor, selectedColor:SKColor?, multiHighlightedColor:(fromNormal:SKColor?, fromSelected:SKColor?), disabledColor:SKColor?) {
+    public init(size: CGSize, normalColor: SKColor, selectedColor: SKColor?, multiHighlightedColor: (fromNormal: SKColor?, fromSelected: SKColor?), disabledColor: SKColor?) {
         type = .Color
         super.init()
         self.generalSprite = TWSpriteNode(texture: nil, color: normalColor, size: size)
@@ -169,7 +169,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Text with multiple highlighted color possibility
     */
-    public init(normalText:String, selectedText:String?, singleHighlightedText:String?, disabledText:String?) {
+    public init(normalText: String, selectedText: String?, singleHighlightedText: String?, disabledText: String?) {
         type = .Label
         super.init()
         self.userInteractionEnabled = true
@@ -185,7 +185,7 @@ public class TWControl: SKNode {
     /**
     * Initializes a general TWControl of type .Text with multiple highlighted color possibility
     */
-    public init(normalText:String, selectedText:String?, multiHighlightedText:(fromNormal:String?, fromSelected:String?), disabledText:String?)  {
+    public init(normalText: String, selectedText: String?, multiHighlightedText: (fromNormal: String?, fromSelected: String?), disabledText: String?)  {
         type = .Label
         super.init()
         self.userInteractionEnabled = true
@@ -206,7 +206,7 @@ public class TWControl: SKNode {
     Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
     You have to be CAREFUL with this! Just pass your object to the function and use inside the closure.
     */
-    public func addClosure<T: AnyObject>(event: ControlEvent, target: T, closure: (target:T, sender:TWControl) -> ()) {
+    public func addClosure<T: AnyObject>(event: ControlEvent, target: T, closure: (target: T, sender: TWControl) -> ()) {
         self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
             if let obj = target {
                 closure(target: obj, sender: ctrl)
@@ -218,7 +218,7 @@ public class TWControl: SKNode {
     /**
     * Removes all closure from a specific event.
     */
-    public func removeClosuresFor(event:ControlEvent) {
+    public func removeClosuresFor(event: ControlEvent) {
         assertionFailure("TODO: Implement Remove Target")
     }
 
@@ -236,9 +236,9 @@ public class TWControl: SKNode {
     
     // MARK: Public Properties
     
-    public var size:CGSize { get { return self.calculateAccumulatedFrame().size } }
-    public var tag:Int?
-    public var enabled:Bool {
+    public var size: CGSize { get { return self.calculateAccumulatedFrame().size } }
+    public var tag: Int?
+    public var enabled: Bool {
         get {
             return self.state != .Disabled
         }
@@ -252,7 +252,7 @@ public class TWControl: SKNode {
         }
     }
     
-    public var selected:Bool {
+    public var selected: Bool {
         get {
             return self.state == .Selected
         }
@@ -266,7 +266,7 @@ public class TWControl: SKNode {
         }
     }
     
-    public var highlighted:Bool {
+    public var highlighted: Bool {
         get {
             return self.state == .Highlighted
         }
@@ -281,7 +281,7 @@ public class TWControl: SKNode {
     }
     
     
-    public func setGeneralTouchProperties(changes:(node:SKNode)->()) {
+    public func setGeneralTouchProperties(changes: (node: SKNode)->()) {
         if generalSprite != nil {
             changes(node: generalSprite)
         } else if generalShape != nil {
@@ -292,17 +292,17 @@ public class TWControl: SKNode {
     
     // MARK: General Nodes
     
-    private var generalSprite:SKSpriteNode!
-    private var generalShape:SKShapeNode!
+    private var generalSprite: SKSpriteNode!
+    private var generalShape: SKShapeNode!
     
-    override public var userInteractionEnabled:Bool {
+    override public var userInteractionEnabled: Bool {
         didSet {
             self.generalSprite?.userInteractionEnabled = userInteractionEnabled
             self.generalShape?.userInteractionEnabled = userInteractionEnabled
         }
     }
     
-    public var genericNode:SKNode {
+    public var genericNode: SKNode {
         get {
             if let gen = generalSprite {
                 return gen
@@ -318,30 +318,30 @@ public class TWControl: SKNode {
     
     // MARK: Sound Properties
     
-    public static var defaultSoundEffectsEnabled:Bool? = nil
-    public var soundEffectsEnabled:Bool = true
+    public static var defaultSoundEffectsEnabled: Bool? = nil
+    public var soundEffectsEnabled: Bool = true
     
-    public static var defaultTouchDownSoundFileName:String? {
+    public static var defaultTouchDownSoundFileName: String? {
         didSet { soundPreLoad(defaultTouchDownSoundFileName) }
     }
-    public static var defaultTouchUpSoundFileName:String? {
+    public static var defaultTouchUpSoundFileName: String? {
         didSet { soundPreLoad(defaultTouchUpSoundFileName) }
     }
-    public static var defaultDisabledTouchDownFileName:String? {
+    public static var defaultDisabledTouchDownFileName: String? {
         didSet { soundPreLoad(defaultDisabledTouchDownFileName) }
     }
     
-    public var touchDownSoundFileName:String? {
+    public var touchDownSoundFileName: String? {
         didSet { TWControl.soundPreLoad(touchDownSoundFileName) }
     }
-    public var touchUpSoundFileName:String? {
+    public var touchUpSoundFileName: String? {
         didSet { TWControl.soundPreLoad(touchUpSoundFileName) }
     }
-    public var disabledTouchDownFileName:String? {
+    public var disabledTouchDownFileName: String? {
         didSet { TWControl.soundPreLoad(disabledTouchDownFileName) }
     }
     
-    private static func soundPreLoad(named:String?) {
+    private static func soundPreLoad(named: String?) {
         // Preloads the sound
         if let named = named {
             if #available(iOS 9.0, *) {
@@ -352,34 +352,34 @@ public class TWControl: SKNode {
     
     // MARK: COLOR Type Customizations
     
-    public var normalStateColor:SKColor! { didSet { updateVisualInterface() } }
-    public var selectedStateColor:SKColor? { didSet { updateVisualInterface() } }
-    public var disabledStateColor:SKColor? { didSet { updateVisualInterface() } }
-    public var highlightedStateSingleColor:SKColor? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiColorFromNormal:SKColor? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiColorFromSelected:SKColor? { didSet { updateVisualInterface() } }
+    public var normalStateColor: SKColor! { didSet { updateVisualInterface() } }
+    public var selectedStateColor: SKColor? { didSet { updateVisualInterface() } }
+    public var disabledStateColor: SKColor? { didSet { updateVisualInterface() } }
+    public var highlightedStateSingleColor: SKColor? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiColorFromNormal: SKColor? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiColorFromSelected: SKColor? { didSet { updateVisualInterface() } }
     
 
     
     
     // MARK: TEXTURE Type Customizations
 
-    public var normalStateTexture:SKTexture! { didSet { updateVisualInterface() } }
-    public var selectedStateTexture:SKTexture? { didSet { updateVisualInterface() } }
-    public var disabledStateTexture:SKTexture? { didSet { updateVisualInterface() } }
-    public var highlightedStateSingleTexture:SKTexture? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiTextureFromNormal:SKTexture? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiTextureFromSelected:SKTexture? { didSet { updateVisualInterface() } }
+    public var normalStateTexture: SKTexture! { didSet { updateVisualInterface() } }
+    public var selectedStateTexture: SKTexture? { didSet { updateVisualInterface() } }
+    public var disabledStateTexture: SKTexture? { didSet { updateVisualInterface() } }
+    public var highlightedStateSingleTexture: SKTexture? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiTextureFromNormal: SKTexture? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiTextureFromSelected: SKTexture? { didSet { updateVisualInterface() } }
     
     
     // MARK: SHAPE Type Customizations
     
-    public var normalStateShapeDef:SKShapeNode.Definition! { didSet { updateVisualInterface() } }
-    public var selectedStateShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
-    public var disabledStateShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
-    public var highlightedStateSingleShapeDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiShapeFromNormalDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiShapeFromSelectedDef:SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    public var normalStateShapeDef: SKShapeNode.Definition! { didSet { updateVisualInterface() } }
+    public var selectedStateShapeDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    public var disabledStateShapeDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    public var highlightedStateSingleShapeDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiShapeFromNormalDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiShapeFromSelectedDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
     
     
     
@@ -392,37 +392,37 @@ public class TWControl: SKNode {
     
     // MARK: TEXT Type Customizations
     
-    public var normalStateLabel:SKLabelNode? { didSet { updateVisualInterface() } }
-    public var selectedStateLabel:SKLabelNode? { didSet { updateVisualInterface() } }
-    public var disabledStateLabel:SKLabelNode? { didSet { updateVisualInterface() } }
-    public var highlightedStateSingleLabel:SKLabelNode? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiLabelFromNormal:SKLabelNode? { didSet { updateVisualInterface() } }
-    public var highlightedStateMultiLabelFromSelected:SKLabelNode? { didSet { updateVisualInterface() } }
+    public var normalStateLabel: SKLabelNode? { didSet { updateVisualInterface() } }
+    public var selectedStateLabel: SKLabelNode? { didSet { updateVisualInterface() } }
+    public var disabledStateLabel: SKLabelNode? { didSet { updateVisualInterface() } }
+    public var highlightedStateSingleLabel: SKLabelNode? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiLabelFromNormal: SKLabelNode? { didSet { updateVisualInterface() } }
+    public var highlightedStateMultiLabelFromSelected: SKLabelNode? { didSet { updateVisualInterface() } }
     
     
     // Labels Text Setters
     
     public static var defaultLabelFont = "Helvetica-Neue"
 
-    public func setNormalStateLabelText(text:String?) {
+    public func setNormalStateLabelText(text: String?) {
         self.setLabelText(&normalStateLabel, text: text, pos: normalStateLabelPosition)
     }
-    public func setSelectedStateLabelText(text:String?) {
+    public func setSelectedStateLabelText(text: String?) {
         self.setLabelText(&selectedStateLabel, text: text, pos: selectedStateLabelPosition)
     }
-    public func setDisabledStateLabelText(text:String?) {
+    public func setDisabledStateLabelText(text: String?) {
         self.setLabelText(&disabledStateLabel, text: text, pos: disabledStateLabelPosition)
     }
-    public func setHighlightedStateSingleLabelText(text:String?) {
+    public func setHighlightedStateSingleLabelText(text: String?) {
         self.setLabelText(&highlightedStateSingleLabel, text: text, pos: highlightedStateSingleLabelPosition)
     }
-    public func setHighlightedStateMultiLabelTextFromNormal(text:String?) {
+    public func setHighlightedStateMultiLabelTextFromNormal(text: String?) {
         self.setLabelText(&highlightedStateMultiLabelFromNormal, text: text, pos: highlightedStateMultiLabelPositionFromNormal)
     }
-    public func setHighlightedStateMultiLabelTextFromSelected(text:String?) {
+    public func setHighlightedStateMultiLabelTextFromSelected(text: String?) {
         self.setLabelText(&highlightedStateMultiLabelFromSelected, text: text, pos: highlightedStateMultiLabelPositionFromSelected)
     }
-    private func setLabelText(inout label:SKLabelNode?, text:String?, pos:CGPoint) {
+    private func setLabelText(inout label: SKLabelNode?, text: String?, pos: CGPoint) {
         if let newText = text {
             if label == nil {
                 label = generalLabel()
@@ -447,7 +447,7 @@ public class TWControl: SKNode {
     
     // Labels Font Size Setter
 
-    public func setAllStatesLabelFontSize(size:CGFloat) {
+    public func setAllStatesLabelFontSize(size: CGFloat) {
         normalStateLabel?.fontSize = size
         selectedStateLabel?.fontSize = size
         disabledStateLabel?.fontSize = size
@@ -458,7 +458,7 @@ public class TWControl: SKNode {
     
     // Labels Font Name Setter
     
-    public func setAllStatesLabelFontName(fontName:String) {
+    public func setAllStatesLabelFontName(fontName: String) {
         normalStateLabel?.fontName = fontName
         selectedStateLabel?.fontName = fontName
         disabledStateLabel?.fontName = fontName
@@ -469,25 +469,25 @@ public class TWControl: SKNode {
     
     // Labels Font Color Setter
 
-    public func setNormalStateLabelFontColor(color:SKColor) {
+    public func setNormalStateLabelFontColor(color: SKColor) {
         normalStateLabel?.fontColor = color
     }
-    public func setSelectedStateLabelFontColor(color:SKColor) {
+    public func setSelectedStateLabelFontColor(color: SKColor) {
         selectedStateLabel?.fontColor = color
     }
-    public func setDisabledStateLabelFontColor(color:SKColor) {
+    public func setDisabledStateLabelFontColor(color: SKColor) {
         disabledStateLabel?.fontColor = color
     }
-    public func setHighlightedStateSingleLabelFontColor(color:SKColor) {
+    public func setHighlightedStateSingleLabelFontColor(color: SKColor) {
         highlightedStateSingleLabel?.fontColor = color
     }
-    public func setHighlightedStateMultiLabelFontColorFromNormal(color:SKColor) {
+    public func setHighlightedStateMultiLabelFontColorFromNormal(color: SKColor) {
         highlightedStateMultiLabelFromNormal?.fontColor = color
     }
-    public func setHighlightedStateMultiLabelFontColorFromSelected(color:SKColor) {
+    public func setHighlightedStateMultiLabelFontColorFromSelected(color: SKColor) {
         highlightedStateMultiLabelFromSelected?.fontColor = color
     }
-    public func setAllStatesLabelFontColor(color:SKColor) {
+    public func setAllStatesLabelFontColor(color: SKColor) {
         setNormalStateLabelFontColor(color)
         setSelectedStateLabelFontColor(color)
         setDisabledStateLabelFontColor(color)
@@ -504,7 +504,7 @@ public class TWControl: SKNode {
     public static var defaultHighlightedStateSingleLabelPosition = CGPointZero
     public static var defaultHighlightedStateMultiLabelPositionFromNormal = CGPointZero
     public static var defaultHighlightedStateMultiLabelPositionFromSelected = CGPointZero
-    public static func setAllDefaultStatesLabelPosition(pos:CGPoint) {
+    public static func setAllDefaultStatesLabelPosition(pos: CGPoint) {
         defaultNormalStateLabelPosition = pos
         defaultSelectedStateLabelPosition = pos
         defaultDisabledStateLabelPosition = pos
@@ -515,25 +515,25 @@ public class TWControl: SKNode {
     
     // Control Instance Label Position
     
-    public var normalStateLabelPosition:CGPoint = defaultNormalStateLabelPosition {
+    public var normalStateLabelPosition: CGPoint = defaultNormalStateLabelPosition {
         didSet { normalStateLabel?.position = normalStateLabelPosition }
     }
-    public var selectedStateLabelPosition:CGPoint = defaultSelectedStateLabelPosition {
+    public var selectedStateLabelPosition: CGPoint = defaultSelectedStateLabelPosition {
         didSet { selectedStateLabel?.position = selectedStateLabelPosition }
     }
-    public var disabledStateLabelPosition:CGPoint = defaultDisabledStateLabelPosition {
+    public var disabledStateLabelPosition: CGPoint = defaultDisabledStateLabelPosition {
         didSet { disabledStateLabel?.position = disabledStateLabelPosition }
     }
-    public var highlightedStateSingleLabelPosition:CGPoint = defaultHighlightedStateSingleLabelPosition {
+    public var highlightedStateSingleLabelPosition: CGPoint = defaultHighlightedStateSingleLabelPosition {
         didSet { highlightedStateSingleLabel?.position = highlightedStateSingleLabelPosition }
     }
-    public var highlightedStateMultiLabelPositionFromNormal:CGPoint = defaultHighlightedStateMultiLabelPositionFromNormal {
+    public var highlightedStateMultiLabelPositionFromNormal: CGPoint = defaultHighlightedStateMultiLabelPositionFromNormal {
         didSet { highlightedStateMultiLabelFromNormal?.position = highlightedStateMultiLabelPositionFromNormal }
     }
-    public var highlightedStateMultiLabelPositionFromSelected:CGPoint = defaultHighlightedStateMultiLabelPositionFromSelected {
+    public var highlightedStateMultiLabelPositionFromSelected: CGPoint = defaultHighlightedStateMultiLabelPositionFromSelected {
         didSet { highlightedStateMultiLabelFromSelected?.position = highlightedStateMultiLabelPositionFromSelected }
     }
-    public func setAllStatesLabelPosition(pos:CGPoint) {
+    public func setAllStatesLabelPosition(pos: CGPoint) {
         normalStateLabelPosition = pos
         selectedStateLabelPosition = pos
         disabledStateLabelPosition = pos
@@ -558,12 +558,12 @@ public class TWControl: SKNode {
     
     // MARK: Private Properties
     
-    private let type:TWControlType
-    private var state:TWControlState = .Normal { didSet { lastState = oldValue } }
-    private var lastState:TWControlState = .Normal
-    internal var eventClosures:[(event: ControlEvent, closure: TWControl -> ())] = []
+    private let type: TWControlType
+    private var state: TWControlState = .Normal { didSet { lastState = oldValue } }
+    private var lastState: TWControlState = .Normal
+    internal var eventClosures: [(event: ControlEvent, closure: TWControl -> ())] = []
     private var touch:UITouch?
-    private var touchLocationLast:CGPoint?
+    private var touchLocationLast: CGPoint?
     private var moved = false
 
     
@@ -582,20 +582,20 @@ public class TWControl: SKNode {
         }
         
         updateLabelsVisualInterface()
-        updateAnimationInterface()
+        if self.scene?.view?.window != nil { updateAnimationInterface() }
     }
     
     func updateAnimationInterface() {
         let ANIMATION_HIGHLIGHTED_ACTION = "ANIMATION_HIGHLIGHTED_ACTION"
         if let animation = animationHighlightedAction {
-            removeActionForKey(ANIMATION_HIGHLIGHTED_ACTION)
+            genericNode.removeActionForKey(ANIMATION_HIGHLIGHTED_ACTION)
             switch state {
             case .Normal: fallthrough
             case .Disabled:
-                runAction(animation.back, withKey: ANIMATION_HIGHLIGHTED_ACTION)
+                genericNode.runAction(animation.back, withKey: ANIMATION_HIGHLIGHTED_ACTION)
             case .Highlighted: fallthrough
             case .Selected:
-                runAction(animation.to, withKey: ANIMATION_HIGHLIGHTED_ACTION)
+                genericNode.runAction(animation.to, withKey: ANIMATION_HIGHLIGHTED_ACTION)
             }
         }
     }
@@ -686,7 +686,8 @@ public class TWControl: SKNode {
                 }
             }
         }
-        self.generalSprite.size = self.generalSprite.texture!.size()
+        // This line was removed to fix the animation bug where the size of the button would change after animate. It appears nothings break by the remove so far
+//        self.generalSprite.size = self.generalSprite.texture!.size()
     }
     
     private func updateShapeVisualInterface() {

@@ -72,8 +72,8 @@ public extension TWControl {
         case Label
     }
     
-    internal class TWShapeNode:SKShapeNode {
-        weak var control:TWControl?
+    internal class TWShapeNode: SKShapeNode {
+        weak var control: TWControl?
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
             control?.touchesBegan(touches, withEvent: event)
@@ -92,8 +92,8 @@ public extension TWControl {
         }
     }
     
-    internal class TWSpriteNode:SKSpriteNode {
-        weak var control:TWControl?
+    internal class TWSpriteNode: SKSpriteNode {
+        weak var control: TWControl?
         override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             super.touchesBegan(touches, withEvent: event)
             control?.touchesBegan(touches, withEvent: event)
@@ -115,11 +115,11 @@ public extension TWControl {
 
 
 public extension SKShapeNode {
-    public convenience init(definition:Definition) {
+    public convenience init(definition: Definition) {
         self.init()
         self.redefine(definition)
     }
-    func redefine(definition:Definition) {
+    func redefine(definition: Definition) {
         self.path = definition.path
         self.strokeColor = definition.strokeColor
         self.fillColor = definition.fillColor
@@ -148,18 +148,18 @@ public extension SKShapeNode {
         var glowWidth: CGFloat = 0.0
         var fillTexture: SKTexture? = nil
         
-        public init(path:CGPath) {
+        public init(path: CGPath) {
             self.path = path
         }
-        public init(path:CGPath, color:SKColor) {
+        public init(path: CGPath, color: SKColor) {
             self.path = path
             self.fillColor = color
             self.strokeColor = color
         }
-        public init(_ node:SKShapeNode) {
+        public init(_ node: SKShapeNode) {
             self = node.definition()
         }
-        public init?(_ node:SKShapeNode?) {
+        public init?(_ node: SKShapeNode?) {
             if let shape = node { self.init(shape) }
             else { return nil }
         }

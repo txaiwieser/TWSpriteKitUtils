@@ -44,7 +44,7 @@ public class TWButton: TWControl {
         self.init(normalShape: normalShape, selectedShape: nil, singleHighlightedShape: highlightedShape, disabledShape: nil)
     }
     
-    public convenience init(size:CGSize, normalColor: SKColor, highlightedColor: SKColor?) {
+    public convenience init(size: CGSize, normalColor: SKColor, highlightedColor: SKColor?) {
         self.init(size: size, normalColor: normalColor, selectedColor: nil, singleHighlightedColor: highlightedColor, disabledColor: nil)
     }
     
