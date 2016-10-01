@@ -11,11 +11,11 @@ import SpriteKit
 
 class TableViewController: UITableViewController {
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let nvc = segue.destinationViewController as? UINavigationController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nvc = segue.destination as? UINavigationController
         let skView = nvc?.viewControllers.first?.view as? SKView
         
-        let transition = SKTransition.crossFadeWithDuration(2)
+        let transition = SKTransition.crossFade(withDuration: 2)
         
         switch segue.identifier! {
         case "ButtonsSegue":

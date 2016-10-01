@@ -126,7 +126,7 @@ open class TWStackNode: SKSpriteNode {
 public extension SKNode {
     public func removeNodeFromStack(_ withRefresh: Bool = true) {
         if let stack = self.parent as? TWStackNode {
-            stack.removeNode(self, reload: withRefresh)
+            stack.remove(node: self, reload: withRefresh)
         } else {
             let message = "TWSKUtils ERROR: Node is not in a TWStackNode"
             assertionFailure(message)

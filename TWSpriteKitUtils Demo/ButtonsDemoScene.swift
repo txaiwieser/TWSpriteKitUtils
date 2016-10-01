@@ -10,7 +10,7 @@ import SpriteKit
 import TWSpriteKitUtils
 
 class ButtonsDemoScene: SKScene {
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here */
         
         
@@ -26,17 +26,17 @@ class ButtonsDemoScene: SKScene {
         addChild(textButton)
         
         
-        colorButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        colorButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.textureButton.enabled = !scene.textureButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textureButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textureButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textureButton.enabled = !scene.textureButton.enabled
         }
@@ -47,8 +47,8 @@ class ButtonsDemoScene: SKScene {
     // BUTTONS
     
     lazy var colorButton:TWButton = {
-        let b = TWButton(size: CGSize(width: 102, height: 40), normalColor: SKColor.purpleColor(), highlightedColor: nil)
-        b.disabledStateColor = SKColor.grayColor()
+        let b = TWButton(size: CGSize(width: 102, height: 40), normalColor: SKColor.purple, highlightedColor: nil)
+        b.disabledStateColor = SKColor.gray
         b.setDisabledStateLabelText("DISABLED")
         b.setNormalStateLabelText("PLAY")
         b.setHighlightedStateSingleLabelText("PRESSED")
@@ -71,7 +71,7 @@ class ButtonsDemoScene: SKScene {
     lazy var textButton:TWButton = {
         let b = TWButton(normalText: "PLAY", highlightedText: "PRESSED")
         b.setDisabledStateLabelText("DISABLED")
-        b.setAllStatesLabelFontColor(SKColor.blackColor())
+        b.setAllStatesLabelFontColor(SKColor.black)
         b.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + -200)
         return b
         }()

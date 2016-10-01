@@ -787,39 +787,39 @@ open class TWControl: SKNode {
     
     internal func touchDown() {
         playSound(instanceSoundFileName: touchDownSoundFileName, defaultSoundFileName: type(of: self).defaultTouchDownSoundFileName)
-        executeClosuresOf(.touchDown)
+        executeClosures(of: .touchDown)
     }
     
     internal func disabledTouchDown() {
         playSound(instanceSoundFileName: disabledTouchDownFileName, defaultSoundFileName: type(of: self).defaultDisabledTouchDownFileName)
-        executeClosuresOf(.disabledTouchDown)
+        executeClosures(of: .disabledTouchDown)
     }
     
     internal func drag() {}
     
     internal func dragExit() {
-        executeClosuresOf(.touchDragExit)
+        executeClosures(of: .touchDragExit)
     }
 
     internal func dragOutside() {
-        executeClosuresOf(.touchDragOutside)
+        executeClosures(of: .touchDragOutside)
     }
     
     internal func dragEnter() {
-        executeClosuresOf(.touchDragEnter)
+        executeClosures(of: .touchDragEnter)
     }
     
     internal func dragInside() {
-        executeClosuresOf(.touchDragInside)
+        executeClosures(of: .touchDragInside)
     }
 
     open func touchUpInside() {
-        executeClosuresOf(.touchUpInside)
+        executeClosures(of: .touchUpInside)
         playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: type(of: self).defaultTouchUpSoundFileName)
     }
     
     internal func touchUpOutside() {
-        executeClosuresOf(.touchUpOutside)
+        executeClosures(of: .touchUpOutside)
         playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: type(of: self).defaultTouchUpSoundFileName)
     }
     

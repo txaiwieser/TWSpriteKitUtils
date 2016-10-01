@@ -11,7 +11,7 @@ import TWSpriteKitUtils
 
 class SwitchesDemoScene: SKScene {
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here */
         
         
@@ -38,34 +38,34 @@ class SwitchesDemoScene: SKScene {
         buttonsContainer.addChild(textButton)
         
         
-        addChild(SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: 200, height: 200)))
-        colorSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        addChild(SKSpriteNode(color: UIColor.red, size: CGSize(width: 200, height: 200)))
+        colorSwitch.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.textureSwitch.enabled = control.selected
             scene.textSwitch.enabled = control.selected
         }
         
-        textureSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textureSwitch.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorSwitch.enabled = control.selected
             scene.textSwitch.enabled = control.selected
         }
         
-        textSwitch.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textSwitch.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorSwitch.enabled = control.selected
             scene.textureSwitch.enabled = control.selected
             print(control.selected)
         }
         
-        colorButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        colorButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.textureButton.enabled = !scene.textureButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textureButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textureButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textButton.enabled = !scene.textButton.enabled
         }
         
-        textButton.addClosure(.TouchUpInside, target: self) { (scene, control) -> () in
+        textButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
             scene.colorButton.enabled = !scene.colorButton.enabled
             scene.textureButton.enabled = !scene.textureButton.enabled
         }
@@ -73,20 +73,20 @@ class SwitchesDemoScene: SKScene {
     
     // SWITCHES
     lazy var switchesContainer:SKSpriteNode = {
-        let n = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 220, height: 320))
-        n.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetHeight(self.frame) - n.size.height/2 - 30)
+        let n = SKSpriteNode(color: SKColor.white, size: CGSize(width: 220, height: 320))
+        n.position = CGPoint(x: self.frame.midX, y: self.frame.height - n.size.height/2 - 30)
         
         let l = SKLabelNode(text: "Switches")
         l.fontName = "Helvetica"
-        l.fontColor = SKColor.blackColor()
+        l.fontColor = SKColor.black
         l.position = CGPoint(x: 0, y: n.size.height/2-l.frame.height - 10)
         n.addChild(l)
         return n
         }()
     
     lazy var colorSwitch:TWSwitch = {
-        let s = TWSwitch(size: CGSize(width: 102, height: 40), normalColor: SKColor.blueColor(), selectedColor: SKColor.orangeColor())
-        s.disabledStateColor = SKColor.grayColor()
+        let s = TWSwitch(size: CGSize(width: 102, height: 40), normalColor: SKColor.blue, selectedColor: SKColor.orange)
+        s.disabledStateColor = SKColor.gray
         s.setDisabledStateLabelText("DISABLED")
         s.setNormalStateLabelText("ON")
         s.setSelectedStateLabelText("OFF")
@@ -108,7 +108,7 @@ class SwitchesDemoScene: SKScene {
         let s = TWSwitch(normalText: "ON", selectedText: "OFF")
         s.setDisabledStateLabelText("DISABLED")
         s.setHighlightedStateSingleLabelText("HIGH")
-        s.setAllStatesLabelFontColor(SKColor.blackColor())
+        s.setAllStatesLabelFontColor(SKColor.black)
         s.position = CGPoint(x: 0, y: -120)
         return s
         }()
@@ -116,20 +116,20 @@ class SwitchesDemoScene: SKScene {
     
     // BUTTONS
     lazy var buttonsContainer:SKSpriteNode = {
-        let n = SKSpriteNode(color: SKColor.whiteColor(), size: CGSize(width: 220, height: 320))
-        n.position = CGPoint(x: CGRectGetMidX(self.frame), y: n.size.height/2 + 30)
+        let n = SKSpriteNode(color: SKColor.white, size: CGSize(width: 220, height: 320))
+        n.position = CGPoint(x: self.frame.midX, y: n.size.height/2 + 30)
         
         let l = SKLabelNode(text: "Buttons")
         l.fontName = "Helvetica"
-        l.fontColor = SKColor.blackColor()
+        l.fontColor = SKColor.black
         l.position = CGPoint(x: 0, y: n.size.height/2-l.frame.height - 10)
         n.addChild(l)
         return n
         }()
     
     lazy var colorButton:TWButton = {
-        let b = TWButton(size: CGSize(width: 102, height: 40), normalColor: SKColor.purpleColor(), highlightedColor: nil)
-        b.disabledStateColor = SKColor.grayColor()
+        let b = TWButton(size: CGSize(width: 102, height: 40), normalColor: SKColor.purple, highlightedColor: nil)
+        b.disabledStateColor = SKColor.gray
         b.setDisabledStateLabelText("DISABLED")
         b.setNormalStateLabelText("PLAY")
         b.setHighlightedStateSingleLabelText("PRESSED")
@@ -149,7 +149,7 @@ class SwitchesDemoScene: SKScene {
     lazy var textButton:TWButton = {
         let b = TWButton(normalText: "PLAY", highlightedText: "PRESSED")
         b.setDisabledStateLabelText("DISABLED")
-        b.setAllStatesLabelFontColor(SKColor.blackColor())
+        b.setAllStatesLabelFontColor(SKColor.black)
         b.position = CGPoint(x: 0, y: -120)
         return b
         }()

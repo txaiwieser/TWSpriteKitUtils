@@ -32,7 +32,8 @@ open class TWCollectionNode: SKSpriteNode {
             let resta = elements - lineIndex*columns
             let distance = fillMode.objectSize.height + fillMode.verticalMargin
             for columnIdex in 0..<min(columns, resta) {
-                let xPos = (-size.width/2 + fillMode.objectSize.width/2) + CGFloat(columnIdex)*(fillMode.objectSize.width+xDiv)
+                var xPos = (-size.width/2 + fillMode.objectSize.width/2)
+                xPos += CGFloat(columnIdex)*(fillMode.objectSize.width+xDiv)
                 let yPos = -CGFloat(lineIndex)*distance - fillMode.objectSize.height/2
                 subNodes[lineIndex*columns + columnIdex].position = CGPoint(x: xPos, y: yPos)
             }
@@ -85,7 +86,7 @@ open class TWCollectionNode: SKSpriteNode {
 public extension SKNode {
     public func removeNodeFromCollection(_ withRefresh: Bool = true) {
         if let collection = self.parent as? TWCollectionNode {
-            collection.removeNode(self, reload: withRefresh)
+            collection.remove(node: self, reload: withRefresh)
         } else {
             let message = "TWSKUtils ERROR: Node is not in a TWCollectionNode"
             assertionFailure(message)
