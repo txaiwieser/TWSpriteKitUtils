@@ -29,7 +29,7 @@
 
 import SpriteKit
 
-public class TWButton: TWControl {
+open class TWButton: TWControl {
     
     // MARK: Convenience Initializers
     public convenience init(normalText: String, highlightedText: String?) {
@@ -84,7 +84,7 @@ public class TWButton: TWControl {
         super.dragInside()
     }
     
-    public override func touchUpInside() {
+    open override func touchUpInside() {
         self.highlighted = false
         super.touchUpInside()
     }

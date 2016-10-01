@@ -9,34 +9,34 @@
 import SpriteKit
 
 
-public class TWStackNode: SKSpriteNode {
-    public private(set) var fillMode: FillMode = FillMode.Vertical
-    public private(set) var subNodes: [SKNode] = []
-    public let automaticSpacing: Bool
+open class TWStackNode: SKSpriteNode {
+    open fileprivate(set) var fillMode: FillMode = FillMode.vertical
+    open fileprivate(set) var subNodes: [SKNode] = []
+    open let automaticSpacing: Bool
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public init(lenght: CGFloat, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = false
-        super.init(texture: nil, color: SKColor.clearColor(), size: fillMode.size(lenght))
+        super.init(texture: nil, color: SKColor.clear, size: fillMode.size(lenght))
     }
     
     public init(size: CGSize, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = true
-        super.init(texture: nil, color: SKColor.clearColor(), size: size)
+        super.init(texture: nil, color: SKColor.clear, size: size)
     }
     
-    public func reloadStack() {
+    open func reloadStack() {
         var accumulatedLenght = CGFloat(0)
         
         switch fillMode {
-        case .Vertical:
+        case .vertical:
             if automaticSpacing {
                 let firstMargin = subNodes.first!.calculateAccumulatedFrame().height/2
                 let lastMargin = subNodes.last!.calculateAccumulatedFrame().height/2
 
-                for (index, node) in subNodes.enumerate() {
+                for (index, node) in subNodes.enumerated() {
                     node.position.y = -CGFloat(index)*(size.height - firstMargin - lastMargin)/CGFloat(subNodes.count-1) + self.size.height/2
                     node.position.y -= firstMargin
                 }
@@ -53,9 +53,9 @@ public class TWStackNode: SKSpriteNode {
                 self.size.height = accumulatedLenght
             }
             
-        case .Horizontal:
+        case .horizontal:
             if automaticSpacing {
-                for (index, node) in subNodes.enumerate() {
+                for (index, node) in subNodes.enumerated() {
                     let firstMargin = subNodes.first!.calculateAccumulatedFrame().width/2
                     let lastMargin = subNodes.last!.calculateAccumulatedFrame().width/2
                     node.position.x = CGFloat(index)*(size.width - firstMargin - lastMargin)/CGFloat(subNodes.count-1) - self.size.width/2
@@ -77,7 +77,7 @@ public class TWStackNode: SKSpriteNode {
         
     }
     
-    public func addNode(node: SKNode, reload: Bool = false) {
+    open func add(node: SKNode, reload: Bool = false) {
         subNodes.append(node)
         self.addChild(node)
         
@@ -86,11 +86,11 @@ public class TWStackNode: SKSpriteNode {
         }
     }
     
-    public func removeNode(node: SKNode?, reload: Bool = false) {
+    open func remove(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
-            if let ind = subNodes.indexOf(n) {
-                subNodes.removeAtIndex(ind)
+            if let ind = subNodes.index(of: n) {
+                subNodes.remove(at: ind)
             }
         
             if reload {
@@ -100,23 +100,23 @@ public class TWStackNode: SKSpriteNode {
     }
     
     public enum FillMode {
-        case Horizontal
-        case Vertical
+        case horizontal
+        case vertical
         
-        func size(lenght: CGFloat) -> CGSize {
+        func size(_ lenght: CGFloat) -> CGSize {
             switch self {
-            case .Horizontal:
+            case .horizontal:
                 return CGSize(width: lenght, height: 2)
-            case .Vertical:
+            case .vertical:
                 return CGSize(width: 2, height: lenght)
             }
         }
         
-        func lenght(size: CGSize) -> CGFloat {
+        func lenght(_ size: CGSize) -> CGFloat {
             switch self {
-            case .Horizontal:
+            case .horizontal:
                 return size.width
-            case .Vertical:
+            case .vertical:
                 return size.height
             }
         }
@@ -124,7 +124,7 @@ public class TWStackNode: SKSpriteNode {
 }
 
 public extension SKNode {
-    public func removeNodeFromStack(withRefresh: Bool = true) {
+    public func removeNodeFromStack(_ withRefresh: Bool = true) {
         if let stack = self.parent as? TWStackNode {
             stack.removeNode(self, reload: withRefresh)
         } else {

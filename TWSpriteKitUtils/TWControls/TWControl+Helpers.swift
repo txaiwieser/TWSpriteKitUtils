@@ -39,11 +39,11 @@ internal extension TWControl {
         if soundEnabled {
             if let soundFileName = fileName {
                 let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-                self.runAction(action)
+                self.run(action)
             }
             else if let soundFileName = defaultSoundFileName {
                 let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
-                self.runAction(action)
+                self.run(action)
             }
         }
     }

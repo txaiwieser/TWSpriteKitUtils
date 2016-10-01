@@ -8,20 +8,20 @@
 
 import SpriteKit
 
-public class TWCollectionNode: SKSpriteNode {
-    public private(set) var fillMode: FillMode
-    public private(set) var subNodes: [SKNode] = []
+open class TWCollectionNode: SKSpriteNode {
+    open fileprivate(set) var fillMode: FillMode
+    open fileprivate(set) var subNodes: [SKNode] = []
     
-    public var reloadCompletion: (()->())? = nil
+    open var reloadCompletion: (()->())? = nil
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     public init(fillMode: FillMode) {
         self.fillMode = fillMode
-        super.init(texture: nil, color: SKColor.clearColor(), size: CGSize(width: fillMode.width, height: 0))
+        super.init(texture: nil, color: SKColor.clear, size: CGSize(width: fillMode.width, height: 0))
     }
     
     
-    public func reloadCollection() {
+    open func reloadCollection() {
         let elements = subNodes.count
         let columns = fillMode.columns
         
@@ -44,7 +44,7 @@ public class TWCollectionNode: SKSpriteNode {
         reloadCompletion?()
     }
     
-    public func addNode(node: SKNode, reload: Bool = false) {
+    open func add(node: SKNode, reload: Bool = false) {
         subNodes.append(node)
         self.addChild(node)
         
@@ -53,11 +53,11 @@ public class TWCollectionNode: SKSpriteNode {
         }
     }
     
-    public func removeNode(node: SKNode?, reload: Bool = false) {
+    open func remove(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
-            if let ind = subNodes.indexOf(n) {
-                subNodes.removeAtIndex(ind)
+            if let ind = subNodes.index(of: n) {
+                subNodes.remove(at: ind)
             }
             
             if reload {
@@ -83,7 +83,7 @@ public class TWCollectionNode: SKSpriteNode {
 
 
 public extension SKNode {
-    public func removeNodeFromCollection(withRefresh: Bool = true) {
+    public func removeNodeFromCollection(_ withRefresh: Bool = true) {
         if let collection = self.parent as? TWCollectionNode {
             collection.removeNode(self, reload: withRefresh)
         } else {

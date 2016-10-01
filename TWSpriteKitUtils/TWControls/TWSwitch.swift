@@ -29,7 +29,7 @@
 
 import SpriteKit
 
-public class TWSwitch: TWControl {
+open class TWSwitch: TWControl {
 
     
     // MARK: Convenience Initializers
@@ -53,10 +53,10 @@ public class TWSwitch: TWControl {
     
     
     
-    private var selectedStateMemory = false
+    fileprivate var selectedStateMemory = false
     // MARK: Switch Methods
     
-    public override var selected:Bool {
+    open override var selected:Bool {
         get { return super.selected }
         set { super.selected = newValue; self.selectedStateMemory = newValue }
     }
@@ -95,7 +95,7 @@ public class TWSwitch: TWControl {
     }
     
     // WARNING: This should not be public ;/
-    public override func touchUpInside() {
+    open override func touchUpInside() {
         selectedStateMemory = !selectedStateMemory
         self.selected = selectedStateMemory
         super.touchUpInside()
