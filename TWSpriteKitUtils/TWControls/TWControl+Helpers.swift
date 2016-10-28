@@ -39,10 +39,22 @@ internal extension TWControl {
         if soundEnabled {
             if let soundFileName = fileName {
                 let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+                // Warning: This is sad, but if you run the sound effect `SKAction` only one time
+                // SpriteKit simply fails to load the .wav in memory on some devices..
+                // It's SpriteKit, so this bug will probably never going to get fixed
+                // like many many other radars I filled..
+                // SpriteKit I 💔 you!
+                self.run(action)
                 self.run(action)
             }
             else if let soundFileName = defaultSoundFileName {
                 let action = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: true)
+                // Warning: This is sad, but if you run the sound effect `SKAction` only one time
+                // SpriteKit simply fails to load the .wav in memory on some devices..
+                // It's SpriteKit, so this bug will probably never going to get fixed
+                // like many many other radars I filled..
+                // SpriteKit I 💔 you!
+                self.run(action)
                 self.run(action)
             }
         }

@@ -345,7 +345,7 @@ open class TWControl: SKNode {
         // Preloads the sound
         if let named = named {
             if #available(iOS 9.0, *) {
-                SKAction.playSoundFileNamed(named, waitForCompletion: true)
+                _ = SKAction.playSoundFileNamed(named, waitForCompletion: true)
             }
         }
     }
