@@ -318,16 +318,16 @@ open class TWControl: SKNode {
     
     // MARK: Sound Properties
     
-    open static var defaultSoundEffectsEnabled: Bool? = nil
+    public static var defaultSoundEffectsEnabled: Bool? = nil
     open var soundEffectsEnabled: Bool = true
     
-    open static var defaultTouchDownSoundFileName: String? {
+    public static var defaultTouchDownSoundFileName: String? {
         didSet { soundPreLoad(defaultTouchDownSoundFileName) }
     }
-    open static var defaultTouchUpSoundFileName: String? {
+    public static var defaultTouchUpSoundFileName: String? {
         didSet { soundPreLoad(defaultTouchUpSoundFileName) }
     }
-    open static var defaultDisabledTouchDownFileName: String? {
+    public static var defaultDisabledTouchDownFileName: String? {
         didSet { soundPreLoad(defaultDisabledTouchDownFileName) }
     }
     
@@ -402,7 +402,7 @@ open class TWControl: SKNode {
     
     // Labels Text Setters
     
-    open static var defaultLabelFont = "Helvetica-Neue"
+    public static var defaultLabelFont = "Helvetica-Neue"
 
     open func setNormalStateLabelText(_ text: String?) {
         self.setLabelText(&normalStateLabel, text: text, pos: normalStateLabelPosition)
@@ -498,13 +498,13 @@ open class TWControl: SKNode {
     
     // Default Control Label Position
     
-    open static var defaultNormalStateLabelPosition = CGPoint.zero
-    open static var defaultSelectedStateLabelPosition = CGPoint.zero
-    open static var defaultDisabledStateLabelPosition = CGPoint.zero
-    open static var defaultHighlightedStateSingleLabelPosition = CGPoint.zero
-    open static var defaultHighlightedStateMultiLabelPositionFromNormal = CGPoint.zero
-    open static var defaultHighlightedStateMultiLabelPositionFromSelected = CGPoint.zero
-    open static func setAllDefaultStatesLabelPosition(_ pos: CGPoint) {
+    public static var defaultNormalStateLabelPosition = CGPoint.zero
+    public static var defaultSelectedStateLabelPosition = CGPoint.zero
+    public static var defaultDisabledStateLabelPosition = CGPoint.zero
+    public static var defaultHighlightedStateSingleLabelPosition = CGPoint.zero
+    public static var defaultHighlightedStateMultiLabelPositionFromNormal = CGPoint.zero
+    public static var defaultHighlightedStateMultiLabelPositionFromSelected = CGPoint.zero
+    public static func setAllDefaultStatesLabelPosition(_ pos: CGPoint) {
         defaultNormalStateLabelPosition = pos
         defaultSelectedStateLabelPosition = pos
         defaultDisabledStateLabelPosition = pos
@@ -545,7 +545,7 @@ open class TWControl: SKNode {
     
     // Control Animations
     
-    open static var defaultAnimationHighlightedAction: (to: SKAction, back: SKAction)? = nil
+    public static var defaultAnimationHighlightedAction: (to: SKAction, back: SKAction)? = nil
     open var animationHighlightedAction: (to: SKAction, back: SKAction)? = defaultAnimationHighlightedAction
 
     
@@ -786,12 +786,12 @@ open class TWControl: SKNode {
     // MARK: Control Events
     
     internal func touchDown() {
-        playSound(instanceSoundFileName: touchDownSoundFileName, defaultSoundFileName: type(of: self).defaultTouchDownSoundFileName)
+        playSound(instanceSoundFileName: touchDownSoundFileName, defaultSoundFileName: TWControl.defaultTouchDownSoundFileName)
         executeClosures(of: .touchDown)
     }
     
     internal func disabledTouchDown() {
-        playSound(instanceSoundFileName: disabledTouchDownFileName, defaultSoundFileName: type(of: self).defaultDisabledTouchDownFileName)
+        playSound(instanceSoundFileName: disabledTouchDownFileName, defaultSoundFileName: TWControl.defaultDisabledTouchDownFileName)
         executeClosures(of: .disabledTouchDown)
     }
     
@@ -815,12 +815,12 @@ open class TWControl: SKNode {
 
     open func touchUpInside() {
         executeClosures(of: .touchUpInside)
-        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: type(of: self).defaultTouchUpSoundFileName)
+        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: TWControl.defaultTouchUpSoundFileName)
     }
     
     internal func touchUpOutside() {
         executeClosures(of: .touchUpOutside)
-        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: type(of: self).defaultTouchUpSoundFileName)
+        playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: TWControl.defaultTouchUpSoundFileName)
     }
     
     

@@ -10,9 +10,9 @@ import SpriteKit
 
 
 open class TWStackNode: SKSpriteNode {
-    open fileprivate(set) var fillMode: FillMode = FillMode.vertical
-    open fileprivate(set) var subNodes: [SKNode] = []
-    open let automaticSpacing: Bool
+    open private(set) var fillMode: FillMode = FillMode.vertical
+    open private(set) var subNodes: [SKNode] = []
+    public let automaticSpacing: Bool
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public init(lenght: CGFloat, fillMode: FillMode) {
