@@ -402,7 +402,7 @@ open class TWControl: SKNode {
     
     // Labels Text Setters
     
-    public static var defaultLabelFont = "Helvetica-Neue"
+    public static var defaultLabelFont = "Helvetica"
 
     open func setNormalStateLabelText(_ text: String?) {
         self.setLabelText(&normalStateLabel, text: text, pos: normalStateLabelPosition)

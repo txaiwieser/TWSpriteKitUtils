@@ -18,13 +18,13 @@ open class TWStackNode: SKSpriteNode {
     public init(lenght: CGFloat, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = false
-        super.init(texture: nil, color: SKColor.clear, size: fillMode.size(lenght))
+        super.init(texture: nil, color: .clear, size: fillMode.size(lenght))
     }
     
     public init(size: CGSize, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = true
-        super.init(texture: nil, color: SKColor.clear, size: size)
+        super.init(texture: nil, color: .clear, size: size)
     }
     
     open func reloadStack() {
@@ -89,7 +89,7 @@ open class TWStackNode: SKSpriteNode {
     open func remove(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
-            if let ind = subNodes.index(of: n) {
+            if let ind = subNodes.firstIndex(of: n) {
                 subNodes.remove(at: ind)
             }
         
@@ -124,7 +124,7 @@ open class TWStackNode: SKSpriteNode {
 }
 
 public extension SKNode {
-    public func removeNodeFromStack(_ withRefresh: Bool = true) {
+    func removeNodeFromStack(_ withRefresh: Bool = true) {
         if let stack = self.parent as? TWStackNode {
             stack.remove(node: self, reload: withRefresh)
         } else {

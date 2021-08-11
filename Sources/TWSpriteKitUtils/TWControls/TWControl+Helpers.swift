@@ -32,7 +32,7 @@ import SpriteKit
 internal extension TWControl {
     
     // Sounds
-    internal func playSound(instanceSoundFileName fileName: String?, defaultSoundFileName: String?) {
+    func playSound(instanceSoundFileName fileName: String?, defaultSoundFileName: String?) {
         
         let soundEnabled = TWControl.defaultSoundEffectsEnabled ?? soundEffectsEnabled
         

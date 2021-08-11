@@ -66,7 +66,7 @@ Here's a full init code snippet:
             var testProperty = "Default String"
     
             init() {
-                let control = TWButton(normalColor: SKColor.blueColor(), highlightedColor: SKColor.redColor(), size: CGSize(width: 160, height: 80))
+                let control = TWButton(normalColor: .blueColor(), highlightedColor: .redColor(), size: CGSize(width: 160, height: 80))
                 control.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
                 control.position.allStatesLabelText = "PLAY"
                 control.addClosureFor(.TouchUpInside, target: self, closure: { (scene, sender) -> () in

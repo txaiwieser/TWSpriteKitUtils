@@ -17,7 +17,7 @@ open class TWCollectionNode: SKSpriteNode {
     
     public init(fillMode: FillMode) {
         self.fillMode = fillMode
-        super.init(texture: nil, color: SKColor.clear, size: CGSize(width: fillMode.width, height: 0))
+        super.init(texture: nil, color: .clear, size: CGSize(width: fillMode.width, height: 0))
     }
     
     
@@ -57,7 +57,7 @@ open class TWCollectionNode: SKSpriteNode {
     open func remove(node: SKNode?, reload: Bool = false) {
         if let n = node {
             n.removeFromParent()
-            if let ind = subNodes.index(of: n) {
+            if let ind = subNodes.firstIndex(of: n) {
                 subNodes.remove(at: ind)
             }
             
@@ -84,7 +84,7 @@ open class TWCollectionNode: SKSpriteNode {
 
 
 public extension SKNode {
-    public func removeNodeFromCollection(_ withRefresh: Bool = true) {
+    func removeNodeFromCollection(_ withRefresh: Bool = true) {
         if let collection = self.parent as? TWCollectionNode {
             collection.remove(node: self, reload: withRefresh)
         } else {
