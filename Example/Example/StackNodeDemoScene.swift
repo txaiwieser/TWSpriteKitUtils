@@ -8,7 +8,7 @@ class StackNodeDemoScene: SKScene {
         size = view.bounds.size
         backgroundColor = .lightGray
         
-        stack = TWStackNode(lenght: view.frame.size.width * 0.8, fillMode: .vertical)
+        stack = TWStackNode(length: view.frame.size.width * 0.8, fillMode: .vertical)
             
         stack.position = CGPoint(x: view.frame.midX, y: view.frame.midY)
         stack.color = .red

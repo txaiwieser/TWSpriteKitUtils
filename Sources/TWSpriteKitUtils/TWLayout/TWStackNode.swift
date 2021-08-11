@@ -15,10 +15,10 @@ open class TWStackNode: SKSpriteNode {
     public let automaticSpacing: Bool
     
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    public init(lenght: CGFloat, fillMode: FillMode) {
+    public init(length: CGFloat, fillMode: FillMode) {
         self.fillMode = fillMode
         self.automaticSpacing = false
-        super.init(texture: nil, color: .clear, size: fillMode.size(lenght))
+        super.init(texture: nil, color: .clear, size: fillMode.size(length))
     }
     
     public init(size: CGSize, fillMode: FillMode) {
@@ -28,7 +28,7 @@ open class TWStackNode: SKSpriteNode {
     }
     
     open func reloadStack() {
-        var accumulatedLenght = CGFloat(0)
+        var accumulatedLength = CGFloat(0)
         
         switch fillMode {
         case .vertical:
@@ -46,11 +46,11 @@ open class TWStackNode: SKSpriteNode {
                     let ff =  f.maxY
                     _ = ff - f.size.height/2
                     
-                    node.position.y = -(accumulatedLenght + f.size.height/2)// - fff
-                    accumulatedLenght += f.size.height
+                    node.position.y = -(accumulatedLength + f.size.height/2)// - fff
+                    accumulatedLength += f.size.height
                 }
-                subNodes.forEach { $0.position.y += accumulatedLenght/2 }
-                self.size.height = accumulatedLenght
+                subNodes.forEach { $0.position.y += accumulatedLength/2 }
+                self.size.height = accumulatedLength
             }
             
         case .horizontal:
@@ -67,11 +67,11 @@ open class TWStackNode: SKSpriteNode {
                     let ff =  f.minX
                     let fff = ff + f.size.width/2
                     
-                    node.position.x = (accumulatedLenght + f.size.width/2) - fff
-                    accumulatedLenght += f.size.width
+                    node.position.x = (accumulatedLength + f.size.width/2) - fff
+                    accumulatedLength += f.size.width
                 }
-                subNodes.forEach { $0.position.x -= accumulatedLenght/2 }
-                self.size.width = accumulatedLenght
+                subNodes.forEach { $0.position.x -= accumulatedLength/2 }
+                self.size.width = accumulatedLength
             }
         }
         
@@ -103,16 +103,16 @@ open class TWStackNode: SKSpriteNode {
         case horizontal
         case vertical
         
-        func size(_ lenght: CGFloat) -> CGSize {
+        func size(_ length: CGFloat) -> CGSize {
             switch self {
             case .horizontal:
-                return CGSize(width: lenght, height: 2)
+                return CGSize(width: length, height: 2)
             case .vertical:
-                return CGSize(width: 2, height: lenght)
+                return CGSize(width: 2, height: length)
             }
         }
         
-        func lenght(_ size: CGSize) -> CGFloat {
+        func length(_ size: CGSize) -> CGFloat {
             switch self {
             case .horizontal:
                 return size.width

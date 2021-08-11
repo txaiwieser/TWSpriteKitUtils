@@ -1,38 +1,6 @@
-//
-//  TWButton.swift
-//
-//  The MIT License (MIT)
-//
-//  Created by Txai Wieser on 25/02/15.
-//  Copyright (c) 2015 Txai Wieser.
-//
-//
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the "Software"), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
-//
-//The above copyright notice and this permission notice shall be included in all
-//copies or substantial portions of the Software.
-//
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//SOFTWARE.
-//
-//
-
 import SpriteKit
 
 open class TWControl: SKNode {
-
-    // MARK: Initializers
-
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     /**
@@ -162,10 +130,6 @@ open class TWControl: SKNode {
         updateVisualInterface()
     }
     
-    
-    
-    
-    
     /**
     * Initializes a general TWControl of type .Text with multiple highlighted color possibility
     */
@@ -202,17 +166,20 @@ open class TWControl: SKNode {
     // MARK: Control Actions
     
     /**
-    * Add a closure to a event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
+    * Add a closure to an event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
     Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
     You have to be CAREFUL with this! Just pass your object to the function and use inside the closure.
     */
     open func addClosure<T: AnyObject>(_ event: ControlEvent, target: T, closure: @escaping (_ target: T, _ sender: TWControl) -> ()) {
-        self.eventClosures.append((event:event , closure: { [weak target] (ctrl: TWControl) -> () in
-            if let obj = target {
-                closure(obj, ctrl)
-            }
-            return
-            }))
+        eventClosures.append(
+            (
+                event: event,
+                closure: { [weak target] in
+                    guard let obj = target else { return }
+                    closure(obj, $0)
+                }
+            )
+        )
     }
     
     /**
@@ -281,7 +248,7 @@ open class TWControl: SKNode {
     }
     
     
-    open func setGeneralTouchProperties(_ changes: (_ node: SKNode)->()) {
+    open func setGeneralTouchProperties(_ changes: (_ node: SKNode) -> ()) {
         if generalSprite != nil {
             changes(generalSprite)
         } else if generalShape != nil {
@@ -343,11 +310,8 @@ open class TWControl: SKNode {
     
     fileprivate static func soundPreLoad(_ named: String?) {
         // Preloads the sound
-        if let named = named {
-            if #available(iOS 9.0, *) {
-                _ = SKAction.playSoundFileNamed(named, waitForCompletion: true)
-            }
-        }
+        guard let named = named else { return }
+        _ = SKAction.playSoundFileNamed(named, waitForCompletion: true)
     }
     
     // MARK: COLOR Type Customizations
@@ -358,8 +322,6 @@ open class TWControl: SKNode {
     open var highlightedStateSingleColor: SKColor? { didSet { updateVisualInterface() } }
     open var highlightedStateMultiColorFromNormal: SKColor? { didSet { updateVisualInterface() } }
     open var highlightedStateMultiColorFromSelected: SKColor? { didSet { updateVisualInterface() } }
-    
-
     
     
     // MARK: TEXTURE Type Customizations
@@ -380,15 +342,6 @@ open class TWControl: SKNode {
     open var highlightedStateSingleShapeDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
     open var highlightedStateMultiShapeFromNormalDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
     open var highlightedStateMultiShapeFromSelectedDef: SKShapeNode.Definition? { didSet { updateVisualInterface() } }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // MARK: TEXT Type Customizations
     
@@ -423,18 +376,21 @@ open class TWControl: SKNode {
         self.setLabelText(&highlightedStateMultiLabelFromSelected, text: text, pos: highlightedStateMultiLabelPositionFromSelected)
     }
     fileprivate func setLabelText(_ label: inout SKLabelNode?, text: String?, pos: CGPoint) {
-        if let newText = text {
-            if label == nil {
-                label = generalLabel()
-                label!.position = pos
-                self.genericNode.addChild(label!)
-            }
-            label!.text = newText
-        } else {
+        guard let newText = text else {
             label?.removeFromParent()
             label = nil
+            return
         }
+        func addLabel() -> SKLabelNode {
+            let label = generalLabel()
+            label.position = pos
+            genericNode.addChild(label)
+            return label
+        }
+        label = label ?? addLabel()
+        label!.text = newText
     }
+    
     fileprivate func generalLabel() -> SKLabelNode {
         let l = SKLabelNode()
         l.fontName = TWControl.defaultLabelFont
@@ -442,8 +398,6 @@ open class TWControl: SKNode {
         l.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.center
         return l
     }
-    
-    
     
     // Labels Font Size Setter
 
@@ -547,14 +501,6 @@ open class TWControl: SKNode {
     
     public static var defaultAnimationHighlightedAction: (to: SKAction, back: SKAction)? = nil
     open var animationHighlightedAction: (to: SKAction, back: SKAction)? = defaultAnimationHighlightedAction
-
-    
-    
-
-    
-    
-    
-    
     
     // MARK: Private Properties
     
@@ -578,7 +524,7 @@ open class TWControl: SKNode {
             case .shape:
                 updateShapeVisualInterface()
             case .label:
-                break //Doesnt need to do nothing
+                break //Doesn't need to do anything
         }
         
         updateLabelsVisualInterface()
@@ -823,12 +769,6 @@ open class TWControl: SKNode {
         playSound(instanceSoundFileName: touchUpSoundFileName, defaultSoundFileName: TWControl.defaultTouchUpSoundFileName)
     }
     
-    
-    
-    
-    
-    
-
     // MARK: UIResponder Methods
     
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

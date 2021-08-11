@@ -31,11 +31,11 @@ open class TWCollectionNode: SKSpriteNode {
         for lineIndex in 0..<lines {
             let resta = elements - lineIndex*columns
             let distance = fillMode.objectSize.height + fillMode.verticalMargin
-            for columnIdex in 0..<min(columns, resta) {
+            for columnIndex in 0..<min(columns, resta) {
                 var xPos = (-size.width/2 + fillMode.objectSize.width/2)
-                xPos += CGFloat(columnIdex)*(fillMode.objectSize.width+xDiv)
+                xPos += CGFloat(columnIndex)*(fillMode.objectSize.width+xDiv)
                 let yPos = -CGFloat(lineIndex)*distance - fillMode.objectSize.height/2
-                subNodes[lineIndex*columns + columnIdex].position = CGPoint(x: xPos, y: yPos)
+                subNodes[lineIndex*columns + columnIndex].position = CGPoint(x: xPos, y: yPos)
             }
             accumulatedHeight += distance
         }
