@@ -20,20 +20,27 @@ class CollectionNodeDemoScene: SKScene {
         collection.position = CGPoint(x: (view.frame).midX, y: (view.frame).midY)
         addChild(collection)
         
-        let addButton = TWButton(normalText: "Add", highlightedText: nil)
-        addButton.highlightedStateSingleColor = .black
-        addButton.normalStateColor = .white
+        let normalLabelAdd = SKLabelNode(text: "Add")
+        normalLabelAdd.color = .white
+        let highlightedLabelAdd = SKLabelNode(text: "Add")
+        highlightedLabelAdd.color = .black
+        
+        let addButton = TWButton(normal: normalLabelAdd, highlighted: highlightedLabelAdd, disabled: nil)
         addButton.position = CGPoint(x: (view.frame).midX + 200, y: (view.frame).midY + 400)
-        addButton.addClosure(.touchUpInside, target: self) { (target, sender) -> () in
-            target.addToCollection()
+        addButton.addClosure(.touchUpInside) { [unowned self] _ in
+            addToCollection()
         }
         
-        let removeButton = TWButton(normalText: "Remove", highlightedText: nil)
-        removeButton.highlightedStateSingleColor = .black
-        removeButton.normalStateColor = .white
+        let normalLabelRemove = SKLabelNode(text: "Remove")
+        normalLabelRemove.color = .white
+        let highlightedLabelRemove = SKLabelNode(text: "Remove")
+        highlightedLabelRemove.color = .black
+        
+        
+        let removeButton = TWButton(normal: normalLabelRemove, highlighted: highlightedLabelRemove, disabled: nil)
         removeButton.position = CGPoint(x: (view.frame).midX - 200, y: (view.frame).midY + 400)
-        removeButton.addClosure(.touchUpInside, target: self) { (target, sender) -> () in
-            target.removeFromCollection()
+        removeButton.addClosure(.touchUpInside) { [unowned self] _ in
+            removeFromCollection()
         }
 
         

@@ -4,65 +4,66 @@ import TWSpriteKitUtils
 class ButtonNodeDemoScene: SKScene {
     override func didMove(to view: SKView) {
         size = view.bounds.size
-        backgroundColor = .orange
+        backgroundColor = .white
         
-        TWControl.defaultTouchDownSoundFileName = "touchDownDefault.wav"
-        TWControl.defaultTouchUpSoundFileName = "touchUpDefault.wav"
-        TWControl.defaultDisabledTouchDownFileName = "touchDown_disabled.wav"
+        TWButton.defaultSoundEffects[.touchDown] = "touchDownDefault.wav"
+        TWButton.defaultSoundEffects[.touchUpInside] = "touchUpDefault.wav"
+        TWButton.defaultSoundEffects[.disabledTouchDown] = "touchDown_disabled.wav"
         
         addChild(colorButton)
         addChild(textureButton)
         addChild(textButton)
         
-        colorButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
-            scene.textureButton.enabled.toggle()
-            scene.textButton.enabled.toggle()
+        colorButton.addClosure(.touchUpInside) { [unowned self] _ in
+            textureButton.state.isEnabled.toggle()
+            textButton.state.isEnabled.toggle()
         }
         
-        textureButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
-            scene.colorButton.enabled.toggle()
-            scene.textButton.enabled.toggle()
+        textureButton.addClosure(.touchUpInside) { [unowned self] _ in
+            colorButton.state.isEnabled.toggle()
+            textButton.state.isEnabled.toggle()
         }
         
-        textButton.addClosure(.touchUpInside, target: self) { (scene, control) -> () in
-            scene.colorButton.enabled.toggle()
-            scene.textureButton.enabled.toggle()
+        textButton.addClosure(.touchUpInside) { [unowned self] _ in
+            colorButton.state.isEnabled.toggle()
+            textureButton.state.isEnabled.toggle()
         }
     }
     
     private lazy var colorButton: TWButton = {
         let b = TWButton(
             size: CGSize(width: 102, height: 40),
-            normalColor: .purple,
-            highlightedColor: nil
+            normal: .blue,
+            highlighted: .yellow,
+            disabled: .gray
         )
-        b.disabledStateColor = .gray
-        b.setDisabledStateLabelText("DISABLED")
-        b.setNormalStateLabelText("PLAY")
-        b.setHighlightedStateSingleLabelText("PRESSED")
-        b.setAllStatesLabelFontSize(20)
-        b.setAllStatesLabelFontName("Helvetica")
-        b.position = CGPoint(x: size.width/2, y: size.height/2 + 200)
+        b.position = CGPoint(x: size.width/2, y: size.height/2 + 100)
         return b
     }()
     
     private lazy var textureButton: TWButton = {
         let b = TWButton(
-            normalTexture: SKTexture(imageNamed: "button_n"),
-            highlightedTexture: SKTexture(imageNamed: "button_h")
+            size: CGSize(width: 102, height: 40),
+            normal: SKTexture(imageNamed: "button_n"),
+            highlighted: SKTexture(imageNamed: "button_h"),
+            disabled: SKTexture(imageNamed: "button_d")
         )
-        b.disabledStateTexture = SKTexture(imageNamed: "button_d")
-        b.touchDownSoundFileName = "touchDown.wav"
-        b.touchUpSoundFileName = "touchUp.wav"
+        b.soundEffects[.touchDown] = "touchDown.wav"
+        b.soundEffects[.touchUpInside] = "touchUp.wav"
         b.position = CGPoint(x: size.width/2, y: size.height/2 + 0)
         return b
     }()
     
-    private lazy var textButton:TWButton = {
-        let b = TWButton(normalText: "PLAY", highlightedText: "PRESSED")
-        b.setDisabledStateLabelText("DISABLED")
-        b.setAllStatesLabelFontColor(.black)
-        b.position = CGPoint(x: size.width/2, y: size.height/2 + -200)
+    private lazy var textButton: TWButton = {
+        let playLabel = SKLabelNode(text: "PLAY")
+        playLabel.fontColor = .black
+        let pressedLabel = SKLabelNode(text: "PRESSED")
+        pressedLabel.fontColor = .gray
+        let disabledLabel = SKLabelNode(text: "DISABLED")
+        disabledLabel.fontColor = .lightGray
+        
+        let b = TWButton(normal: playLabel, highlighted: pressedLabel, disabled: disabledLabel)
+        b.position = CGPoint(x: size.width/2, y: size.height/2 + -100)
         return b
     }()
 }

@@ -167,10 +167,10 @@ open class TWControl: SKNode {
     
     /**
     * Add a closure to an event action. You should use in your closure only the objects that are on the capture list of the closure (target)!
-    Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate. 
+    Using objects capture automatically by the closure can cause cycle-reference, and your objects will never be deallocate.
     You have to be CAREFUL with this! Just pass your object to the function and use inside the closure.
     */
-    open func addClosure<T: AnyObject>(_ event: ControlEvent, target: T, closure: @escaping (_ target: T, _ sender: TWControl) -> ()) {
+    open func addClosure<T: AnyObject>(_ event: TWControlEvent, target: T, closure: @escaping (_ target: T, _ sender: TWControl) -> ()) {
         eventClosures.append(
             (
                 event: event,
@@ -185,11 +185,11 @@ open class TWControl: SKNode {
     /**
     * Removes all closure from a specific event.
     */
-    open func removeClosures(for event: ControlEvent) {
+    open func removeClosures(for event: TWControlEvent) {
         assertionFailure("TODO: Implement Remove Target")
     }
 
-    fileprivate func executeClosures(of event: ControlEvent) {
+    fileprivate func executeClosures(of event: TWControlEvent) {
         for eventClosure in eventClosures {
             if eventClosure.event == event {
                 eventClosure.closure(self)
@@ -507,7 +507,7 @@ open class TWControl: SKNode {
     fileprivate let type: TWControlType
     fileprivate var state: TWControlState = .normal { didSet { lastState = oldValue } }
     fileprivate var lastState: TWControlState = .normal
-    internal var eventClosures: [(event: ControlEvent, closure: (TWControl) -> ())] = []
+    internal var eventClosures: [(event: TWControlEvent, closure: (TWControl) -> ())] = []
     fileprivate var touch:UITouch?
     fileprivate var touchLocationLast: CGPoint?
     fileprivate var moved = false

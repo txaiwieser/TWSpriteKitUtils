@@ -1,75 +1,72 @@
 import SpriteKit
 
-public extension TWControl {
-    enum ControlEvent {
-        case touchDown
-        case touchUpInside
-        case touchUpOutside
-        case touchCancel
-        case touchDragExit
-        case touchDragOutside
-        case touchDragEnter
-        case touchDragInside
-        case valueChanged
-        case disabledTouchDown
+public enum TWControlEvent {
+    case touchDown
+    case touchUpInside
+    case touchUpOutside
+    case touchCancel
+    case touchDragExit
+    case touchDragOutside
+    case touchDragEnter
+    case touchDragInside
+    case valueChanged
+    case disabledTouchDown
+}
+
+internal enum TWControlType {
+    case texture
+    case shape
+    case color
+    case label
+}
+
+internal enum TWControlState {
+    case normal
+    case highlighted
+    case selected
+    case disabled
+}
+
+internal class TWShapeNode: SKShapeNode {
+    weak var control: TWControl?
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        control?.touchesBegan(touches, with: event)
     }
-    
-    internal enum TWControlState {
-        case normal
-        case highlighted
-        case selected
-        case disabled
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        control?.touchesMoved(touches, with: event)
     }
-    
-    internal enum TWControlType {
-        case texture
-        case shape
-        case color
-        case label
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        control?.touchesEnded(touches, with: event)
     }
-    
-    internal class TWShapeNode: SKShapeNode {
-        weak var control: TWControl?
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesBegan(touches, with: event)
-            control?.touchesBegan(touches, with: event)
-        }
-        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesMoved(touches, with: event)
-            control?.touchesMoved(touches, with: event)
-        }
-        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesEnded(touches, with: event)
-            control?.touchesEnded(touches, with: event)
-        }
-        override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesCancelled(touches, with: event)
-            control?.touchesCancelled(touches, with: event)
-        }
-    }
-    
-    internal class TWSpriteNode: SKSpriteNode {
-        weak var control: TWControl?
-        
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesBegan(touches, with: event)
-            control?.touchesBegan(touches, with: event)
-        }
-        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesMoved(touches, with: event)
-            control?.touchesMoved(touches, with: event)
-        }
-        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesEnded(touches, with: event)
-            control?.touchesEnded(touches, with: event)
-        }
-        override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-            super.touchesCancelled(touches, with: event)
-            control?.touchesCancelled(touches, with: event)
-        }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        control?.touchesCancelled(touches, with: event)
     }
 }
 
+internal class TWSpriteNode: SKSpriteNode {
+    weak var control: TWControl?
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        control?.touchesBegan(touches, with: event)
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        control?.touchesMoved(touches, with: event)
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        control?.touchesEnded(touches, with: event)
+    }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        control?.touchesCancelled(touches, with: event)
+    }
+}
 
 public extension SKShapeNode {
     convenience init(definition: Definition) {

@@ -14,20 +14,25 @@ class StackNodeDemoScene: SKScene {
         stack.color = .red
         addChild(stack)
         
-        let addButton = TWButton(normalText: "Add", highlightedText: nil)
-        addButton.highlightedStateSingleColor = .black
-        addButton.normalStateColor = .white
+        let addNormal = SKLabelNode(text: "Add")
+        addNormal.color = .white
+        let addHighlighted = SKLabelNode(text: "Add")
+        addHighlighted.color = .black
+        let addButton = TWButton(normal: addNormal, highlighted: addHighlighted, disabled: nil)
         addButton.position = CGPoint(x: view.frame.midX + 200, y: view.frame.midY + 400)
-        addButton.addClosure(.touchUpInside, target: self) { (target, sender) -> () in
-            target.addToStack()
+        addButton.addClosure(.touchUpInside) { [unowned self] _ in
+            addToStack()
         }
         
-        let removeButton = TWButton(normalText: "Remove", highlightedText: nil)
-        removeButton.highlightedStateSingleColor = .black
-        removeButton.normalStateColor = .white
+        let removeNormal = SKLabelNode(text: "Add")
+        removeNormal.color = .white
+        let removeHighlighted = SKLabelNode(text: "Add")
+        removeHighlighted.color = .black
+        
+        let removeButton = TWButton(normal: removeNormal, highlighted: removeHighlighted, disabled: nil)
         removeButton.position = CGPoint(x: view.frame.midX - 200, y: view.frame.midY + 400)
-        removeButton.addClosure(.touchUpInside, target: self) { (target, sender) -> () in
-            target.removeFromStack()
+        removeButton.addClosure(.touchUpInside) { [unowned self] _ in
+            removeFromStack()
         }
         
         
