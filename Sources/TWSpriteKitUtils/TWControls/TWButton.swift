@@ -1,6 +1,6 @@
 import SpriteKit
 
-open class TWButton: SKNode, TWControlEventHolder {
+public class TWButton: SKNode, TWControl {
     // MARK: Public properties
     public var tag: Int?
     public var eventClosures: [ControlEvent: [(TWButton) -> Void]] = [:]
@@ -217,29 +217,6 @@ extension TWButton.Content {
     }
 }
 
-public protocol TWControlEventHolder: AnyObject {
-    associatedtype ControlEvent: Hashable
-    var eventClosures: [ControlEvent: [(Self) -> Void]] { get set }
-}
-
-public extension TWControlEventHolder {
-    func addClosure(_ event: ControlEvent, closure: @escaping (_ sender: Self) -> Void) {
-        let closures = eventClosures[event] ?? []
-        eventClosures[event] = closures + [closure]
-    }
-    
-    func removeClosures(for event: ControlEvent) {
-        eventClosures[event] = nil
-    }
-
-    func executeClosures(of event: ControlEvent) {
-        guard let closures = eventClosures[event] else { return }
-        for eventClosure in closures {
-            eventClosure(self)
-        }
-    }
-}
-
 extension TWButton {
     public enum ControlState {
         case normal
@@ -266,4 +243,3 @@ extension TWButton {
         case touchCanceled
     }
 }
-

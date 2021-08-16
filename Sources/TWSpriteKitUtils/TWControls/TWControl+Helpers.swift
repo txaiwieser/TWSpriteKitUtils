@@ -1,34 +1,47 @@
 import SpriteKit
 
-internal extension TWControl {
-    func playSound(instanceSoundFileName fileName: String?, defaultSoundFileName: String?) {
-        guard TWControl.defaultSoundEffectsEnabled ?? soundEffectsEnabled else { return }
-        guard let soundFileName = fileName ?? defaultSoundFileName else { return }
-        
-        run(.playSoundFileNamed(soundFileName, waitForCompletion: true))
-    }
-}
-
-internal extension TWButton {
-    func playSound(instanceSoundFileName fileName: String?, defaultSoundFileName: String?) {
+extension SKNode {
+    func playSound(
+        soundEffectsEnabled: Bool,
+        soundFileName: String?,
+        defaultSoundFileName: String?,
+        defaultSoundEffectsEnabled: Bool
+    ) {
         guard soundEffectsEnabled else { return }
-        var soundFileName = fileName
+        var soundFileName = soundFileName
         if soundFileName == nil {
-            guard TWButton.defaultSoundEffectsEnabled else { return }
+            guard defaultSoundEffectsEnabled else { return }
             soundFileName = defaultSoundFileName
         }
         guard let soundFileName = soundFileName else { return }
         run(.playSoundFileNamed(soundFileName, waitForCompletion: true))
     }
-    
-    func playSound(for event: ControlEvent) {
-        playSound(instanceSoundFileName: soundEffects[event], defaultSoundFileName: TWButton.defaultSoundEffects[event])
+}
 
+extension SKAction {
+    static func soundPreLoad(_ named: String) {
+        _ = SKAction.playSoundFileNamed(named, waitForCompletion: true)
     }
 }
 
-internal extension SKAction {
-    static func soundPreLoad(_ named: String) {
-        _ = SKAction.playSoundFileNamed(named, waitForCompletion: true)
+extension TWButton {
+    func playSound(for event: ControlEvent) {
+        playSound(
+            soundEffectsEnabled: soundEffectsEnabled,
+            soundFileName: soundEffects[event],
+            defaultSoundFileName: TWButton.defaultSoundEffects[event],
+            defaultSoundEffectsEnabled: TWButton.defaultSoundEffectsEnabled
+        )
+    }
+}
+
+extension TWSwitch {
+    func playSound(for event: ControlEvent) {
+        playSound(
+            soundEffectsEnabled: soundEffectsEnabled,
+            soundFileName: soundEffects[event],
+            defaultSoundFileName: TWSwitch.defaultSoundEffects[event],
+            defaultSoundEffectsEnabled: TWSwitch.defaultSoundEffectsEnabled
+        )
     }
 }
