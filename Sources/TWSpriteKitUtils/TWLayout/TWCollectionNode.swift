@@ -1,95 +1,80 @@
-//
-//  File.swift
-//  Repel
-//
-//  Created by Txai Wieser on 7/22/15.
-//
-//
-
 import SpriteKit
 
-open class TWCollectionNode: SKSpriteNode {
-    open fileprivate(set) var fillMode: FillMode
-    open fileprivate(set) var subNodes: [SKNode] = []
+public class TWCollectionNode: SKSpriteNode {
+    public private(set) var fillMode: FillMode
+    public private(set) var childNodes: [SKNode] = []
+    public var reloadCompletion: (()->())? = nil
     
-    open var reloadCompletion: (()->())? = nil
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
     public init(fillMode: FillMode) {
         self.fillMode = fillMode
-        super.init(texture: nil, color: .clear, size: CGSize(width: fillMode.width, height: 0))
+        super.init(texture: nil, color: .clear, size: .zero)
     }
     
-    
-    open func reloadCollection() {
-        let elements = subNodes.count
-        let columns = fillMode.columns
-        
-        let xDiv = (fillMode.width - CGFloat(fillMode.columns)*fillMode.objectSize.width) / CGFloat(fillMode.columns-1)
-        let lines = Int(ceil(CGFloat(elements)/CGFloat(columns)))
-        var accumulatedHeight = CGFloat(0)
-        for lineIndex in 0..<lines {
-            let resta = elements - lineIndex*columns
-            let distance = fillMode.objectSize.height + fillMode.verticalMargin
-            for columnIndex in 0..<min(columns, resta) {
-                var xPos = (-size.width/2 + fillMode.objectSize.width/2)
-                xPos += CGFloat(columnIndex)*(fillMode.objectSize.width+xDiv)
-                let yPos = -CGFloat(lineIndex)*distance - fillMode.objectSize.height/2
-                subNodes[lineIndex*columns + columnIndex].position = CGPoint(x: xPos, y: yPos)
-            }
-            accumulatedHeight += distance
+    func reloadCollection() {
+        guard childNodes.isEmpty == false else {
+            size.height = 0
+            return
         }
-        subNodes.forEach { $0.position.y += accumulatedHeight/2 - self.fillMode.verticalMargin/2 }
-        self.size.height = accumulatedHeight - self.fillMode.verticalMargin
         
+        let linesCount = Int(ceil(CGFloat(childNodes.count)/CGFloat(fillMode.columnsCount)))
+        let availableHSize = size.width - fillMode.elementSize.width
+        
+        let perElementHSpace = availableHSize / CGFloat(fillMode.columnsCount - 1)
+        let perElementVSpace = fillMode.elementSize.height
+        
+        let indexHShift = CGFloat(fillMode.columnsCount) / 2 - 0.5
+        let indexVShift = CGFloat(linesCount) / 2 - 0.5
+        
+        for (index, node) in childNodes.enumerated() {
+            let column = index % fillMode.columnsCount
+            let line = index / fillMode.columnsCount
+            
+            node.position.x = (CGFloat(column) - indexHShift) * perElementHSpace
+            node.position.y = (-CGFloat(line) + indexVShift) * (perElementVSpace + fillMode.lineSpacing)
+        }
+        
+        size.height = CGFloat(linesCount) * fillMode.elementSize.height + CGFloat(linesCount - 1) * fillMode.lineSpacing
         reloadCompletion?()
     }
     
-    open func add(node: SKNode, reload: Bool = false) {
-        subNodes.append(node)
+    public func add(node: SKNode, reload: Bool = false) {
+        childNodes.append(node)
         self.addChild(node)
         
-        if reload {
-            self.reloadCollection()
-        }
+        if reload { reloadCollection() }
     }
     
-    open func remove(node: SKNode?, reload: Bool = false) {
-        if let n = node {
+    public func remove(node: SKNode?, reload: Bool = false) {
+        if let n = node, let i = childNodes.firstIndex(of: n) {
             n.removeFromParent()
-            if let ind = subNodes.firstIndex(of: n) {
-                subNodes.remove(at: ind)
-            }
-            
-            if reload {
-                self.reloadCollection()
-            }
+            childNodes.remove(at: i)
         }
+        if reload { reloadCollection() }
     }
     
     public struct FillMode {
-        let columns: Int
-        let width: CGFloat
-        let verticalMargin: CGFloat
-        let objectSize: CGSize
+        let columnsCount: Int
+        let lineSpacing: CGFloat
+        let elementSize: CGSize
         
-        public init(columns: Int, width: CGFloat, verticalMargin: CGFloat, objectSize: CGSize) {
-            self.columns = columns
-            self.width = width
-            self.verticalMargin = verticalMargin
-            self.objectSize = objectSize
+        public init(columnsCount: Int, lineSpacing: CGFloat, elementSize: CGSize) {
+            self.columnsCount = columnsCount
+            self.lineSpacing = lineSpacing
+            self.elementSize = elementSize
         }
     }
 }
 
 
 public extension SKNode {
-    func removeNodeFromCollection(_ withRefresh: Bool = true) {
-        if let collection = self.parent as? TWCollectionNode {
-            collection.remove(node: self, reload: withRefresh)
-        } else {
-            let message = "TWSKUtils ERROR: Node is not in a TWCollectionNode"
+    func removeFromParentCollection(_ reloading: Bool = true) {
+        guard let stack = self.parent as? TWCollectionNode else {
+            let message = "TWSKUtils ERROR: Node is not in a TWStackNode"
             assertionFailure(message)
+            return
         }
+        stack.remove(node: self, reload: reloading)
     }
 }
+

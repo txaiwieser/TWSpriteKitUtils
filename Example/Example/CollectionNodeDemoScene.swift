@@ -16,8 +16,10 @@ class CollectionNodeDemoScene: SKScene {
         size = view.bounds.size
         backgroundColor = .lightGray
         
-        collection = TWCollectionNode(fillMode: TWCollectionNode.FillMode(columns: 3, width: view.frame.size.width*0.8, verticalMargin: 30, objectSize: CGSize(width: 100, height: 100)))
+        collection = TWCollectionNode(fillMode: .init(columnsCount: 3, lineSpacing: 30, elementSize: CGSize(width: 100, height: 100)))
+        collection.size.width = view.frame.size.width * 0.8
         collection.position = CGPoint(x: (view.frame).midX, y: (view.frame).midY)
+        collection.color = .brown
         addChild(collection)
         
         let normalLabelAdd = SKLabelNode(text: "Add")
@@ -26,7 +28,7 @@ class CollectionNodeDemoScene: SKScene {
         highlightedLabelAdd.color = .black
         
         let addButton = TWButton(normal: normalLabelAdd, highlighted: highlightedLabelAdd, disabled: nil)
-        addButton.position = CGPoint(x: (view.frame).midX + 200, y: (view.frame).midY + 400)
+        addButton.position = CGPoint(x: (view.frame).midX + 150, y: (view.frame).midY + 150)
         addButton.addClosure(.touchUpInside) { [unowned self] _ in
             addToCollection()
         }
@@ -38,12 +40,11 @@ class CollectionNodeDemoScene: SKScene {
         
         
         let removeButton = TWButton(normal: normalLabelRemove, highlighted: highlightedLabelRemove, disabled: nil)
-        removeButton.position = CGPoint(x: (view.frame).midX - 200, y: (view.frame).midY + 400)
+        removeButton.position = CGPoint(x: (view.frame).midX - 150, y: (view.frame).midY + 150)
         removeButton.addClosure(.touchUpInside) { [unowned self] _ in
             removeFromCollection()
         }
 
-        
         addChild(addButton)
         addChild(removeButton)
     }
@@ -55,7 +56,7 @@ class CollectionNodeDemoScene: SKScene {
     }
     
     func removeFromCollection() {
-        let node = collection.subNodes.last
+        let node = collection.childNodes.last
         collection.remove(node: node, reload: true)
     }
 }
