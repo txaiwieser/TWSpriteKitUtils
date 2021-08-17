@@ -4,9 +4,9 @@ public class TWSwitch: SKNode, TWControl {
     // MARK: Public properties
     public var tag: Int?
     public var eventClosures: [ControlEvent: [(TWSwitch) -> Void]] = [:]
-    public var state: ControlState = .normal {
+    public var state: ControlState = .init(internalState: .normal, isSelected: false) {
         didSet {
-            content.updateVisualInterface(toState: state, fromState: oldValue)
+            content.updateVisualInterface(state: state)
         }
     }
     
@@ -21,7 +21,7 @@ public class TWSwitch: SKNode, TWControl {
         addChild(content.node)
         isUserInteractionEnabled = true
         content.node.isUserInteractionEnabled = false
-        content.updateVisualInterface(toState: state, fromState: .normal)
+        content.updateVisualInterface(state: state)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -67,34 +67,29 @@ public class TWSwitch: SKNode, TWControl {
             }
         }
         
-        func updateVisualInterface(toState: ControlState, fromState: ControlState) {
+        func updateVisualInterface(state: ControlState) {
             switch self {
             case let .texture(base, normal, highlighted, selected, disabled):
-                switch toState {
-                case .normal:
+                switch (state.internalState, state.isSelected) {
+                case (.normal, false):
                     base.texture = normal
+                
+                case (.normal, true):
+                    base.texture = selected ?? normal
                     
-                case .highlighted:
+                case (.highlighted, let isSelected):
                     switch highlighted {
                     case let .a(single):
                         base.texture = single
                     
                     case let .b((fromNormal, fromSelected)):
-                        switch fromState {
-                        case .selected:
-                            base.texture = fromSelected
-                        default:
-                            base.texture = fromNormal
-                        }
+                        base.texture = isSelected ? fromSelected : fromNormal
                     
                     case .none:
                         base.texture = normal
                     }
-                
-                case .selected:
-                    base.texture = selected ?? normal
                     
-                case .disabled:
+                case (.disabled, _):
                     base.texture = disabled ?? normal
                 }
                 
@@ -104,31 +99,34 @@ public class TWSwitch: SKNode, TWControl {
                 selected?.alpha = 0
                 disabled?.alpha = 0
                 
-                switch toState {
-                case .normal:
+                switch (state.internalState, state.isSelected) {
+                case (.normal, false):
                     normal.alpha = 1
+
+                case (.normal, true):
+                    if let selected = selected {
+                        selected.alpha = 1
+                    } else {
+                        normal.alpha = 1
+                    }
                     
-                case .highlighted:
+                case (.highlighted, let isSelected):
                     switch highlighted {
                     case let .a(single):
                         single.alpha = 1
                     
                     case let .b((fromNormal, fromSelected)):
-                        switch fromState {
-                        case .selected:
+                        if isSelected {
                             fromSelected.alpha = 1
-                        default:
+                        } else {
                             fromNormal.alpha = 1
                         }
-                        
+                    
                     case .none:
                         normal.alpha = 1
                     }
-                
-                case .selected:
-                    selected?.alpha = 1
                     
-                case .disabled:
+                case (.disabled, _):
                     if let disabled = disabled {
                         disabled.alpha = 1
                     } else {
@@ -137,28 +135,26 @@ public class TWSwitch: SKNode, TWControl {
                 }
                 
             case let .color(base, normal, highlighted, selected, disabled):
-                switch toState {
-                case .normal:
+                switch (state.internalState, state.isSelected) {
+                case (.normal, false):
                     base.color = normal
+                
+                case (.normal, true):
+                    base.color = selected ?? normal
                     
-                case .highlighted:
-                    switch highlighted! {
+                case (.highlighted, let isSelected):
+                    switch highlighted {
                     case let .a(single):
                         base.color = single
                     
                     case let .b((fromNormal, fromSelected)):
-                        switch fromState {
-                        case .selected:
-                            base.color = fromSelected
-                        default:
-                            base.color = fromNormal
-                        }
-                    }
-                
-                case .selected:
-                    base.color = selected ?? normal
+                        base.color = isSelected ? fromSelected : fromNormal
                     
-                case .disabled:
+                    case .none:
+                        base.color = normal
+                    }
+                    
+                case (.disabled, _):
                     base.color = disabled ?? normal
                 }
                 
@@ -168,35 +164,34 @@ public class TWSwitch: SKNode, TWControl {
                 selected?.alpha = 0
                 disabled?.alpha = 0
                 
-                switch toState {
-                case .normal:
+                switch (state.internalState, state.isSelected) {
+                case (.normal, false):
                     normal.alpha = 1
-                    
-                case .highlighted:
-                    switch highlighted {
-                    case let .a(single):
-                        single.alpha = 1
-                    
-                    case let .b((fromNormal, fromSelected)):
-                        switch fromState {
-                        case .selected:
-                            fromSelected.alpha = 1
-                        default:
-                            fromNormal.alpha = 1
-                        }
-                        
-                    case .none:
-                        normal.alpha = 1
-                    }
-                
-                case .selected:
+
+                case (.normal, true):
                     if let selected = selected {
                         selected.alpha = 1
                     } else {
                         normal.alpha = 1
                     }
                     
-                case .disabled:
+                case (.highlighted, let isSelected):
+                    switch highlighted {
+                    case let .a(single):
+                        single.alpha = 1
+                    
+                    case let .b((fromNormal, fromSelected)):
+                        if isSelected {
+                            fromSelected.alpha = 1
+                        } else {
+                            fromNormal.alpha = 1
+                        }
+                    
+                    case .none:
+                        normal.alpha = 1
+                    }
+                    
+                case (.disabled, _):
                     if let disabled = disabled {
                         disabled.alpha = 1
                     } else {
@@ -243,72 +238,41 @@ public class TWSwitch: SKNode, TWControl {
 
         guard content.node.contains(touchPoint) else { return }
         lastTouchLocation = touchPoint
-        switch state {
-        case .normal:
-            state = .highlighted(fromSelected: false)
-            executeEvent(event: .touchDown)
-            
-        case .highlighted:
-            executeEvent(event: .touchDown)
-            
-        case .selected:
-            state = .highlighted(fromSelected: true)
+        
+        switch state.internalState {
+        case .normal, .highlighted:
+            state.internalState = .highlighted
             executeEvent(event: .touchDown)
             
         case .disabled:
             executeEvent(event: .disabledTouchDown)
         }
     }
-
+    
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let lastPoint = lastTouchLocation, content.node.contains(lastPoint) {
-            switch state {
-            case .normal, .highlighted(false):
-                state = .selected
+        let isPointInsideContent = lastTouchLocation.map { content.node.contains($0) } ?? false
+        
+        switch state.internalState {
+        case .normal, .highlighted:
+            state.internalState = .normal
+            if isPointInsideContent {
+                state.isSelected.toggle()
                 executeEvent(event: .touchUpInside)
-                executeEvent(event: .selectionChanged)
-            
-            case .highlighted(true):
-                state = .normal
-                executeEvent(event: .touchUpInside)
-                executeEvent(event: .selectionChanged)
-                
-            case .selected:
-                executeEvent(event: .touchUpInside)
-                
-            case .disabled:
-                executeEvent(event: .disabledTouchUpInside)
+            } else {
+                executeEvent(event: .touchUpOutside)
             }
-        } else {
-            switch state {
-            case .normal:
-                executeEvent(event: .touchUpOutside)
             
-            case let .highlighted(fromSelected):
-                state = fromSelected ? .selected : .normal
-                executeEvent(event: .touchUpOutside)
-                
-            case .selected:
-                executeEvent(event: .touchUpOutside)
-                
-            case .disabled:
-                executeEvent(event: .disabledTouchUpOutside)
-            }
+        case .disabled:
+            executeEvent(event: isPointInsideContent ? .disabledTouchUpInside : .disabledTouchUpOutside)
         }
     }
-
+    
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch state {
-        case .normal:
+        switch state.internalState {
+        case .normal, .highlighted:
+            state.internalState = .normal
             executeEvent(event: .touchCanceled)
-        
-        case let .highlighted(fromSelected):
-            state = fromSelected ? .selected : .normal
-            executeEvent(event: .touchCanceled)
-            
-        case .selected:
-            executeEvent(event: .touchCanceled)
-            
+
         case .disabled:
             executeEvent(event: .touchCanceled)
         }
@@ -378,47 +342,26 @@ extension TWSwitch.Content {
 }
 
 extension TWSwitch {
-    public enum ControlState {
-        case normal
-        case highlighted(fromSelected: Bool)
-        case selected
-        case disabled(isSelected: Bool)
+    public struct ControlState {
+        var internalState: InternalState
+        public var isSelected: Bool
         
-        public var isSelected: Bool {
-            get {
-                switch self {
-                case .selected: return false
-                default: return true
-                }
-            }
-            set {
-                guard isSelected != newValue else { return }
-                self = newValue ? .normal : .selected
-            }
+        enum InternalState {
+            case normal
+            case highlighted
+            case disabled
         }
         
         public var isEnabled: Bool {
             get {
-                switch self {
+                switch internalState {
                 case .disabled: return false
                 default: return true
                 }
             }
             set {
                 guard isEnabled != newValue else { return }
-                if newValue {
-                    if case let .disabled(isSelected) = self {
-                        self = isSelected ? .selected : .normal
-                    } else {
-                        self = .normal
-                    }
-                } else {
-                    if case .selected = self {
-                        self = .disabled(isSelected: true)
-                    } else {
-                        self = .disabled(isSelected: false)
-                    }
-                }
+                internalState = newValue ? .normal : .disabled
             }
         }
     }

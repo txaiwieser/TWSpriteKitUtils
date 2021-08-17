@@ -140,35 +140,38 @@ public class TWButton: SKNode, TWControl {
 
         guard content.node.contains(touchPoint) else { return }
         lastTouchLocation = touchPoint
-        guard state != .disabled else {
+        
+        switch state {
+        case .normal, .highlighted:
+            state = .highlighted
+            executeEvent(event: .touchDown)
+        case .disabled:
             executeEvent(event: .disabledTouchDown)
-            return
         }
-        state = .highlighted
-        executeEvent(event: .touchDown)
     }
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let lastPoint = lastTouchLocation, content.node.contains(lastPoint) {
-            guard state != .disabled else {
-                executeEvent(event: .disabledTouchUpInside)
-                return
-            }
+        let isPointInsideContent = lastTouchLocation.map { content.node.contains($0) } ?? false
+        
+        switch state {
+        case .normal, .highlighted:
             state = .normal
-            executeEvent(event: .touchUpInside)
-        } else {
-            guard state != .disabled else {
-                executeEvent(event: .disabledTouchUpOutside)
-                return
-            }
-            state = .normal
-            executeEvent(event: .touchUpOutside)
+            executeEvent(event: isPointInsideContent ? .touchUpInside : .touchUpOutside)
+
+        case .disabled:
+            executeEvent(event: isPointInsideContent ? .disabledTouchUpInside : .disabledTouchUpOutside)
         }
     }
     
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if state != .disabled { state = .normal }
-        executeEvent(event: .touchCanceled)
+        switch state {
+        case .normal, .highlighted:
+            state = .normal
+            executeEvent(event: .touchCanceled)
+
+        case .disabled:
+            executeEvent(event: .touchCanceled)
+        }
     }
 }
 
