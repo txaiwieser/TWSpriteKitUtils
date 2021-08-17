@@ -8,10 +8,9 @@ class StackNodeDemoScene: SKScene {
         size = view.bounds.size
         backgroundColor = .lightGray
         
-        stack = TWStackNode(length: view.frame.size.width * 0.8, fillMode: .vertical)
-            
+        stack = TWStackNode(fillMode: .vertical, sizingMode: .dynamic(spacing: 8))
         stack.position = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        stack.color = .red
+        stack.color = .black
         addChild(stack)
         
         let addNormal = SKLabelNode(text: "Add")
@@ -19,18 +18,18 @@ class StackNodeDemoScene: SKScene {
         let addHighlighted = SKLabelNode(text: "Add")
         addHighlighted.color = .black
         let addButton = TWButton(normal: addNormal, highlighted: addHighlighted, disabled: nil)
-        addButton.position = CGPoint(x: view.frame.midX + 200, y: view.frame.midY + 400)
+        addButton.position = CGPoint(x: view.frame.midX + 100, y: view.frame.midY + 150)
         addButton.addClosure(.touchUpInside) { [unowned self] _ in
             addToStack()
         }
         
-        let removeNormal = SKLabelNode(text: "Add")
+        let removeNormal = SKLabelNode(text: "Remove")
         removeNormal.color = .white
-        let removeHighlighted = SKLabelNode(text: "Add")
+        let removeHighlighted = SKLabelNode(text: "Remove")
         removeHighlighted.color = .black
         
         let removeButton = TWButton(normal: removeNormal, highlighted: removeHighlighted, disabled: nil)
-        removeButton.position = CGPoint(x: view.frame.midX - 200, y: view.frame.midY + 400)
+        removeButton.position = CGPoint(x: view.frame.midX - 100, y: view.frame.midY + 150)
         removeButton.addClosure(.touchUpInside) { [unowned self] _ in
             removeFromStack()
         }
@@ -47,7 +46,7 @@ class StackNodeDemoScene: SKScene {
     }
     
     func removeFromStack() {
-        let node = stack.subNodes.last
+        let node = stack.childNodes.last
         stack.remove(node: node, reload: true)
     }
 }

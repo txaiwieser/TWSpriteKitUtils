@@ -1,135 +1,134 @@
-//
-//  File.swift
-//  Repel
-//
-//  Created by Txai Wieser on 7/22/15.
-//
-//
-
 import SpriteKit
 
+public final class TWStackNode: SKSpriteNode {
+    public private(set) var fillMode: FillMode
+    public private(set) var sizingMode: SizingMode
+    public private(set) var childNodes: [SKNode] = []
 
-open class TWStackNode: SKSpriteNode {
-    open private(set) var fillMode: FillMode = FillMode.vertical
-    open private(set) var subNodes: [SKNode] = []
-    public let automaticSpacing: Bool
-    
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    public init(length: CGFloat, fillMode: FillMode) {
+    public init(fillMode: FillMode, sizingMode: SizingMode, childNodes: [SKNode] = []) {
         self.fillMode = fillMode
-        self.automaticSpacing = false
-        super.init(texture: nil, color: .clear, size: fillMode.size(length))
+        self.sizingMode = sizingMode
+        super.init(texture: nil, color: .clear, size: .zero)
+        childNodes.forEach { add(node: $0, reload: false) }
+        reloadStack()
     }
     
-    public init(size: CGSize, fillMode: FillMode) {
-        self.fillMode = fillMode
-        self.automaticSpacing = true
-        super.init(texture: nil, color: .clear, size: size)
-    }
-    
-    open func reloadStack() {
-        var accumulatedLength = CGFloat(0)
+    public func reloadStack() {
+        guard childNodes.isEmpty == false else {
+            if sizingMode.isFixed == false {
+                size = .zero
+            }
+            return
+        }
+        guard childNodes.count > 1 else {
+            childNodes[0].position = .zero
+            if sizingMode.isFixed == false {
+                size = childNodes[0].calculateAccumulatedFrame().size
+            }
+            return
+        }
         
         switch fillMode {
         case .vertical:
-            if automaticSpacing {
-                let firstMargin = subNodes.first!.calculateAccumulatedFrame().height/2
-                let lastMargin = subNodes.last!.calculateAccumulatedFrame().height/2
-
-                for (index, node) in subNodes.enumerated() {
-                    node.position.y = -CGFloat(index)*(size.height - firstMargin - lastMargin)/CGFloat(subNodes.count-1) + self.size.height/2
-                    node.position.y -= firstMargin
+            switch sizingMode {
+            case .fixed:
+                let firstElementLength = childNodes.first!.calculateAccumulatedFrame().height
+                let lastElementLength = childNodes.last!.calculateAccumulatedFrame().height
+                let availableSize = size.height - firstElementLength / 2 - lastElementLength / 2
+                let perElementSpace = availableSize / CGFloat(childNodes.count)
+                
+                let indexShift = CGFloat(childNodes.count) / 2 - 0.5
+                for (index, node) in childNodes.enumerated() {
+                    node.position.y = (CGFloat(index) - indexShift) * perElementSpace
                 }
-            } else {
-                for node in subNodes {
-                    let f = node.calculateAccumulatedFrame()
-                    let ff =  f.maxY
-                    _ = ff - f.size.height/2
-                    
-                    node.position.y = -(accumulatedLength + f.size.height/2)// - fff
-                    accumulatedLength += f.size.height
+                
+            case .dynamic(let spacing):
+                var accumulatedLength: CGFloat = 0
+                for (i, node) in childNodes.enumerated() {
+                    let length = node.calculateAccumulatedFrame().height
+                    node.position.y = accumulatedLength + length / 2
+                    accumulatedLength += length
+                    if i != childNodes.count - 1 {
+                        accumulatedLength += spacing ?? 0
+                    }
                 }
-                subNodes.forEach { $0.position.y += accumulatedLength/2 }
-                self.size.height = accumulatedLength
+                
+                childNodes.forEach { $0.position.y -= accumulatedLength / 2 }
+                size.height = accumulatedLength
             }
             
         case .horizontal:
-            if automaticSpacing {
-                for (index, node) in subNodes.enumerated() {
-                    let firstMargin = subNodes.first!.calculateAccumulatedFrame().width/2
-                    let lastMargin = subNodes.last!.calculateAccumulatedFrame().width/2
-                    node.position.x = CGFloat(index)*(size.width - firstMargin - lastMargin)/CGFloat(subNodes.count-1) - self.size.width/2
-                    node.position.x += firstMargin
+            switch sizingMode {
+            case .fixed:
+                let firstElementLength = childNodes.first!.calculateAccumulatedFrame().width
+                let lastElementLength = childNodes.last!.calculateAccumulatedFrame().width
+                let availableSize = size.width - firstElementLength / 2 - lastElementLength / 2
+                let perElementSpace = availableSize / CGFloat(childNodes.count)
+                
+                let indexShift = CGFloat(childNodes.count) / 2 - 0.5
+                for (index, node) in childNodes.enumerated() {
+                    node.position.x = (CGFloat(index) - indexShift) * perElementSpace
                 }
-            } else  {
-                for node in subNodes {
-                    let f = node.calculateAccumulatedFrame()
-                    let ff =  f.minX
-                    let fff = ff + f.size.width/2
-                    
-                    node.position.x = (accumulatedLength + f.size.width/2) - fff
-                    accumulatedLength += f.size.width
+                
+            case .dynamic(let spacing):
+                var accumulatedLength: CGFloat = 0
+                for (i, node) in childNodes.enumerated() {
+                    let length = node.calculateAccumulatedFrame().width
+                    node.position.x = accumulatedLength + length / 2
+                    accumulatedLength += length
+                    if i != childNodes.count - 1 {
+                        accumulatedLength += spacing ?? 0
+                    }
                 }
-                subNodes.forEach { $0.position.x -= accumulatedLength/2 }
-                self.size.width = accumulatedLength
+                
+                childNodes.forEach { $0.position.x -= accumulatedLength / 2 }
+                size.width = accumulatedLength
             }
         }
         
     }
     
-    open func add(node: SKNode, reload: Bool = false) {
-        subNodes.append(node)
-        self.addChild(node)
+    public func add(node: SKNode, reload: Bool = false) {
+        childNodes.append(node)
+        addChild(node)
         
-        if reload {
-            self.reloadStack()
-        }
+        if reload { reloadStack() }
     }
     
-    open func remove(node: SKNode?, reload: Bool = false) {
-        if let n = node {
+    public func remove(node: SKNode?, reload: Bool = false) {
+        if let n = node, let i = childNodes.firstIndex(of: n) {
             n.removeFromParent()
-            if let ind = subNodes.firstIndex(of: n) {
-                subNodes.remove(at: ind)
-            }
-        
-            if reload {
-                self.reloadStack()
-            }
+            childNodes.remove(at: i)
         }
+        if reload { reloadStack() }
     }
     
     public enum FillMode {
         case horizontal
         case vertical
+    }
+    
+    public enum SizingMode {
+        case fixed
+        case dynamic(spacing: CGFloat? = 8)
         
-        func size(_ length: CGFloat) -> CGSize {
+        var isFixed: Bool {
             switch self {
-            case .horizontal:
-                return CGSize(width: length, height: 2)
-            case .vertical:
-                return CGSize(width: 2, height: length)
-            }
-        }
-        
-        func length(_ size: CGSize) -> CGFloat {
-            switch self {
-            case .horizontal:
-                return size.width
-            case .vertical:
-                return size.height
+            case .fixed: return true
+            case .dynamic: return false
             }
         }
     }
 }
 
 public extension SKNode {
-    func removeNodeFromStack(_ withRefresh: Bool = true) {
-        if let stack = self.parent as? TWStackNode {
-            stack.remove(node: self, reload: withRefresh)
-        } else {
+    func removeFromParentStack(_ reloading: Bool = true) {
+        guard let stack = self.parent as? TWStackNode else {
             let message = "TWSKUtils ERROR: Node is not in a TWStackNode"
             assertionFailure(message)
+            return
         }
+        stack.remove(node: self, reload: reloading)
     }
 }
