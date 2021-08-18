@@ -7,7 +7,7 @@
 * TWStack: A SKSpriteNode subclass that implements commom stack funcionalities (similar to UIKit's UIStackView).
 * TWCollection: A SKSpriteNode subclass that implements commom collection funcionalities (similar to UIKit's UICollectionView).
 
-![Demonstration](https://github.com/txaidw/TWSpriteKitUtils/blob/master/demo.gif)
+![Demonstration](https://github.com/txaidw/TWSpriteKitUtils/blob/main/demo.gif)
 
 Here's a full init code snippet:
 
