@@ -150,9 +150,15 @@ public class TWButton: SKNode, TWControl {
         }
     }
     
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        guard let parent = self.content.node.parent else { return }
+        lastTouchLocation = touch.location(in: parent)
+    }
+    
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let isPointInsideContent = lastTouchLocation.map { content.node.contains($0) } ?? false
-        
+        lastTouchLocation = nil
         switch state {
         case .normal, .highlighted:
             state = .normal
