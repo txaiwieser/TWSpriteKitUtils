@@ -40,21 +40,21 @@ public final class TWStackNode: SKSpriteNode {
                 
                 let indexShift = CGFloat(childNodes.count) / 2 - 0.5
                 for (index, node) in childNodes.enumerated() {
-                    node.position.y = (CGFloat(index) - indexShift) * perElementSpace
+                    node.position.y = -(CGFloat(index) - indexShift) * perElementSpace
                 }
                 
             case .dynamic(let spacing):
                 var accumulatedLength: CGFloat = 0
                 for (i, node) in childNodes.enumerated() {
                     let length = node.calculateAccumulatedFrame().height
-                    node.position.y = accumulatedLength + length / 2
+                    node.position.y = -(accumulatedLength + length / 2)
                     accumulatedLength += length
                     if i != childNodes.count - 1 {
                         accumulatedLength += spacing ?? 0
                     }
                 }
                 
-                childNodes.forEach { $0.position.y -= accumulatedLength / 2 }
+                childNodes.forEach { $0.position.y += accumulatedLength / 2 }
                 size.height = accumulatedLength
             }
             
