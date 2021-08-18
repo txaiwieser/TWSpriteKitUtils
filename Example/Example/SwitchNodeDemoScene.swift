@@ -15,17 +15,17 @@ class SwitchNodeDemoScene: SKScene {
         switchesContainer.addChild(textureSwitch)
         switchesContainer.addChild(textSwitch)
     
-        colorSwitch.addClosure(.touchUpInside) { [unowned self] control in
+        colorSwitch.addClosure(.selectionChanged) { [unowned self] control in
             textureSwitch.state.isEnabled = control.state.isSelected
             textSwitch.state.isEnabled = control.state.isSelected
         }
         
-        textureSwitch.addClosure(.touchUpInside) { [unowned self] control in
+        textureSwitch.addClosure(.selectionChanged) { [unowned self] control in
             colorSwitch.state.isEnabled = control.state.isSelected
             textSwitch.state.isEnabled = control.state.isSelected
         }
         
-        textSwitch.addClosure(.touchUpInside) { [unowned self] control in
+        textSwitch.addClosure(.selectionChanged) { [unowned self] control in
             colorSwitch.state.isEnabled = control.state.isSelected
             textureSwitch.state.isEnabled = control.state.isSelected
         }
