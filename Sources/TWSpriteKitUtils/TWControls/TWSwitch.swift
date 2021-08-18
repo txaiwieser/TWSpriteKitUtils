@@ -280,31 +280,31 @@ public class TWSwitch: SKNode, TWControl {
 }
 
 extension TWSwitch {
-    public convenience init(normal: SKLabelNode, highlighted: SKLabelNode?, selected: SKLabelNode?, disabled: SKLabelNode?) {
+    public convenience init(normal: SKLabelNode, highlighted: SKLabelNode? = nil, selected: SKLabelNode? = nil, disabled: SKLabelNode? = nil) {
         self.init(content: .label(normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
     }
-    public convenience init(normal: SKLabelNode, highlighted: (fromNormal: SKLabelNode, fromSelected: SKLabelNode)?, selected: SKLabelNode?, disabled: SKLabelNode?) {
+    public convenience init(normal: SKLabelNode, highlighted: (fromNormal: SKLabelNode, fromSelected: SKLabelNode)? = nil, selected: SKLabelNode? = nil, disabled: SKLabelNode? = nil) {
         self.init(content: .label(normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 
-    public convenience init(normal: SKTexture, highlighted: SKTexture?, selected: SKTexture?, disabled: SKTexture?) {
+    public convenience init(normal: SKTexture, highlighted: SKTexture? = nil, selected: SKTexture? = nil, disabled: SKTexture? = nil) {
         self.init(content: .texture(normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
     }
-    public convenience init(normal: SKTexture, highlighted: (fromNormal: SKTexture, fromSelected: SKTexture)?, selected: SKTexture?, disabled: SKTexture?) {
+    public convenience init(normal: SKTexture, highlighted: (fromNormal: SKTexture, fromSelected: SKTexture)? = nil, selected: SKTexture? = nil, disabled: SKTexture? = nil) {
         self.init(content: .texture(normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 
-    public convenience init(normal: SKShapeNode, highlighted: SKShapeNode?, selected: SKShapeNode?, disabled: SKShapeNode?) {
+    public convenience init(normal: SKShapeNode, highlighted: SKShapeNode? = nil, selected: SKShapeNode? = nil, disabled: SKShapeNode? = nil) {
         self.init(content: .shape(normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
     }
-    public convenience init(normal: SKShapeNode, highlighted: (fromNormal: SKShapeNode, fromSelected: SKShapeNode)?, selected: SKShapeNode?, disabled: SKShapeNode?) {
+    public convenience init(normal: SKShapeNode, highlighted: (fromNormal: SKShapeNode, fromSelected: SKShapeNode)? = nil, selected: SKShapeNode? = nil, disabled: SKShapeNode? = nil) {
         self.init(content: .shape(normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 
-    public convenience init(size: CGSize, normal: SKColor, highlighted: SKColor?, selected: SKColor?, disabled: SKColor?) {
+    public convenience init(size: CGSize, normal: SKColor, highlighted: SKColor? = nil, selected: SKColor? = nil, disabled: SKColor? = nil) {
         self.init(content: .color(size: size, normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
     }
-    public convenience init(size: CGSize, normal: SKColor, highlighted: (fromNormal: SKColor, fromSelected: SKColor)?, selected: SKColor?, disabled: SKColor?) {
+    public convenience init(size: CGSize, normal: SKColor, highlighted: (fromNormal: SKColor, fromSelected: SKColor)? = nil, selected: SKColor? = nil, disabled: SKColor? = nil) {
         self.init(content: .color(size: size, normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 }

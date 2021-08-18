@@ -176,19 +176,19 @@ public class TWButton: SKNode, TWControl {
 }
 
 extension TWButton {
-    public convenience init(normal: SKLabelNode, highlighted: SKLabelNode?, disabled: SKLabelNode?) {
+    public convenience init(normal: SKLabelNode, highlighted: SKLabelNode? = nil, disabled: SKLabelNode? = nil) {
         self.init(content: .label(normal: normal, highlighted: highlighted, disabled: disabled))
     }
 
-    public convenience init(normal: SKTexture, highlighted: SKTexture?, disabled: SKTexture?) {
+    public convenience init(normal: SKTexture, highlighted: SKTexture? = nil, disabled: SKTexture? = nil) {
         self.init(content: .texture(normal: normal, highlighted: highlighted, disabled: disabled))
     }
 
-    public convenience init(normal: SKShapeNode, highlighted: SKShapeNode?, disabled: SKShapeNode?) {
+    public convenience init(normal: SKShapeNode, highlighted: SKShapeNode? = nil, disabled: SKShapeNode? = nil) {
         self.init(content: .shape(normal: normal, highlighted: highlighted, disabled: disabled))
     }
 
-    public convenience init(size: CGSize, normal: SKColor, highlighted: SKColor?, disabled: SKColor?) {
+    public convenience init(size: CGSize, normal: SKColor, highlighted: SKColor? = nil, disabled: SKColor? = nil) {
         self.init(content: .color(size: size, normal: normal, highlighted: highlighted, disabled: disabled))
     }
 }
