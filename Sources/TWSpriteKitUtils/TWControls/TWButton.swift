@@ -180,8 +180,8 @@ extension TWButton {
         self.init(content: .label(normal: normal, highlighted: highlighted, disabled: disabled))
     }
 
-    public convenience init(size: CGSize, normal: SKTexture, highlighted: SKTexture?, disabled: SKTexture?) {
-        self.init(content: .texture(size: size, normal: normal, highlighted: highlighted, disabled: disabled))
+    public convenience init(normal: SKTexture, highlighted: SKTexture?, disabled: SKTexture?) {
+        self.init(content: .texture(normal: normal, highlighted: highlighted, disabled: disabled))
     }
 
     public convenience init(normal: SKShapeNode, highlighted: SKShapeNode?, disabled: SKShapeNode?) {
@@ -194,9 +194,9 @@ extension TWButton {
 }
 
 extension TWButton.Content {
-    static func texture(size: CGSize, normal: SKTexture, highlighted: SKTexture?, disabled: SKTexture?) -> Self {
+    static func texture(normal: SKTexture, highlighted: SKTexture?, disabled: SKTexture?) -> Self {
         let base = SKSpriteNode()
-        base.size = size
+        base.size = normal.size()
         return .texture(base: base, normal: normal, highlighted: highlighted, disabled: disabled)
     }
     static func shape(normal: SKShapeNode, highlighted: SKShapeNode?, disabled: SKShapeNode?) -> Self {

@@ -60,7 +60,6 @@ class SwitchNodeDemoScene: SKScene {
     
     private lazy var textureSwitch: TWSwitch = {
         let s = TWSwitch(
-            size: CGSize(width: 102, height: 40),
             normal: SKTexture(imageNamed: "switch_off"),
             highlighted: SKTexture(imageNamed: "button_n"),
             selected: SKTexture(imageNamed: "switch_on"),

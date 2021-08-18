@@ -43,7 +43,6 @@ class ButtonNodeDemoScene: SKScene {
     
     private lazy var textureButton: TWButton = {
         let b = TWButton(
-            size: CGSize(width: 102, height: 40),
             normal: SKTexture(imageNamed: "button_n"),
             highlighted: SKTexture(imageNamed: "button_h"),
             disabled: SKTexture(imageNamed: "button_d")

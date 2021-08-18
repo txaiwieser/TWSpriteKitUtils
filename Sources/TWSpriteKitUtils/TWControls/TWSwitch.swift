@@ -287,11 +287,11 @@ extension TWSwitch {
         self.init(content: .label(normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 
-    public convenience init(size: CGSize, normal: SKTexture, highlighted: SKTexture?, selected: SKTexture?, disabled: SKTexture?) {
-        self.init(content: .texture(size: size, normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
+    public convenience init(normal: SKTexture, highlighted: SKTexture?, selected: SKTexture?, disabled: SKTexture?) {
+        self.init(content: .texture(normal: normal, highlighted: highlighted.map { .a($0) }, selected: selected, disabled: disabled))
     }
-    public convenience init(size: CGSize, normal: SKTexture, highlighted: (fromNormal: SKTexture, fromSelected: SKTexture)?, selected: SKTexture?, disabled: SKTexture?) {
-        self.init(content: .texture(size: size, normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
+    public convenience init(normal: SKTexture, highlighted: (fromNormal: SKTexture, fromSelected: SKTexture)?, selected: SKTexture?, disabled: SKTexture?) {
+        self.init(content: .texture(normal: normal, highlighted: highlighted.map { .b($0) }, selected: selected, disabled: disabled))
     }
 
     public convenience init(normal: SKShapeNode, highlighted: SKShapeNode?, selected: SKShapeNode?, disabled: SKShapeNode?) {
@@ -310,9 +310,9 @@ extension TWSwitch {
 }
 
 extension TWSwitch.Content {
-    static func texture(size: CGSize, normal: SKTexture, highlighted: Either<SKTexture, (SKTexture, SKTexture)>?, selected: SKTexture?, disabled: SKTexture?) -> Self {
+    static func texture(normal: SKTexture, highlighted: Either<SKTexture, (SKTexture, SKTexture)>?, selected: SKTexture?, disabled: SKTexture?) -> Self {
         let base = SKSpriteNode()
-        base.size = size
+        base.size = normal.size()
         return .texture(base: base, normal: normal, highlighted: highlighted, selected: selected, disabled: disabled)
     }
     
